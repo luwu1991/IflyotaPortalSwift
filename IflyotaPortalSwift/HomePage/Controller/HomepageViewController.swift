@@ -46,6 +46,7 @@ class HomepageViewController: LWBaseViewController{
         
         initClessicView()
         initOtherAppView()
+        initScenicSpotView()
     }
     
     
@@ -59,6 +60,7 @@ class HomepageViewController: LWBaseViewController{
     func initClessicView() {
         let clessicView = UIView()
         clessicView.frame = CGRect (x: 0, y: 210, width: SCREENW, height: 155)
+        clessicView.backgroundColor = UIColor.white
         view.addSubview(clessicView)
         
         for index in 0...5 {
@@ -86,6 +88,7 @@ class HomepageViewController: LWBaseViewController{
     fileprivate func initBannelView() {
         scrollView = UIScrollView()
         scrollView?.frame = CGRect(x: 0, y: 0, width: SCREENW, height: 209)
+        scrollView?.backgroundColor = UIColor.white
         scrollView?.contentSize = CGSize (width: 3*SCREENW, height: 209)
         scrollView?.contentOffset = CGPoint (x: SCREENW, y: 0)
         scrollView?.showsVerticalScrollIndicator = false
@@ -105,16 +108,17 @@ class HomepageViewController: LWBaseViewController{
     }
     
     func initNewsView(){
-        newsView.frame = CGRect (x: 0, y: 210+155, width: SCREENW - 44, height: 26)
+        newsView.frame = CGRect (x: 0, y: 210+155, width: SCREENW - 44, height: 36)
         newsView.contentSize = CGSize (width: SCREENW - 44, height: CGFloat(news.count*26))
         newsView.showsVerticalScrollIndicator = false
         newsView.showsHorizontalScrollIndicator = false
-        
+        newsView.backgroundColor = UIColor.white
         newsView.isPagingEnabled = true
         self.automaticallyAdjustsScrollViewInsets = false
         
         let more = UIButton()
-        more.frame = CGRect (x: SCREENW - 44, y: 210+155, width: 44, height: 26)
+        more.frame = CGRect (x: SCREENW - 44, y: 210+155, width: 44, height: 36)
+        more.backgroundColor = UIColor.white
         more.setTitle("更多", for: UIControlState.normal)
         more.setTitleColor(LWColor(r: 0, g: 0, b: 0, a: 1.0), for: UIControlState.normal)
         more.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -127,13 +131,9 @@ class HomepageViewController: LWBaseViewController{
     
     func initOtherAppView() {
         let otherAppView = UIView()
-        otherAppView.frame = CGRect (x: 0, y: 210+155+26+10, width: SCREENH, height: 40)
+        otherAppView.frame = CGRect (x: 0, y: 210+155+26+10+1, width: SCREENH, height: 40)
+        otherAppView.backgroundColor = UIColor.white
         view.addSubview(otherAppView)
-        
-        let line = CALayer()
-        line.frame = CGRect (x: 0, y: 210+155+26+10, width: SCREENW, height: 1)
-        line.backgroundColor = LWColor(r: 186, g: 186, b: 186, a: 0.7).cgColor
-        view.layer.addSublayer(line)
         
         for index in 0...otherApps.count-1 {
             let btn = UIButton()
@@ -152,12 +152,18 @@ class HomepageViewController: LWBaseViewController{
         
     }
     
+    
+    func initScenicSpotView() {
+        let scenicSpotView = ScenicSpotView.init(frame: CGRect (x: 0, y: 210+155+26+10+1+40+8, width: SCREENW, height: 170))
+        view.addSubview(scenicSpotView)
+    }
+    
     func loadNews(){
         newsView.contentOffset = CGPoint (x: 0, y: 0)
-        newsView.contentSize = CGSize (width: SCREENW - 44, height: CGFloat(news.count*26))
+        newsView.contentSize = CGSize (width: SCREENW - 44, height: CGFloat(news.count*36))
         for index in 0...news.count-1{
             let newView = Bundle.main.loadNibNamed("NewView", owner: nil, options: nil)?.first as! NewView
-            newView.frame = CGRect (x: 0, y: index*26, width: Int(SCREENW), height: 26)
+            newView.frame = CGRect (x: 0, y: index*36, width: Int(SCREENW), height: 36)
             newView.titleBtn.setTitle(news[index], for: UIControlState.normal)
             newView.tag = index + 1
             newsView.addSubview(newView)
@@ -188,9 +194,6 @@ class HomepageViewController: LWBaseViewController{
     
     
     //MARK:antion
-    
-
-    
     @objc fileprivate func scrollToNext() {
         
         UIView.animate(withDuration: 0.4, animations: {
