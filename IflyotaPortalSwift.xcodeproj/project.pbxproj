@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		69E63774297299F03FB05B80 /* Pods_IflyotaPortalSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED6760520E4FAC7E6FFC4B4 /* Pods_IflyotaPortalSwift.framework */; };
+		DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000E3F1F99DD2A00A581F9 /* LWNavigationController.swift */; };
+		DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000E411F99DF6C00A581F9 /* HomePageNew.swift */; };
+		DB000E451F99E56600A581F9 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000E441F99E56600A581F9 /* NewView.swift */; };
+		DB000E471F99E57A00A581F9 /* NewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB000E461F99E57A00A581F9 /* NewView.xib */; };
+		DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */; };
+		DBD1B3CE1F96FC7B002DE72A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */; };
+		DBD1B3D01F96FC7C002DE72A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3CF1F96FC7C002DE72A /* ViewController.swift */; };
+		DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */; };
+		DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBD1B3D61F96FC7C002DE72A /* LaunchScreen.storyboard */; };
+		DBD1B3F01F9729E2002DE72A /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3EF1F9729E2002DE72A /* HomepageViewController.swift */; };
+		DBD1B3F31F9729FF002DE72A /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3F21F9729FF002DE72A /* NearbyViewController.swift */; };
+		DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3F51F972A1C002DE72A /* SpeechViewController.swift */; };
+		DBD1B3FB1F972A54002DE72A /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3FA1F972A54002DE72A /* ThemeViewController.swift */; };
+		DBD1B3FE1F972A65002DE72A /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3FD1F972A65002DE72A /* MeViewController.swift */; };
+		DBD1B4001F972C5F002DE72A /* LWTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3FF1F972C5F002DE72A /* LWTabBarViewController.swift */; };
+		DBD1B4021F972DD6002DE72A /* LWBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B4011F972DD6002DE72A /* LWBaseViewController.swift */; };
+		DBD1B4051F9730AC002DE72A /* LWConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B4041F9730AC002DE72A /* LWConst.swift */; };
+		DBD1B4091F974106002DE72A /* LWNetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B4081F974106002DE72A /* LWNetworkTool.swift */; };
+		DBD1B40C1F97481D002DE72A /* HomePageBannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B40B1F97481D002DE72A /* HomePageBannel.swift */; };
+		DBD1B40E1F97541F002DE72A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B40D1F97541F002DE72A /* UIView+Extension.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7ED6760520E4FAC7E6FFC4B4 /* Pods_IflyotaPortalSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IflyotaPortalSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88CA5CAEEE6D4B61079D2D5C /* Pods-IflyotaPortalSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IflyotaPortalSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IflyotaPortalSwift/Pods-IflyotaPortalSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		DB000E3F1F99DD2A00A581F9 /* LWNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWNavigationController.swift; sourceTree = "<group>"; };
+		DB000E411F99DF6C00A581F9 /* HomePageNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNew.swift; sourceTree = "<group>"; };
+		DB000E441F99E56600A581F9 /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
+		DB000E461F99E57A00A581F9 /* NewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewView.xib; sourceTree = "<group>"; };
+		DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		DBD1B3CA1F96FC7B002DE72A /* IflyotaPortalSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IflyotaPortalSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DBD1B3CF1F96FC7C002DE72A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DBD1B3D71F96FC7C002DE72A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DBD1B3D91F96FC7C002DE72A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBD1B3EF1F9729E2002DE72A /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
+		DBD1B3F21F9729FF002DE72A /* NearbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
+		DBD1B3F51F972A1C002DE72A /* SpeechViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewController.swift; sourceTree = "<group>"; };
+		DBD1B3FA1F972A54002DE72A /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
+		DBD1B3FD1F972A65002DE72A /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		DBD1B3FF1F972C5F002DE72A /* LWTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWTabBarViewController.swift; sourceTree = "<group>"; };
+		DBD1B4011F972DD6002DE72A /* LWBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWBaseViewController.swift; sourceTree = "<group>"; };
+		DBD1B4041F9730AC002DE72A /* LWConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWConst.swift; sourceTree = "<group>"; };
+		DBD1B4081F974106002DE72A /* LWNetworkTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWNetworkTool.swift; sourceTree = "<group>"; };
+		DBD1B40B1F97481D002DE72A /* HomePageBannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageBannel.swift; sourceTree = "<group>"; };
+		DBD1B40D1F97541F002DE72A /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		E806DDCD3E6A1A090006607D /* Pods-IflyotaPortalSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IflyotaPortalSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-IflyotaPortalSwift/Pods-IflyotaPortalSwift.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DBD1B3C71F96FC7B002DE72A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69E63774297299F03FB05B80 /* Pods_IflyotaPortalSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D8D8DD6B7D258AB1553E0170 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7ED6760520E4FAC7E6FFC4B4 /* Pods_IflyotaPortalSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB000E431F99E54C00A581F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DB000E441F99E56600A581F9 /* NewView.swift */,
+				DB000E461F99E57A00A581F9 /* NewView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DBD1B3C11F96FC7B002DE72A = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3CC1F96FC7B002DE72A /* IflyotaPortalSwift */,
+				DBD1B3CB1F96FC7B002DE72A /* Products */,
+				E2508800D946E155CE47B694 /* Pods */,
+				D8D8DD6B7D258AB1553E0170 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DBD1B3CB1F96FC7B002DE72A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3CA1F96FC7B002DE72A /* IflyotaPortalSwift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DBD1B3CC1F96FC7B002DE72A /* IflyotaPortalSwift */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3E81F97278C002DE72A /* Main */,
+				DBD1B3E71F97271C002DE72A /* Other */,
+				DBD1B3E61F972713002DE72A /* Me */,
+				DBD1B3F81F972A33002DE72A /* Theme */,
+				DBD1B3E41F9726E5002DE72A /* Speech */,
+				DBD1B3E31F97268A002DE72A /* Nearby */,
+				DBD1B3E21F972660002DE72A /* HomePage */,
+				DBD1B3CF1F96FC7C002DE72A /* ViewController.swift */,
+				DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */,
+			);
+			path = IflyotaPortalSwift;
+			sourceTree = "<group>";
+		};
+		DBD1B3E21F972660002DE72A /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				DB000E431F99E54C00A581F9 /* View */,
+				DBD1B40A1F9747EC002DE72A /* Model */,
+				DBD1B3EE1F9729C3002DE72A /* Controller */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		DBD1B3E31F97268A002DE72A /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3F11F9729EB002DE72A /* Controller */,
+			);
+			path = Nearby;
+			sourceTree = "<group>";
+		};
+		DBD1B3E41F9726E5002DE72A /* Speech */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3F41F972A09002DE72A /* Controller */,
+			);
+			path = Speech;
+			sourceTree = "<group>";
+		};
+		DBD1B3E61F972713002DE72A /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3FC1F972A58002DE72A /* Controller */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		DBD1B3E71F97271C002DE72A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */,
+				DBD1B3D91F96FC7C002DE72A /* Info.plist */,
+				DBD1B3D61F96FC7C002DE72A /* LaunchScreen.storyboard */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		DBD1B3E81F97278C002DE72A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3EB1F9727A7002DE72A /* BaseController */,
+				DBD1B3EA1F9727A1002DE72A /* Tools */,
+				DBD1B3E91F972797002DE72A /* Category */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DBD1B3E91F972797002DE72A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B40D1F97541F002DE72A /* UIView+Extension.swift */,
+				DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		DBD1B3EA1F9727A1002DE72A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B4041F9730AC002DE72A /* LWConst.swift */,
+				DBD1B4081F974106002DE72A /* LWNetworkTool.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		DBD1B3EB1F9727A7002DE72A /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3FF1F972C5F002DE72A /* LWTabBarViewController.swift */,
+				DBD1B4011F972DD6002DE72A /* LWBaseViewController.swift */,
+				DB000E3F1F99DD2A00A581F9 /* LWNavigationController.swift */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		DBD1B3EE1F9729C3002DE72A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3EF1F9729E2002DE72A /* HomepageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DBD1B3F11F9729EB002DE72A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3F21F9729FF002DE72A /* NearbyViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DBD1B3F41F972A09002DE72A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3F51F972A1C002DE72A /* SpeechViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DBD1B3F81F972A33002DE72A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3F91F972A3F002DE72A /* Controller */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		DBD1B3F91F972A3F002DE72A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3FA1F972A54002DE72A /* ThemeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DBD1B3FC1F972A58002DE72A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBD1B3FD1F972A65002DE72A /* MeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DBD1B40A1F9747EC002DE72A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DB000E411F99DF6C00A581F9 /* HomePageNew.swift */,
+				DBD1B40B1F97481D002DE72A /* HomePageBannel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E2508800D946E155CE47B694 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				88CA5CAEEE6D4B61079D2D5C /* Pods-IflyotaPortalSwift.debug.xcconfig */,
+				E806DDCD3E6A1A090006607D /* Pods-IflyotaPortalSwift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DBD1B3C91F96FC7B002DE72A /* IflyotaPortalSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBD1B3DC1F96FC7C002DE72A /* Build configuration list for PBXNativeTarget "IflyotaPortalSwift" */;
+			buildPhases = (
+				BA06FBAE901586524C745DBB /* [CP] Check Pods Manifest.lock */,
+				DBD1B3C61F96FC7B002DE72A /* Sources */,
+				DBD1B3C71F96FC7B002DE72A /* Frameworks */,
+				DBD1B3C81F96FC7B002DE72A /* Resources */,
+				A75E3EDDD777E206E9699ECA /* [CP] Embed Pods Frameworks */,
+				2CC31033BDDCFEB196103234 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IflyotaPortalSwift;
+			productName = IflyotaPortalSwift;
+			productReference = DBD1B3CA1F96FC7B002DE72A /* IflyotaPortalSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DBD1B3C21F96FC7B002DE72A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = iflyota;
+				TargetAttributes = {
+					DBD1B3C91F96FC7B002DE72A = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DBD1B3C51F96FC7B002DE72A /* Build configuration list for PBXProject "IflyotaPortalSwift" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DBD1B3C11F96FC7B002DE72A;
+			productRefGroup = DBD1B3CB1F96FC7B002DE72A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DBD1B3C91F96FC7B002DE72A /* IflyotaPortalSwift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DBD1B3C81F96FC7B002DE72A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */,
+				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
+				DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2CC31033BDDCFEB196103234 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IflyotaPortalSwift/Pods-IflyotaPortalSwift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A75E3EDDD777E206E9699ECA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IflyotaPortalSwift/Pods-IflyotaPortalSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA06FBAE901586524C745DBB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DBD1B3C61F96FC7B002DE72A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */,
+				DBD1B4021F972DD6002DE72A /* LWBaseViewController.swift in Sources */,
+				DBD1B40E1F97541F002DE72A /* UIView+Extension.swift in Sources */,
+				DBD1B3F01F9729E2002DE72A /* HomepageViewController.swift in Sources */,
+				DBD1B4091F974106002DE72A /* LWNetworkTool.swift in Sources */,
+				DBD1B3D01F96FC7C002DE72A /* ViewController.swift in Sources */,
+				DBD1B3FE1F972A65002DE72A /* MeViewController.swift in Sources */,
+				DBD1B40C1F97481D002DE72A /* HomePageBannel.swift in Sources */,
+				DBD1B3FB1F972A54002DE72A /* ThemeViewController.swift in Sources */,
+				DBD1B3F31F9729FF002DE72A /* NearbyViewController.swift in Sources */,
+				DBD1B4051F9730AC002DE72A /* LWConst.swift in Sources */,
+				DB000E451F99E56600A581F9 /* NewView.swift in Sources */,
+				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
+				DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */,
+				DBD1B4001F972C5F002DE72A /* LWTabBarViewController.swift in Sources */,
+				DBD1B3CE1F96FC7B002DE72A /* AppDelegate.swift in Sources */,
+				DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DBD1B3D61F96FC7C002DE72A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBD1B3D71F96FC7C002DE72A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DBD1B3DA1F96FC7C002DE72A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DBD1B3DB1F96FC7C002DE72A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DBD1B3DD1F96FC7C002DE72A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88CA5CAEEE6D4B61079D2D5C /* Pods-IflyotaPortalSwift.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8LG7JYFT86;
+				INFOPLIST_FILE = IflyotaPortalSwift/Other/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iflyota.IflyotaPortalSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		DBD1B3DE1F96FC7C002DE72A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E806DDCD3E6A1A090006607D /* Pods-IflyotaPortalSwift.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8LG7JYFT86;
+				INFOPLIST_FILE = IflyotaPortalSwift/Other/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iflyota.IflyotaPortalSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DBD1B3C51F96FC7B002DE72A /* Build configuration list for PBXProject "IflyotaPortalSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBD1B3DA1F96FC7C002DE72A /* Debug */,
+				DBD1B3DB1F96FC7C002DE72A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBD1B3DC1F96FC7C002DE72A /* Build configuration list for PBXNativeTarget "IflyotaPortalSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBD1B3DD1F96FC7C002DE72A /* Debug */,
+				DBD1B3DE1F96FC7C002DE72A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DBD1B3C21F96FC7B002DE72A /* Project object */;
+}
