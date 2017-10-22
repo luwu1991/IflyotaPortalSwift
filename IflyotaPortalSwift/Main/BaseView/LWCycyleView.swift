@@ -1,4 +1,4 @@
-//
+ //
 //  LWCycyleView.swift
 //  IflyotaPortalSwift
 //
@@ -15,10 +15,10 @@ enum CycyeViewCycyleType {
 
 class LWCycyleView: UIScrollView {
     var cycyleTimer = Timer()
-    var currentPage = 1
+    var currentPage = 0
     var type:CycyeViewCycyleType = .right
     var cycyleTime = 1.0
-    
+    var subcycyleViews = [UIView]()
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -28,25 +28,31 @@ class LWCycyleView: UIScrollView {
 
         
         super.init(frame: frame)
-        self.addCycleTimer()
+        
         self.type = type
         self.cycyleTime = cycyleTime
+        self.subcycyleViews = subcycyleViews
+        self.addCycleTimer()
+        self.backgroundColor = UIColor.white
         if type == CycyeViewCycyleType.right {
-            contentSize = CGSize (width: frame.width*CGFloat(subcycyleViews.count), height: frame.height)
+            contentSize = CGSize (width: frame.width*3, height: frame.height)
+            contentOffset = CGPoint (x: self.width, y: 0)
         }
         else{
-            contentSize = CGSize (width: frame.width, height: frame.height*CGFloat(subcycyleViews.count))
+            contentSize = CGSize (width: frame.width, height: frame.height*3)
+            contentOffset = CGPoint (x: 0, y: self.height)
         }
+        
         isPagingEnabled = true
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
         delegate = self
         
-        let firstView = subcycyleViews.first!
+        let firstView = subcycyleViews.last!
         firstView.tag = 1
-        let lastView = subcycyleViews.last!
+        let lastView = subcycyleViews[1]
         lastView.tag = 3
-        let middleView = subcycyleViews[1]
+        let middleView = subcycyleViews.first!
         middleView.tag = 2
         if type == CycyeViewCycyleType.right {
             firstView.frame = CGRect (x: CGFloat(subcycyleViews.count+1)*firstView.width, y: 0, width: firstView.frame.width, height: firstView.height)
@@ -54,9 +60,9 @@ class LWCycyleView: UIScrollView {
             lastView.frame = CGRect (x: 0, y: 0, width: lastView.width, height: lastView.height)
         }
         else{
-            firstView.frame = CGRect (x: 0, y: CGFloat(subcycyleViews.count+1)*firstView.height, width: firstView.width, height: firstView.height)
+            firstView.frame = CGRect (x: 0, y: 0, width: firstView.width, height: firstView.height)
             middleView.frame = CGRect (x: 0, y: middleView.height, width: middleView.width, height: middleView.height)
-            lastView.frame = CGRect (x: 0, y: 0, width: lastView.width, height: lastView.height)
+            lastView.frame = CGRect (x: 0, y: 2*middleView.height, width: lastView.width, height: lastView.height)
         }
         
         addSubview(firstView)
@@ -67,24 +73,68 @@ class LWCycyleView: UIScrollView {
     
     func reloadData()  {
         let index = type == .right ? contentOffset.x/frame.width : contentOffset.y/frame.height
-        let firstView = viewWithTag(1)
-        let middleView = viewWithTag(2)
-        let lastView = viewWithTag(3)
+        var firstView = viewWithTag(1)!
+        var middleView = viewWithTag(2)!
+        var lastView = viewWithTag(3)!
+        
+        firstView.removeFromSuperview()
+        middleView.removeFromSuperview()
+        lastView.removeFromSuperview()
+        
+        
         if index == 0 && type == .right{
-            middleView
+            currentPage = (currentPage - 1 + subcycyleViews.count) % subcycyleViews.count
+            firstView = subcycyleViews[(currentPage - 1 + subcycyleViews.count) % subcycyleViews.count]
+            middleView = subcycyleViews[currentPage]
+            lastView = subcycyleViews[(currentPage + 1 + subcycyleViews.count) % subcycyleViews.count]
+            
+            firstView.frame = CGRect (x: 0, y: 0, width: self.width, height: self.height)
+            middleView.frame = CGRect (x: self.width, y: 0, width: self.width, height: self.height)
+            lastView.frame = CGRect (x: 2*self.width, y: 0, width: self.width, height: self.height)
         }
         
         if index == 0 && type == .bottom {
+            currentPage = (currentPage - 1 + subcycyleViews.count) % subcycyleViews.count
+            firstView = subcycyleViews[(currentPage - 1 + subcycyleViews.count) % subcycyleViews.count]
+            middleView = subcycyleViews[currentPage]
+            lastView = subcycyleViews[(currentPage + 1 + subcycyleViews.count) % subcycyleViews.count]
             
+            firstView.frame = CGRect (x: 0, y: 0, width: self.width, height: self.height)
+            middleView.frame = CGRect (x: 0, y: self.height, width: self.width, height: self.height)
+            lastView.frame = CGRect (x: 0, y: 2*self.height, width: self.width, height: self.height)
         }
         
         if index == 2 && type == .right {
+            currentPage = (currentPage + 1 + subcycyleViews.count) % subcycyleViews.count
+            firstView = subcycyleViews[(currentPage - 1 + subcycyleViews.count) % subcycyleViews.count]
+            middleView = subcycyleViews[currentPage]
+            lastView = subcycyleViews[(currentPage + 1 + subcycyleViews.count) % subcycyleViews.count]
             
+            firstView.frame = CGRect (x: 0, y: 0, width: self.width, height: self.height)
+            middleView.frame = CGRect (x: self.width, y: 0, width: self.width, height: self.height)
+            lastView.frame = CGRect (x: 2*self.width, y: 0, width: self.width, height: self.height)
         }
         
         if index == 2 && type == .bottom{
+            currentPage = (currentPage + 1 + subcycyleViews.count) % subcycyleViews.count
+           
+            firstView = subcycyleViews[(currentPage - 1 + subcycyleViews.count) % subcycyleViews.count]
+            middleView = subcycyleViews[currentPage]
+            lastView = subcycyleViews[(currentPage + 1 + subcycyleViews.count) % subcycyleViews.count]
+            
+            firstView.frame = CGRect (x: 0, y: 0, width: self.width, height: self.height)
+            middleView.frame = CGRect (x: 0, y: self.height, width: self.width, height: self.height)
+            lastView.frame = CGRect (x: 0, y: 2*self.height, width: self.width, height: self.height)
+           
             
         }
+        firstView.tag = 1
+        middleView.tag = 2
+        lastView.tag = 3
+        addSubview(firstView)
+        addSubview(middleView)
+        addSubview(lastView)
+        
     }
     
     fileprivate func addCycleTimer() {
@@ -96,12 +146,18 @@ class LWCycyleView: UIScrollView {
         if self.type == .right {
             UIView.animate(withDuration: 0.4, animations: {
                 self.contentOffset = CGPoint (x: 2*self.width, y: 0)
-            })
+            }) { (success) in
+               self.reloadData()
+                self.contentOffset = CGPoint (x: self.width, y: 0)
+            }
         }
         else{
             UIView.animate(withDuration: 0.4, animations: {
                 self.contentOffset = CGPoint (x: 0, y: 2*self.height)
-            })
+            }){ (success) in
+                self.reloadData()
+                self.contentOffset = CGPoint (x: 0, y: self.height)
+            }
         }
     }
 }
@@ -110,7 +166,12 @@ extension LWCycyleView:UIScrollViewDelegate{
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         reloadData()
         
-        scrollView.contentOffset = CGPoint (x: SCREENW, y: 0)
+        if type == .right {
+            scrollView.contentOffset = CGPoint (x: scrollView.width, y: 0)
+        }
+        else{
+            scrollView.contentOffset = CGPoint (x: 0, y: scrollView.height)
+        }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

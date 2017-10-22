@@ -23,7 +23,7 @@ class HomepageViewController: LWBaseViewController{
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         
-        self.initNewsView()
+//        self.initNewsView()
         
         LWNetworkTool.shareNetworkTool.loadHomePageBanner { (items) in
             for item in items{
@@ -159,15 +159,26 @@ class HomepageViewController: LWBaseViewController{
     }
     
     func loadNews(){
-        newsView.contentOffset = CGPoint (x: 0, y: 0)
-        newsView.contentSize = CGSize (width: SCREENW - 44, height: CGFloat(news.count*36))
-        for index in 0...news.count-1{
+        var newViews = [UIView]()
+        for index in 0...news.count - 1{
             let newView = Bundle.main.loadNibNamed("NewView", owner: nil, options: nil)?.first as! NewView
-            newView.frame = CGRect (x: 0, y: index*36, width: Int(SCREENW), height: 36)
+            newView.frame = CGRect (x: 0, y: 0, width: Int(SCREENW) - 44, height: 36)
             newView.titleBtn.setTitle(news[index], for: UIControlState.normal)
             newView.tag = index + 1
-            newsView.addSubview(newView)
+            newViews.append(newView)
         }
+        let more = UIButton()
+        more.frame = CGRect (x: SCREENW - 44, y: 210+155, width: 44, height: 36)
+        more.backgroundColor = UIColor.white
+        more.setTitle("更多", for: UIControlState.normal)
+        more.setTitleColor(LWColor(r: 0, g: 0, b: 0, a: 1.0), for: UIControlState.normal)
+        more.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        more.titleLabel?.sizeToFit()
+        more.addTarget(self, action: #selector(getMoreNews), for:UIControlEvents.touchUpInside)
+        view.addSubview(more)
+        
+        let newCycyleView = LWCycyleView.init(frame: CGRect (x: 0, y: 210+155, width: SCREENW - 44, height: 36), subcycyleViews: newViews, cycyleTime: 2.0, type: .bottom)
+        view.addSubview(newCycyleView)
     }
     
     func loadImage(){

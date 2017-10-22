@@ -9,8 +9,8 @@
 import UIKit
 
 
-let BASE_URL = "http://app.iflyota.com/Trip.Web_IOS_Test/parts/Common/WapProxy.ashx/"
-
+//let BASE_URL = "http://app.iflyota.com/Trip.Web_IOS_Test/parts/Common/WapProxy.ashx/"
+let BASE_URL = "http://app.iflyota.com/Trip.Web_Android_JD/parts/Common/WapProxy.ashx/"
 /// 屏幕的宽
 let SCREENW = UIScreen.main.bounds.size.width
 /// 屏幕的高
