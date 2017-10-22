@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		69E63774297299F03FB05B80 /* Pods_IflyotaPortalSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED6760520E4FAC7E6FFC4B4 /* Pods_IflyotaPortalSwift.framework */; };
+		840722A21F9B6C8700111B01 /* LWCycyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840722A11F9B6C8700111B01 /* LWCycyleView.swift */; };
 		DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000E3F1F99DD2A00A581F9 /* LWNavigationController.swift */; };
 		DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000E411F99DF6C00A581F9 /* HomePageNew.swift */; };
 		DB000E451F99E56600A581F9 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000E441F99E56600A581F9 /* NewView.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		7ED6760520E4FAC7E6FFC4B4 /* Pods_IflyotaPortalSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IflyotaPortalSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		840722A11F9B6C8700111B01 /* LWCycyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWCycyleView.swift; sourceTree = "<group>"; };
 		88CA5CAEEE6D4B61079D2D5C /* Pods-IflyotaPortalSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IflyotaPortalSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IflyotaPortalSwift/Pods-IflyotaPortalSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		DB000E3F1F99DD2A00A581F9 /* LWNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWNavigationController.swift; sourceTree = "<group>"; };
 		DB000E411F99DF6C00A581F9 /* HomePageNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNew.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840722A01F9B6C2400111B01 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				840722A11F9B6C8700111B01 /* LWCycyleView.swift */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
 		D8D8DD6B7D258AB1553E0170 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +181,7 @@
 		DBD1B3E81F97278C002DE72A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				840722A01F9B6C2400111B01 /* BaseView */,
 				DBD1B3EB1F9727A7002DE72A /* BaseController */,
 				DBD1B3EA1F9727A1002DE72A /* Tools */,
 				DBD1B3E91F972797002DE72A /* Category */,
@@ -410,6 +421,7 @@
 				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
 				DB55A1771F9B3031000306E0 /* ScenicSpotView.swift in Sources */,
 				DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */,
+				840722A21F9B6C8700111B01 /* LWCycyleView.swift in Sources */,
 				DBD1B4001F972C5F002DE72A /* LWTabBarViewController.swift in Sources */,
 				DBD1B3CE1F96FC7B002DE72A /* AppDelegate.swift in Sources */,
 				DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */,
