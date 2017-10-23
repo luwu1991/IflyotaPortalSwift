@@ -21,6 +21,9 @@ func LWColor(r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -> UIColor {
     return UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: a)
 }
 
+
+let garyColor = LWColor(r: 243, g: 243, b: 243, a: 1.0)
+
 func ThemeColor() -> UIColor {
     return LWColor(r: 51, g: 229, b: 200, a: 1.0)
 }

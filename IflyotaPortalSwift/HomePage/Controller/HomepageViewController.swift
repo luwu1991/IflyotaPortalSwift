@@ -10,12 +10,20 @@ import UIKit
 import Kingfisher
 class HomepageViewController: LWBaseViewController{
     
+    let mainScrollView = UIScrollView()
     var scrollView:UIScrollView?
     let newsView = UIScrollView()
     var banners:[String]? = [String]()
     var news:[String]=[String]()
+    var scenicSpots:[ScenicSpotModel]=[ScenicSpotModel]()
     var currentPage = 1
     var cycyleTimer : Timer?
+    var scenicSpotView:ScenicSpotView?
+    let bannelViewHeight:CGFloat = 210
+    let clessicViewHeight:CGFloat = 155
+    let newsViewHeight:CGFloat = 36
+    let otherAppViewHeight:CGFloat = 40
+    let scenicSpotViewHeight:CGFloat = 170
     let items = [["ResourceUrl":"list-item1","title":"酒店"],["ResourceUrl":"list-item2","title":"景点"],["ResourceUrl":"list-item3","title":"线路"],
                  ["ResourceUrl":"list-item1","title":"自由行"],["ResourceUrl":"list-item2","title":"土特产"],["ResourceUrl":"list-item3","title":" "]]
     let otherApps = [["ResourceUrl":"aitugzh-icon","title":"微信公众号"],["ResourceUrl":"fyzs-icon","title":"语音翻译"],["ResourceUrl":"linxi-icon","title":"灵犀助手"]]
@@ -23,7 +31,11 @@ class HomepageViewController: LWBaseViewController{
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         
-//        self.initNewsView()
+        mainScrollView.frame = CGRect (x: 0, y: -20, width: SCREENW, height: SCREENH)
+        mainScrollView.backgroundColor = UIColor.white
+        mainScrollView.showsVerticalScrollIndicator = false
+        mainScrollView.showsHorizontalScrollIndicator = false
+        view.addSubview(mainScrollView)
         
         LWNetworkTool.shareNetworkTool.loadHomePageBanner { (items) in
             for item in items{
@@ -44,9 +56,20 @@ class HomepageViewController: LWBaseViewController{
             self.loadNews()
         }
         
+        LWNetworkTool.shareNetworkTool.loadScenicSpot { (items) in
+            self.scenicSpots = items
+            self.initScenicSpotView()
+        }
+        
+        
+        LWNetworkTool.shareNetworkTool.loadHomePageTags { (items) in
+            self.initTagsView(items)
+        }
+        
         initClessicView()
         initOtherAppView()
-        initScenicSpotView()
+        
+        
     }
     
     
@@ -56,12 +79,33 @@ class HomepageViewController: LWBaseViewController{
     }
     
     //MARK:initSubView
+    fileprivate func initBannelView() {
+        scrollView = UIScrollView()
+        scrollView?.frame = CGRect(x: 0, y: 0, width: SCREENW, height: bannelViewHeight)
+        scrollView?.backgroundColor = UIColor.white
+        scrollView?.contentSize = CGSize (width: 3*SCREENW, height: bannelViewHeight)
+        scrollView?.contentOffset = CGPoint (x: SCREENW, y: 0)
+        scrollView?.showsVerticalScrollIndicator = false
+        scrollView?.showsHorizontalScrollIndicator = false
+        scrollView?.isPagingEnabled = true
+        scrollView?.delegate = self
+        mainScrollView.addSubview(scrollView!)
+        for index in 0...2 {
+            let imageView = UIImageView()
+            imageView.frame = CGRect (x: CGFloat(index)*SCREENW, y: 0, width: SCREENW, height: bannelViewHeight)
+            imageView.tag = index+1
+            
+            imageView.kf.setImage(with: URL (string: self.banners![index]))
+            
+            scrollView?.addSubview(imageView)
+        }
+    }
     
     func initClessicView() {
         let clessicView = UIView()
-        clessicView.frame = CGRect (x: 0, y: 210, width: SCREENW, height: 155)
+        clessicView.frame = CGRect (x: 0, y: bannelViewHeight, width: SCREENW, height: clessicViewHeight)
         clessicView.backgroundColor = UIColor.white
-        view.addSubview(clessicView)
+        mainScrollView.addSubview(clessicView)
         
         for index in 0...5 {
             let item = items[index]
@@ -85,30 +129,9 @@ class HomepageViewController: LWBaseViewController{
         
     }
     
-    fileprivate func initBannelView() {
-        scrollView = UIScrollView()
-        scrollView?.frame = CGRect(x: 0, y: 0, width: SCREENW, height: 209)
-        scrollView?.backgroundColor = UIColor.white
-        scrollView?.contentSize = CGSize (width: 3*SCREENW, height: 209)
-        scrollView?.contentOffset = CGPoint (x: SCREENW, y: 0)
-        scrollView?.showsVerticalScrollIndicator = false
-        scrollView?.showsHorizontalScrollIndicator = false
-        scrollView?.isPagingEnabled = true
-        scrollView?.delegate = self
-        view.addSubview(scrollView!)
-        for index in 0...2 {
-            let imageView = UIImageView()
-            imageView.frame = CGRect (x: CGFloat(index)*SCREENW, y: 0, width: SCREENW, height: 209)
-            imageView.tag = index+1
-           
-            imageView.kf.setImage(with: URL (string: self.banners![index]))
-            
-            scrollView?.addSubview(imageView)
-        }
-    }
     
     func initNewsView(){
-        newsView.frame = CGRect (x: 0, y: 210+155, width: SCREENW - 44, height: 36)
+        newsView.frame = CGRect (x: 0, y: bannelViewHeight+clessicViewHeight, width: SCREENW - 44, height: newsViewHeight)
         newsView.contentSize = CGSize (width: SCREENW - 44, height: CGFloat(news.count*26))
         newsView.showsVerticalScrollIndicator = false
         newsView.showsHorizontalScrollIndicator = false
@@ -124,16 +147,16 @@ class HomepageViewController: LWBaseViewController{
         more.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         more.titleLabel?.sizeToFit()
         more.addTarget(self, action: #selector(getMoreNews), for:UIControlEvents.touchUpInside)
-        view.addSubview(more)
-        view.addSubview(newsView)
+        mainScrollView.addSubview(more)
+        mainScrollView.addSubview(newsView)
     }
     
     
     func initOtherAppView() {
         let otherAppView = UIView()
-        otherAppView.frame = CGRect (x: 0, y: 210+155+26+10+1, width: SCREENH, height: 40)
+        otherAppView.frame = CGRect (x: 0, y: bannelViewHeight+clessicViewHeight+newsViewHeight+1, width: SCREENH, height: otherAppViewHeight)
         otherAppView.backgroundColor = UIColor.white
-        view.addSubview(otherAppView)
+        mainScrollView.addSubview(otherAppView)
         
         for index in 0...otherApps.count-1 {
             let btn = UIButton()
@@ -144,18 +167,55 @@ class HomepageViewController: LWBaseViewController{
             btn.setTitle(item["title"]!, for: UIControlState.normal)
             btn.setTitleColor(UIColor.black, for: UIControlState.normal)
             btn.titleLabel?.sizeToFit()
-            btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
             btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0)
             btn.addTarget(self, action: #selector(gotoOtherApp), for: UIControlEvents.touchUpInside)
             otherAppView.addSubview(btn)
         }
         
     }
-    
-    
+
     func initScenicSpotView() {
-        let scenicSpotView = ScenicSpotView.init(frame: CGRect (x: 0, y: 210+155+26+10+1+40+8, width: SCREENW, height: 170))
-        view.addSubview(scenicSpotView)
+        scenicSpotView = ScenicSpotView.init(frame: CGRect (x: 0, y: bannelViewHeight+clessicViewHeight+newsViewHeight+otherAppViewHeight+1+8, width: SCREENW, height: scenicSpotViewHeight),data:self.scenicSpots)
+        mainScrollView.addSubview(scenicSpotView!)
+    }
+    
+    func initTagsView(_ tags:[TagModel]) {
+        let tagsView = LWSwiperView.init(frame: CGRect(x: 0, y: bannelViewHeight+clessicViewHeight+newsViewHeight+otherAppViewHeight+scenicSpotViewHeight+1+8+10, width: SCREENW, height: 1000+40), tags: tags)
+        tagsView.scrollView.height = 1000 + 44
+        mainScrollView.addSubview(tagsView)
+        mainScrollView.contentSize = CGSize (width: SCREENW, height: tagsView.y+tagsView.height + 44 )
+        
+        for index in 0...tags.count - 1{
+            let tag = tags[index].tName
+            let VC = HomePageTagViewController()
+            VC.tag = tag
+            VC.view.frame = CGRect(x: CGFloat(index)*SCREENW, y: 0, width: SCREENW, height: SCREENH-40 - 20 - 44)
+            VC.mainScrollView = mainScrollView
+            addChildViewController(VC)
+            tagsView.scrollView.addSubview(VC.view)
+        }
+    }
+    
+
+    func loadImage(){
+        let index = scrollView!.contentOffset.x / SCREENW
+        let imageViewLeft = scrollView!.viewWithTag(1) as! UIImageView
+        let imageViewMiddle = scrollView!.viewWithTag(2) as! UIImageView
+        let imageViewRight = scrollView!.viewWithTag(3) as! UIImageView
+        if index == 0 {
+            imageViewLeft.kf.setImage(with: currentPage == 0 ? URL(string: banners![banners!.count - 2]):URL(string:banners![currentPage]))
+            imageViewRight.kf.setImage(with: currentPage == 0 ? URL(string: banners![1]):URL(string:banners![currentPage]))
+            imageViewMiddle.kf.setImage(with: currentPage == 0 ? URL(string:banners![banners!.count - 1]):URL(string:banners![currentPage-1]))
+            currentPage == 0 ? (currentPage = banners!.count-1) : (currentPage = currentPage - 1)
+        }
+        
+        if index == 2 {
+            imageViewLeft.kf.setImage(with: currentPage == banners!.count - 1 ? URL(string: banners![currentPage - 1]):URL(string:banners![1]))
+            imageViewRight.kf.setImage(with: currentPage == banners!.count - 1 ? URL(string: banners![1]):URL(string:banners![currentPage]))
+            imageViewMiddle.kf.setImage(with: currentPage == banners!.count - 1 ? URL(string:banners![0]):URL(string:banners![currentPage+1]))
+            currentPage == banners!.count-1 ? (currentPage = 0) : (currentPage = currentPage + 1)
+        }
     }
     
     func loadNews(){
@@ -175,32 +235,10 @@ class HomepageViewController: LWBaseViewController{
         more.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         more.titleLabel?.sizeToFit()
         more.addTarget(self, action: #selector(getMoreNews), for:UIControlEvents.touchUpInside)
-        view.addSubview(more)
+        mainScrollView.addSubview(more)
         
         let newCycyleView = LWCycyleView.init(frame: CGRect (x: 0, y: 210+155, width: SCREENW - 44, height: 36), subcycyleViews: newViews, cycyleTime: 2.0, type: .bottom)
-        view.addSubview(newCycyleView)
-    }
-    
-    func loadImage(){
-        let index = scrollView!.contentOffset.x / SCREENW
-        let imageViewLeft = scrollView!.viewWithTag(1) as! UIImageView
-        let imageViewMiddle = scrollView!.viewWithTag(2) as! UIImageView
-        let imageViewRight = scrollView!.viewWithTag(3) as! UIImageView
-        if index == 0 {
-            imageViewLeft.kf.setImage(with: currentPage == 0 ? URL(string: banners![banners!.count - 2]):URL(string:banners![currentPage]))
-            imageViewRight.kf.setImage(with: currentPage == 0 ? URL(string: banners![1]):URL(string:banners![currentPage]))
-            imageViewMiddle.kf.setImage(with: currentPage == 0 ? URL(string:banners![banners!.count - 1]):URL(string:banners![currentPage-1]))
-            currentPage == 0 ? (currentPage = banners!.count-1) : (currentPage = currentPage - 1)
-        }
-        
-        if index == 2 {
-            imageViewLeft.kf.setImage(with: currentPage == banners!.count - 1 ? URL(string: banners![currentPage - 1]):URL(string:banners![1]))
-            imageViewRight.kf.setImage(with: currentPage == banners!.count - 1 ? URL(string: banners![1]):URL(string:banners![currentPage]))
-            imageViewMiddle.kf.setImage(with: currentPage == banners!.count - 1 ? URL(string:banners![0]):URL(string:banners![currentPage+1]))
-            currentPage == banners!.count-1 ? (currentPage = 0) : (currentPage = currentPage + 1)
-        }
-        
-        
+        mainScrollView.addSubview(newCycyleView)
     }
     
     

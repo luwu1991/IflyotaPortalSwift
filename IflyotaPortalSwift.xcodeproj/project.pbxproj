@@ -29,6 +29,15 @@
 		DBD1B4091F974106002DE72A /* LWNetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B4081F974106002DE72A /* LWNetworkTool.swift */; };
 		DBD1B40C1F97481D002DE72A /* HomePageBannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B40B1F97481D002DE72A /* HomePageBannel.swift */; };
 		DBD1B40E1F97541F002DE72A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B40D1F97541F002DE72A /* UIView+Extension.swift */; };
+		DBD882461F9D7992006DCFBE /* ScenicSpotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD882451F9D7992006DCFBE /* ScenicSpotModel.swift */; };
+		DBD882481F9D7C83006DCFBE /* ScenicSpotItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD882471F9D7C83006DCFBE /* ScenicSpotItemView.swift */; };
+		DBD8824A1F9D7C99006DCFBE /* ScenicSpotItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD882491F9D7C99006DCFBE /* ScenicSpotItemView.xib */; };
+		DBD8824C1F9DBD04006DCFBE /* LWSwiperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD8824B1F9DBD04006DCFBE /* LWSwiperView.swift */; };
+		DBD8824E1F9DC59D006DCFBE /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD8824D1F9DC59D006DCFBE /* TagModel.swift */; };
+		DBD882501F9DCE1C006DCFBE /* HomePageTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD8824F1F9DCE1C006DCFBE /* HomePageTagViewController.swift */; };
+		DBD882521F9DD1E2006DCFBE /* LineListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD882511F9DD1E1006DCFBE /* LineListItemModel.swift */; };
+		DBD882551F9DD44D006DCFBE /* LineListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD882531F9DD44D006DCFBE /* LineListCell.swift */; };
+		DBD882561F9DD44D006DCFBE /* LineListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD882541F9DD44D006DCFBE /* LineListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +66,15 @@
 		DBD1B4081F974106002DE72A /* LWNetworkTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWNetworkTool.swift; sourceTree = "<group>"; };
 		DBD1B40B1F97481D002DE72A /* HomePageBannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageBannel.swift; sourceTree = "<group>"; };
 		DBD1B40D1F97541F002DE72A /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		DBD882451F9D7992006DCFBE /* ScenicSpotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenicSpotModel.swift; sourceTree = "<group>"; };
+		DBD882471F9D7C83006DCFBE /* ScenicSpotItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenicSpotItemView.swift; sourceTree = "<group>"; };
+		DBD882491F9D7C99006DCFBE /* ScenicSpotItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScenicSpotItemView.xib; sourceTree = "<group>"; };
+		DBD8824B1F9DBD04006DCFBE /* LWSwiperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWSwiperView.swift; sourceTree = "<group>"; };
+		DBD8824D1F9DC59D006DCFBE /* TagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
+		DBD8824F1F9DCE1C006DCFBE /* HomePageTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTagViewController.swift; sourceTree = "<group>"; };
+		DBD882511F9DD1E1006DCFBE /* LineListItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineListItemModel.swift; sourceTree = "<group>"; };
+		DBD882531F9DD44D006DCFBE /* LineListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineListCell.swift; sourceTree = "<group>"; };
+		DBD882541F9DD44D006DCFBE /* LineListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineListCell.xib; sourceTree = "<group>"; };
 		E806DDCD3E6A1A090006607D /* Pods-IflyotaPortalSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IflyotaPortalSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-IflyotaPortalSwift/Pods-IflyotaPortalSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +112,11 @@
 				DB000E441F99E56600A581F9 /* NewView.swift */,
 				DB000E461F99E57A00A581F9 /* NewView.xib */,
 				DB55A1761F9B3031000306E0 /* ScenicSpotView.swift */,
+				DBD882471F9D7C83006DCFBE /* ScenicSpotItemView.swift */,
+				DBD882491F9D7C99006DCFBE /* ScenicSpotItemView.xib */,
+				DBD8824B1F9DBD04006DCFBE /* LWSwiperView.swift */,
+				DBD882531F9DD44D006DCFBE /* LineListCell.swift */,
+				DBD882541F9DD44D006DCFBE /* LineListCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				DBD1B3EF1F9729E2002DE72A /* HomepageViewController.swift */,
+				DBD8824F1F9DCE1C006DCFBE /* HomePageTagViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -265,6 +289,9 @@
 		DBD1B40A1F9747EC002DE72A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DBD882511F9DD1E1006DCFBE /* LineListItemModel.swift */,
+				DBD882451F9D7992006DCFBE /* ScenicSpotModel.swift */,
+				DBD8824D1F9DC59D006DCFBE /* TagModel.swift */,
 				DB000E411F99DF6C00A581F9 /* HomePageNew.swift */,
 				DBD1B40B1F97481D002DE72A /* HomePageBannel.swift */,
 			);
@@ -342,6 +369,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBD8824A1F9D7C99006DCFBE /* ScenicSpotItemView.xib in Resources */,
+				DBD882561F9DD44D006DCFBE /* LineListCell.xib in Resources */,
 				DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
 				DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */,
@@ -403,18 +432,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBD882481F9D7C83006DCFBE /* ScenicSpotItemView.swift in Sources */,
 				DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */,
 				DBD1B4021F972DD6002DE72A /* LWBaseViewController.swift in Sources */,
+				DBD882551F9DD44D006DCFBE /* LineListCell.swift in Sources */,
 				DBD1B40E1F97541F002DE72A /* UIView+Extension.swift in Sources */,
+				DBD882461F9D7992006DCFBE /* ScenicSpotModel.swift in Sources */,
 				DBD1B3F01F9729E2002DE72A /* HomepageViewController.swift in Sources */,
 				DBD1B4091F974106002DE72A /* LWNetworkTool.swift in Sources */,
 				DBD1B3FE1F972A65002DE72A /* MeViewController.swift in Sources */,
+				DBD8824C1F9DBD04006DCFBE /* LWSwiperView.swift in Sources */,
 				DBD1B40C1F97481D002DE72A /* HomePageBannel.swift in Sources */,
 				DBD1B3FB1F972A54002DE72A /* ThemeViewController.swift in Sources */,
 				DBD1B3F31F9729FF002DE72A /* NearbyViewController.swift in Sources */,
+				DBD8824E1F9DC59D006DCFBE /* TagModel.swift in Sources */,
 				DBD1B4051F9730AC002DE72A /* LWConst.swift in Sources */,
+				DBD882521F9DD1E2006DCFBE /* LineListItemModel.swift in Sources */,
 				DB000E451F99E56600A581F9 /* NewView.swift in Sources */,
 				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
+				DBD882501F9DCE1C006DCFBE /* HomePageTagViewController.swift in Sources */,
 				DB55A1771F9B3031000306E0 /* ScenicSpotView.swift in Sources */,
 				DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */,
 				840722A21F9B6C8700111B01 /* LWCycyleView.swift in Sources */,

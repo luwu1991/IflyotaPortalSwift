@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ScenicSpotItemView" customModule="IflyotaPortalSwift" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="132"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mNy-dZ-KLk">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="85"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="85" id="NC4-O1-wV6"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宏村古建筑" textAlignment="natural" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTS-Mu-Ou4">
+                    <rect key="frame" x="0.0" y="94" width="71.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥123.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKP-CH-JYo">
+                    <rect key="frame" x="98" y="94" width="62" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" red="0.12843874096870422" green="0.90155357122421265" blue="0.78443038463592529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEq-kB-UHP">
+                    <rect key="frame" x="0.0" y="113" width="31" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.63130217789999998" green="0.63141316179999996" blue="0.63129514460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="mTS-Mu-Ou4" firstAttribute="top" secondItem="mNy-dZ-KLk" secondAttribute="bottom" constant="9" id="30v-xq-vBj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QKP-CH-JYo" secondAttribute="trailing" id="8N1-iq-s8W"/>
+                <constraint firstItem="pEq-kB-UHP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="BgO-oX-VYt"/>
+                <constraint firstItem="QKP-CH-JYo" firstAttribute="top" secondItem="mNy-dZ-KLk" secondAttribute="bottom" constant="9" id="dSI-WW-jeW"/>
+                <constraint firstItem="pEq-kB-UHP" firstAttribute="top" secondItem="mTS-Mu-Ou4" secondAttribute="bottom" constant="2" id="g05-fy-eSQ"/>
+                <constraint firstItem="mNy-dZ-KLk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="k3q-ak-TWR"/>
+                <constraint firstItem="mNy-dZ-KLk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qIZ-8q-5My"/>
+                <constraint firstItem="mTS-Mu-Ou4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="uzh-H9-gBw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mNy-dZ-KLk" secondAttribute="trailing" id="wTb-RS-E36"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="imageView" destination="mNy-dZ-KLk" id="E13-gL-M7z"/>
+                <outlet property="priceLabel" destination="QKP-CH-JYo" id="3oV-KO-i5T"/>
+                <outlet property="subTitle" destination="pEq-kB-UHP" id="u0S-Hb-p0W"/>
+                <outlet property="titleLabel" destination="mTS-Mu-Ou4" id="UwD-uO-b9w"/>
+            </connections>
+            <point key="canvasLocation" x="51" y="76"/>
+        </view>
+    </objects>
+</document>
