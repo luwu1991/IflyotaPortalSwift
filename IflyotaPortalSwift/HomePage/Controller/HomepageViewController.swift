@@ -29,7 +29,7 @@ class HomepageViewController: LWBaseViewController{
     let otherApps = [["ResourceUrl":"aitugzh-icon","title":"微信公众号"],["ResourceUrl":"fyzs-icon","title":"语音翻译"],["ResourceUrl":"linxi-icon","title":"灵犀助手"]]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
+        
         
         mainScrollView.frame = CGRect (x: 0, y: -20, width: SCREENW, height: SCREENH)
         mainScrollView.backgroundColor = garyColor
@@ -70,6 +70,15 @@ class HomepageViewController: LWBaseViewController{
         initOtherAppView()
         
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     

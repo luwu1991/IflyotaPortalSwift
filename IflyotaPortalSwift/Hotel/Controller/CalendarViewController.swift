@@ -14,9 +14,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.calendarView.visibleDates {[unowned self] (visibleDates: DateSegmentInfo) in
-            self.setupViewsOfCalendar(from: visibleDates)
-        }
+        
         // Do any additional setup after loading the view.
     }
 

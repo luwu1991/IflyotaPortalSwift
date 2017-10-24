@@ -13,7 +13,7 @@ class HotelViewController: LWBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "酒店"
-        navigationController?.navigationBar.isHidden = false
+//        navigationController?.navigationBar.isHidden = false
         self.automaticallyAdjustsScrollViewInsets = false
         LWNetworkTool.shareNetworkTool.loadRollChartList(pageName: "酒店", moduleName: "顶部") { (items) in
             var datas = [HomePageBannel]()
