@@ -32,7 +32,7 @@ class HomepageViewController: LWBaseViewController{
         self.navigationController?.navigationBar.isHidden = true
         
         mainScrollView.frame = CGRect (x: 0, y: -20, width: SCREENW, height: SCREENH)
-        mainScrollView.backgroundColor = UIColor.white
+        mainScrollView.backgroundColor = garyColor
         mainScrollView.showsVerticalScrollIndicator = false
         mainScrollView.showsHorizontalScrollIndicator = false
         view.addSubview(mainScrollView)

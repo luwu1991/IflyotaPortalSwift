@@ -64,7 +64,7 @@ class LWSwiperView: UIView {
         scrollView.contentSize = CGSize(width: CGFloat(tags.count)*SCREENW, height: SCREENH - 40)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.isScrollEnabled = true
+        scrollView.isPagingEnabled = true
         scrollView.delegate = self
         scrollView.addObserver(self, forKeyPath: "frame", options: .new, context: &myContext)
         addSubview(scrollView)
@@ -72,11 +72,17 @@ class LWSwiperView: UIView {
     
     //MASR:
     @objc func clickTagBtn(sender:UIButton){
+        if sender == selectBtn {
+            return
+        }
+        
         sender.isSelected = true
         sender.backgroundColor = ThemeColor()
         selectBtn?.isSelected = false
         selectBtn?.backgroundColor = UIColor.white
         selectBtn = sender
+        
+        scrollView.setContentOffset(CGPoint (x: CGFloat(sender.tag - 1)*scrollView.width, y: scrollView.contentOffset.y), animated: true)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -92,6 +98,16 @@ class LWSwiperView: UIView {
 
 extension LWSwiperView:UIScrollViewDelegate{
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let index = scrollView.contentOffset.x / scrollView.width
+        let btn = tagsView.viewWithTag(Int(index + 1)) as! UIButton
         
+        if btn == selectBtn {
+            return
+        }
+        btn.isSelected = true
+        btn.backgroundColor = ThemeColor()
+        selectBtn?.isSelected = false
+        selectBtn?.backgroundColor = UIColor.white
+        selectBtn = btn
     }
 }
