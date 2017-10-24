@@ -174,5 +174,38 @@ class LWNetworkTool: NSObject {
         }
         
     }
+    /*
+     pageName    酒店
+     moduleName    顶部
+     */
+    func loadRollChartList(pageName:String,moduleName:String,finished:@escaping (_ items:[HomePageBannel]) -> ()){
+        let url = BASE_URL + "GetRollChartListByPageName"
+        let params = ["pageName":pageName,"moduleName":moduleName]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let items = dict["c"].arrayObject{
+                        var bannelItems = [HomePageBannel]()
+                        for item in items{
+                            let bannelItem = HomePageBannel (fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(bannelItems)
+                    }
+                }
+        }
+    }
     
 }

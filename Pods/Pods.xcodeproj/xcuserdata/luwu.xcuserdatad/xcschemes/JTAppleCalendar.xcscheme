@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BFCD503E8B9F7DA433DCF58920CB923C'
-               BlueprintName = 'SwiftyJSON'
+               BlueprintIdentifier = 'BFED2E29E95E065400F8846E0231A970'
+               BlueprintName = 'JTAppleCalendar'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftyJSON.framework'>
+               BuildableName = 'JTAppleCalendar.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

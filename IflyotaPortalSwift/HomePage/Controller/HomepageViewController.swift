@@ -124,6 +124,8 @@ class HomepageViewController: LWBaseViewController{
             button.setImage(Image(named: item["ResourceUrl"]!), for: UIControlState.normal)
             button.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 30, 10)
             button.titleEdgeInsets = UIEdgeInsetsMake(button.currentImage!.size.height/2+10,-button.currentImage!.size.width, 0, 0)
+            button.addTarget(self, action: #selector(clickClessicBtn), for: UIControlEvents.touchUpInside)
+            button.tag = index
             clessicView.addSubview(button)
         }
         
@@ -251,6 +253,21 @@ class HomepageViewController: LWBaseViewController{
             self.loadImage()
             self.scrollView?.contentOffset = CGPoint (x: SCREENW, y: 0)
         }
+    }
+    
+    @objc func clickClessicBtn(sender:UIButton){
+        var VC:UIViewController
+        switch sender.tag {
+        case 0:
+            VC = HotelViewController()
+        default:
+            VC = UIViewController()
+            break
+        }
+        
+        VC.hidesBottomBarWhenPushed = true
+        VC.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
     @objc func getMoreNews() {

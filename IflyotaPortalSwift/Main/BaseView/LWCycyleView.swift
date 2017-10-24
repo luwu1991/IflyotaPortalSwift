@@ -55,9 +55,9 @@ class LWCycyleView: UIScrollView {
         let middleView = subcycyleViews.first!
         middleView.tag = 2
         if type == CycyeViewCycyleType.right {
-            firstView.frame = CGRect (x: CGFloat(subcycyleViews.count+1)*firstView.width, y: 0, width: firstView.frame.width, height: firstView.height)
+            firstView.frame = CGRect (x: 0, y: 0, width: firstView.width, height: firstView.height)
             middleView.frame = CGRect (x: middleView.width, y: 0, width: middleView.width, height: middleView.height)
-            lastView.frame = CGRect (x: 0, y: 0, width: lastView.width, height: lastView.height)
+            lastView.frame = CGRect (x: 2*middleView.width, y: 0, width: lastView.width, height: lastView.height)
         }
         else{
             firstView.frame = CGRect (x: 0, y: 0, width: firstView.width, height: firstView.height)

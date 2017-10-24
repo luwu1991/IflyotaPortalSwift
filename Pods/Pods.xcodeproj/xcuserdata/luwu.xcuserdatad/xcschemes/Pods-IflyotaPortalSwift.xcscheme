@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FC90F7FE345C64A01685348C98CFD2EA"
+               BlueprintIdentifier = "16E7E5D6803BBD53521495F994C192AD"
                BuildableName = "Pods_IflyotaPortalSwift.framework"
                BlueprintName = "Pods-IflyotaPortalSwift"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FC90F7FE345C64A01685348C98CFD2EA"
+            BlueprintIdentifier = "16E7E5D6803BBD53521495F994C192AD"
             BuildableName = "Pods_IflyotaPortalSwift.framework"
             BlueprintName = "Pods-IflyotaPortalSwift"
             ReferencedContainer = "container:Pods.xcodeproj">
