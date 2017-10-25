@@ -15,7 +15,7 @@ enum DateCellSelectPositionType {
     case middle
 }
 class DateCell:JTAppleCell {
-
+    private var mycontext = 0
     @IBOutlet weak var Daylabel: UILabel!
     var selectPosition:DateCellSelectPositionType?{
         willSet{
@@ -51,4 +51,6 @@ class DateCell:JTAppleCell {
             
         }
     }
+    
+    
 }

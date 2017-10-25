@@ -41,11 +41,11 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy MM dd"
-        
-        let startDate = formatter.date(from: "2017 08 01")! // You can use date generated from a formatter
-        let endDate = Date()                                // You can also use dates created from this function
+        let startMonth = Calendar.current.component(.month, from: Date())
+        let startDate = formatter.date(from: "2017 0\(startMonth) 01")!
+        let endMDate = Calendar.current.date(byAdding: .month, value: 2, to: startDate)
         let parameters = ConfigurationParameters(startDate: startDate,
-                                                 endDate: endDate,
+                                                 endDate: endMDate!,
                                                  numberOfRows: 5, // Only 1, 2, 3, & 6 are allowed
             calendar: Calendar.current,
             generateInDates: .forAllMonths,
@@ -64,27 +64,31 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
             myCustomCell.isHidden = false
         }
         
-        if Calendar.current.isDateInToday(cellState.date) {
-            myCustomCell.backgroundColor = UIColor.red
+        if myCustomCell.isSelected {
+            myCustomCell.backgroundColor = ThemeColor()
+            myCustomCell.Daylabel.textColor = UIColor.white
         }else{
             myCustomCell.backgroundColor = LWColor(r: 245, g: 245, b: 245, a: 1.0)
+            myCustomCell.Daylabel.textColor = UIColor.black
+            
+            if Calendar.current.isDateInToday(cellState.date) {
+                myCustomCell.backgroundColor = UIColor.red
+            }
         }
-//
-//        if date.compare(Date()) == .orderedAscending{
-//            myCustomCell.Daylabel.textColor = UIColor.red
-//        }else{
-//            myCustomCell.Daylabel.textColor = UIColor.black
-//        }
+        
+        if cellState.date.compare(Date()) == .orderedAscending {
+            myCustomCell.isUserInteractionEnabled = false
+        }
+        else{
+            myCustomCell.isUserInteractionEnabled = true
+        }
+        
     }
     
     func handleSelection(cell:DateCell,cellState:CellState){
 
         print(calendarView.selectedDates.count)
-        if cell.isSelected {
-            cell.backgroundColor = ThemeColor()
-        }else{
-            cell.backgroundColor = LWColor(r: 245, g: 245, b: 245, a: 1.0)
-        }
+        
         
         if calendarView.selectedDates.count == 0{
             return
@@ -157,6 +161,8 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
         handleSelection(cell: cell, cellState: cellState)
         return cell
     }
+    
+    
     
     func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize?{
         return MonthSize(defaultSize: 50, months: [75: [.feb, .apr]])
