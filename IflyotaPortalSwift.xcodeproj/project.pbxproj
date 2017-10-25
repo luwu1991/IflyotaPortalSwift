@@ -20,6 +20,9 @@
 		DB870FBC1F9F22E200CF03E0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */; };
 		DB870FBD1F9F22E200CF03E0 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */; };
 		DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */; };
+		DBC917C91FA0219C00108863 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC917C81FA0219C00108863 /* DateCell.swift */; };
+		DBC917CB1FA021B200108863 /* DateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC917CA1FA021B200108863 /* DateCell.xib */; };
+		DBC917CD1FA02EAC00108863 /* CalenderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC917CC1FA02EAC00108863 /* CalenderHeaderView.swift */; };
 		DBD1B3CE1F96FC7B002DE72A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */; };
 		DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */; };
 		DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBD1B3D61F96FC7C002DE72A /* LaunchScreen.storyboard */; };
@@ -60,6 +63,9 @@
 		DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		DBC917C81FA0219C00108863 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		DBC917CA1FA021B200108863 /* DateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateCell.xib; sourceTree = "<group>"; };
+		DBC917CC1FA02EAC00108863 /* CalenderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderHeaderView.swift; sourceTree = "<group>"; };
 		DBD1B3CA1F96FC7B002DE72A /* IflyotaPortalSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IflyotaPortalSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +169,9 @@
 			children = (
 				DB5EA1F51F9EE53C0045EDE8 /* HotelSelectView.swift */,
 				DB5EA1F71F9EE5450045EDE8 /* HotelSelectView.xib */,
+				DBC917C81FA0219C00108863 /* DateCell.swift */,
+				DBC917CA1FA021B200108863 /* DateCell.xib */,
+				DBC917CC1FA02EAC00108863 /* CalenderHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -419,6 +428,7 @@
 				DBD8824A1F9D7C99006DCFBE /* ScenicSpotItemView.xib in Resources */,
 				DBD882561F9DD44D006DCFBE /* LineListCell.xib in Resources */,
 				DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */,
+				DBC917CB1FA021B200108863 /* DateCell.xib in Resources */,
 				DB5EA1F81F9EE5450045EDE8 /* HotelSelectView.xib in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
 				DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */,
@@ -503,8 +513,10 @@
 				DB000E451F99E56600A581F9 /* NewView.swift in Sources */,
 				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
 				DBD882501F9DCE1C006DCFBE /* HomePageTagViewController.swift in Sources */,
+				DBC917C91FA0219C00108863 /* DateCell.swift in Sources */,
 				DB55A1771F9B3031000306E0 /* ScenicSpotView.swift in Sources */,
 				DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */,
+				DBC917CD1FA02EAC00108863 /* CalenderHeaderView.swift in Sources */,
 				840722A21F9B6C8700111B01 /* LWCycyleView.swift in Sources */,
 				DBD1B4001F972C5F002DE72A /* LWTabBarViewController.swift in Sources */,
 				DBD1B3CE1F96FC7B002DE72A /* AppDelegate.swift in Sources */,
