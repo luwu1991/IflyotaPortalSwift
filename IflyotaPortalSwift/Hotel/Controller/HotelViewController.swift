@@ -10,6 +10,9 @@ import UIKit
 
 class HotelViewController: LWBaseViewController {
     
+    var startDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+    var endDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+    let hotelSelectView = Bundle.main.loadNibNamed("HotelSelectView", owner: nil, options: nil)?.first as! HotelSelectView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "酒店"
@@ -43,16 +46,26 @@ class HotelViewController: LWBaseViewController {
         let banelView = LWCycyleView.init(frame: CGRect (x: 0, y: 64, width: SCREENW, height: 120), subcycyleViews: banelViews, cycyleTime: 2.0, type: .right)
         view.addSubview(banelView)
     }
+
     
     func initHotelSelectView(){
-        let hotelSelectView = Bundle.main.loadNibNamed("HotelSelectView", owner: nil, options: nil)?.first as! HotelSelectView
         hotelSelectView.delagate = self
         hotelSelectView.frame = CGRect(x: 10, y: 194, width: SCREENW - 20, height: 290)
+        setDateText()
         view.addSubview(hotelSelectView)
     }
     
     
     
+    fileprivate func setDateText() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        let startDateText = formatter.string(from: startDate)
+        let endDateText = formatter.string(from: endDate)
+        hotelSelectView.dateLabel.text = startDateText + " - "+endDateText
+        let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
+        hotelSelectView.totalDaylabel.text = "共\(components.day!)晚"
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
@@ -67,6 +80,13 @@ class HotelViewController: LWBaseViewController {
 extension HotelViewController:HotelSelectViewDelegate{
     func clickDateBtn(_ btn: UIButton) {
         let calenVC = CalendarViewController()
+        calenVC.dateCallBack = {(startDate,endDate) in
+            self.startDate = startDate
+            self.endDate = endDate
+            self.setDateText()
+        }
+        calenVC.startDate = self.startDate
+        calenVC.endDate = self.endDate
         self.navigationController?.pushViewController(calenVC, animated: true)
     }
     

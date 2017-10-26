@@ -8,13 +8,16 @@
 
 import UIKit
 import JTAppleCalendar
-
+typealias SendValueCallBack = (_ startDate:Date,_ endDate:Date) -> ()
 class CalendarViewController: LWBaseViewController {
 
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     var rightBtn = UIBarButtonItem()
     var firstDate: Date?
     let backThemeColor = LWColor(r: 245, g: 245, b: 245, a: 1.0)
+    var dateCallBack:SendValueCallBack?
+    var startDate:Date?
+    var endDate:Date?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "酒店日期选择"
@@ -29,12 +32,18 @@ class CalendarViewController: LWBaseViewController {
         calendarView.register(UINib (nibName: "DateCell", bundle: nil), forCellWithReuseIdentifier: "DateCell")
         calendarView.register(CalenderHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView")
         
-        
-        let today = Date()
-        
-        let t = Calendar.current.date(byAdding: .day, value: 1, to: today)
-        let tt = Calendar.current.date(byAdding: .day, value: 2, to: today)
-        calendarView.selectDates([t!,tt!], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+
+        let componente = Calendar.current.dateComponents([.day], from: startDate!, to: endDate!)
+        var dates = [Date]()
+        dates.append(startDate!)
+        if componente.day! > 1 {
+            for index in 1...componente.day!-1{
+                let date = Calendar.current.date(byAdding: .day, value: index, to: startDate!)!
+                dates.append(date)
+            }
+        }
+        dates.append(endDate!)
+        calendarView.selectDates(dates, triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
         
         setRightTitle(2)
         // Do any additional setup after loading the view.
@@ -48,6 +57,19 @@ class CalendarViewController: LWBaseViewController {
         rightBtn = UIBarButtonItem.init(customView: rightTitle)
         
         self.navigationItem.rightBarButtonItem = rightBtn
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if calendarView.selectedDates.count > 1 {
+            if dateCallBack != nil {
+                if calendarView.selectedDates.first!.compare(calendarView.selectedDates.last!) == .orderedAscending{
+                    dateCallBack!(calendarView.selectedDates.first!,calendarView.selectedDates.last!)
+                }else{
+                    dateCallBack!(calendarView.selectedDates.last!,calendarView.selectedDates.first!)
+                }
+                
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
