@@ -27,6 +27,9 @@ class HotelViewController: LWBaseViewController {
         initHotelSelectView()
     }
 
+    
+ 
+    
     func initBanelView(datas:[HomePageBannel]){
         var banelViews = [UIImageView]()
         for index in 0...datas.count - 1{

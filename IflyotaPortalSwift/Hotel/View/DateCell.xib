@@ -16,22 +16,35 @@
             <rect key="frame" x="0.0" y="0.0" width="198" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1P-Qs-EDy">
-                    <rect key="frame" x="78" y="30" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Mch-fe-hth">
+                    <rect key="frame" x="-8901" y="-8971" width="18000" height="18023"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1P-Qs-EDy">
+                            <rect key="frame" x="8979" y="0.0" width="42" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYe-oI-t0h">
+                            <rect key="frame" x="0.0" y="22.5" width="18000" height="18000.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.25159319200000002" blue="0.38831702959999997" alpha="1" colorSpace="calibratedRGB"/>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="0.96068006753921509" green="0.96084433794021606" blue="0.96066969633102417" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="S1P-Qs-EDy" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="EDH-d1-PNt"/>
-                <constraint firstItem="S1P-Qs-EDy" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="sgJ-OG-Aca"/>
+                <constraint firstItem="Mch-fe-hth" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="MmV-fK-Pdi"/>
+                <constraint firstItem="Mch-fe-hth" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="v5u-HL-c4j"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="Daylabel" destination="S1P-Qs-EDy" id="RCW-Zs-WcQ"/>
+                <outlet property="subTitle" destination="UYe-oI-t0h" id="cVH-bF-Ta5"/>
             </connections>
             <point key="canvasLocation" x="-62" y="-242"/>
         </view>

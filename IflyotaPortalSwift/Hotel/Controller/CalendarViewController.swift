@@ -9,12 +9,15 @@
 import UIKit
 import JTAppleCalendar
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: LWBaseViewController {
 
     @IBOutlet weak var calendarView: JTAppleCalendarView!
+    var rightBtn = UIBarButtonItem()
     var firstDate: Date?
+    let backThemeColor = LWColor(r: 245, g: 245, b: 245, a: 1.0)
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "酒店日期选择"
         self.automaticallyAdjustsScrollViewInsets = false
         calendarView.calendarDelegate = self
         calendarView.calendarDataSource = self
@@ -23,13 +26,31 @@ class CalendarViewController: UIViewController {
         calendarView.cellSize = (SCREENW - 20)/7 //cell的高
         calendarView.showsVerticalScrollIndicator = false
         calendarView.allowsMultipleSelection = true
-//        calendarView.isRangeSelectionUsed = true
-        
         calendarView.register(UINib (nibName: "DateCell", bundle: nil), forCellWithReuseIdentifier: "DateCell")
         calendarView.register(CalenderHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView")
+        
+        
+        let today = Date()
+        
+        let t = Calendar.current.date(byAdding: .day, value: 1, to: today)
+        let tt = Calendar.current.date(byAdding: .day, value: 2, to: today)
+        calendarView.selectDates([t!,tt!], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+        
+        setRightTitle(2)
         // Do any additional setup after loading the view.
+        
     }
 
+    func setRightTitle(_ number:Int) {
+        let rightTitle = UILabel()
+        rightTitle.text = "共\(number)晚"
+        rightTitle.textColor = ThemeColor()
+        rightTitle.sizeToFit()
+        rightBtn = UIBarButtonItem.init(customView: rightTitle)
+        
+        self.navigationItem.rightBarButtonItem = rightBtn
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,7 +67,7 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
         let endMDate = Calendar.current.date(byAdding: .month, value: 2, to: startDate)
         let parameters = ConfigurationParameters(startDate: startDate,
                                                  endDate: endMDate!,
-                                                 numberOfRows: 5, // Only 1, 2, 3, & 6 are allowed
+                                                 numberOfRows: 6, // Only 1, 2, 3, & 6 are allowed
             calendar: Calendar.current,
             generateInDates: .forAllMonths,
             generateOutDates: .off,
@@ -57,23 +78,13 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
  
 
     func configureVisibleCell(myCustomCell: DateCell, cellState: CellState, date: Date) {
+        
         myCustomCell.Daylabel.text = cellState.text
+        
         if cellState.dateBelongsTo != .thisMonth {
             myCustomCell.isHidden = true
         }else{
             myCustomCell.isHidden = false
-        }
-        
-        if myCustomCell.isSelected {
-            myCustomCell.backgroundColor = ThemeColor()
-            myCustomCell.Daylabel.textColor = UIColor.white
-        }else{
-            myCustomCell.backgroundColor = LWColor(r: 245, g: 245, b: 245, a: 1.0)
-            myCustomCell.Daylabel.textColor = UIColor.black
-            
-            if Calendar.current.isDateInToday(cellState.date) {
-                myCustomCell.backgroundColor = UIColor.red
-            }
         }
         
         if cellState.date.compare(Date()) == .orderedAscending {
@@ -83,11 +94,50 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
             myCustomCell.isUserInteractionEnabled = true
         }
         
+       
+        
+        if calendarView.selectedDates.count == 1 && calendarView.selectedDates.first?.compare(date) == .orderedSame {
+            myCustomCell.selectPosition = .only
+            return
+        }
+        
+        if calendarView.selectedDates.count > 1 {
+            let startDate = calendarView.selectedDates.first!
+            let endDate = calendarView.selectedDates.last!
+            if  date.compare(startDate) == .orderedSame {
+                myCustomCell.selectPosition = .first
+                return
+            }
+            
+            if date.compare(endDate) == .orderedSame {
+                myCustomCell.selectPosition = .last
+                return
+            }
+            
+            if date.compare(startDate) == .orderedDescending && date.compare(endDate) == .orderedAscending {
+                myCustomCell.selectPosition = .middle
+                return
+            }
+        }
+        
+        if Calendar.current.isDateInToday(cellState.date) {
+            myCustomCell.backgroundColor = LWColor(r: 200, g: 200, b: 200, a: 1.0)
+            myCustomCell.Daylabel.textColor = UIColor.white
+            myCustomCell.layer.cornerRadius = myCustomCell.width/2
+        }else{
+            myCustomCell.backgroundColor = backThemeColor
+            myCustomCell.Daylabel.textColor = UIColor.black
+            myCustomCell.layer.cornerRadius = 0
+            myCustomCell.selectPosition = .noneSelect
+        }
+        
+        
+
+        
     }
     
     func handleSelection(cell:DateCell,cellState:CellState){
 
-        print(calendarView.selectedDates.count)
         
         
         if calendarView.selectedDates.count == 0{
@@ -113,14 +163,14 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        let myCustomCell = cell as! DateCell
         
         if calendar.selectedDates.count > 2{
-
+            print(date)
+            setAllCellDesSelect(dates: calendar.selectedDates)
             calendar.deselect(dates: calendar.selectedDates, triggerSelectionDelegate: false)
-            calendar.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+            calendar.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: false)
             firstDate = date
-            handleSelection(cell: myCustomCell, cellState: cellState)
+            self.navigationItem.rightBarButtonItem = nil
             return
         }
         
@@ -132,33 +182,36 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
                 calendarView.selectDates(from: date, to: firstDate!,  triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
             }
             
+          let components =  Calendar.current.dateComponents([.day], from: firstDate!, to: date)
+            setRightTitle(components.day!)
+            
         }else{
             firstDate = date
-            
-            handleSelection(cell: myCustomCell, cellState: cellState)
-            
+            calendarView.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+             self.navigationItem.rightBarButtonItem = nil
         }
 
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         
-//        handleSelection(cell: cell as! DateCell, cellState: cellState)
+
         if calendar.selectedDates.count == 1 {
             return
         }
+        setAllCellDesSelect(dates: calendar.selectedDates)
         
         calendar.deselect(dates: calendar.selectedDates, triggerSelectionDelegate: false)
         calendar.selectDates([date], triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
         firstDate = date
-        let myCustomCell = cell as! DateCell
-        handleSelection(cell: myCustomCell, cellState: cellState)
+
     }
+    
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "DateCell", for: indexPath) as! DateCell
         configureVisibleCell(myCustomCell: cell, cellState: cellState, date: date)
-        handleSelection(cell: cell, cellState: cellState)
+        
         return cell
     }
     
@@ -180,5 +233,10 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
         return header
     }
     
-    
+    func setAllCellDesSelect(dates:[Date]){
+        for index in 0...dates.count - 1{
+            let cell = calendarView.cellStatus(for: dates[index])!.cell() as! DateCell
+            cell.selectPosition = .noneSelect
+        }
+    }
 }

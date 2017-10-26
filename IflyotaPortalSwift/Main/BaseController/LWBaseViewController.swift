@@ -17,9 +17,12 @@ class LWBaseViewController: UIViewController {
         SVProgressHUD.setMinimumDismissTimeInterval(1.0)
         SVProgressHUD.setBackgroundColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.5))
         SVProgressHUD.setForegroundColor(UIColor.white)
+        
         // Do any additional setup after loading the view.
     }
     
+    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
