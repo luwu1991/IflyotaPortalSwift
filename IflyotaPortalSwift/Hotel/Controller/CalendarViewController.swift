@@ -38,7 +38,6 @@ class CalendarViewController: LWBaseViewController {
         
         setRightTitle(2)
         // Do any additional setup after loading the view.
-        
     }
 
     func setRightTitle(_ number:Int) {
@@ -234,6 +233,10 @@ extension CalendarViewController:JTAppleCalendarViewDelegate,JTAppleCalendarView
     }
     
     func setAllCellDesSelect(dates:[Date]){
+        if dates.count == 0 {
+            return
+        }
+        
         for index in 0...dates.count - 1{
             let cell = calendarView.cellStatus(for: dates[index])!.cell() as! DateCell
             cell.selectPosition = .noneSelect
