@@ -13,6 +13,17 @@
 		DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000E411F99DF6C00A581F9 /* HomePageNew.swift */; };
 		DB000E451F99E56600A581F9 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000E441F99E56600A581F9 /* NewView.swift */; };
 		DB000E471F99E57A00A581F9 /* NewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB000E461F99E57A00A581F9 /* NewView.xib */; };
+		DB42A3731FA2D0E100E5EFEC /* SearchHotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42A3721FA2D0E100E5EFEC /* SearchHotelViewController.swift */; };
+		DB42A3751FA2D85300E5EFEC /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42A3741FA2D85300E5EFEC /* UIImage+Extension.swift */; };
+		DB42A3781FA3078A00E5EFEC /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42A3761FA3078A00E5EFEC /* SearchCell.swift */; };
+		DB42A3791FA3078A00E5EFEC /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB42A3771FA3078A00E5EFEC /* SearchCell.xib */; };
+		DB42A3821FA30B3000E5EFEC /* SearchHotelTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42A3801FA30B3000E5EFEC /* SearchHotelTag.swift */; };
+		DB42A3831FA30B3000E5EFEC /* SearchHotelTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42A3811FA30B3000E5EFEC /* SearchHotelTags.swift */; };
+		DB42A3861FA314D300E5EFEC /* HotelSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42A3841FA314D300E5EFEC /* HotelSearchHeaderView.swift */; };
+		DB42A3871FA314D300E5EFEC /* HotelSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB42A3851FA314D300E5EFEC /* HotelSearchHeaderView.xib */; };
+		DB42A38A1FA32A3700E5EFEC /* HotelSearchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42A3881FA32A3700E5EFEC /* HotelSearchHistoryCell.swift */; };
+		DB42A38B1FA32A3700E5EFEC /* HotelSearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB42A3891FA32A3700E5EFEC /* HotelSearchHistoryCell.xib */; };
+		DB42A38D1FA32EB800E5EFEC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB42A38C1FA32EB800E5EFEC /* UserInfo.swift */; };
 		DB55A1771F9B3031000306E0 /* ScenicSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55A1761F9B3031000306E0 /* ScenicSpotView.swift */; };
 		DB5EA1F41F9ED27D0045EDE8 /* HotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EA1F31F9ED27D0045EDE8 /* HotelViewController.swift */; };
 		DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EA1F51F9EE53C0045EDE8 /* HotelSelectView.swift */; };
@@ -56,6 +67,17 @@
 		DB000E411F99DF6C00A581F9 /* HomePageNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageNew.swift; sourceTree = "<group>"; };
 		DB000E441F99E56600A581F9 /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
 		DB000E461F99E57A00A581F9 /* NewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewView.xib; sourceTree = "<group>"; };
+		DB42A3721FA2D0E100E5EFEC /* SearchHotelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHotelViewController.swift; sourceTree = "<group>"; };
+		DB42A3741FA2D85300E5EFEC /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		DB42A3761FA3078A00E5EFEC /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		DB42A3771FA3078A00E5EFEC /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
+		DB42A3801FA30B3000E5EFEC /* SearchHotelTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHotelTag.swift; sourceTree = "<group>"; };
+		DB42A3811FA30B3000E5EFEC /* SearchHotelTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHotelTags.swift; sourceTree = "<group>"; };
+		DB42A3841FA314D300E5EFEC /* HotelSearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSearchHeaderView.swift; sourceTree = "<group>"; };
+		DB42A3851FA314D300E5EFEC /* HotelSearchHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelSearchHeaderView.xib; sourceTree = "<group>"; };
+		DB42A3881FA32A3700E5EFEC /* HotelSearchHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSearchHistoryCell.swift; sourceTree = "<group>"; };
+		DB42A3891FA32A3700E5EFEC /* HotelSearchHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelSearchHistoryCell.xib; sourceTree = "<group>"; };
+		DB42A38C1FA32EB800E5EFEC /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		DB55A1761F9B3031000306E0 /* ScenicSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenicSpotView.swift; sourceTree = "<group>"; };
 		DB5EA1F31F9ED27D0045EDE8 /* HotelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelViewController.swift; sourceTree = "<group>"; };
 		DB5EA1F51F9EE53C0045EDE8 /* HotelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSelectView.swift; sourceTree = "<group>"; };
@@ -153,6 +175,7 @@
 				DB5EA1F31F9ED27D0045EDE8 /* HotelViewController.swift */,
 				DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */,
 				DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */,
+				DB42A3721FA2D0E100E5EFEC /* SearchHotelViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -160,6 +183,8 @@
 		DB5EA1F11F9ED2470045EDE8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB42A3801FA30B3000E5EFEC /* SearchHotelTag.swift */,
+				DB42A3811FA30B3000E5EFEC /* SearchHotelTags.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,6 +197,12 @@
 				DBC917C81FA0219C00108863 /* DateCell.swift */,
 				DBC917CA1FA021B200108863 /* DateCell.xib */,
 				DBC917CC1FA02EAC00108863 /* CalenderHeaderView.swift */,
+				DB42A3761FA3078A00E5EFEC /* SearchCell.swift */,
+				DB42A3771FA3078A00E5EFEC /* SearchCell.xib */,
+				DB42A3841FA314D300E5EFEC /* HotelSearchHeaderView.swift */,
+				DB42A3851FA314D300E5EFEC /* HotelSearchHeaderView.xib */,
+				DB42A3881FA32A3700E5EFEC /* HotelSearchHistoryCell.swift */,
+				DB42A3891FA32A3700E5EFEC /* HotelSearchHistoryCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,6 +301,7 @@
 			children = (
 				DBD1B40D1F97541F002DE72A /* UIView+Extension.swift */,
 				DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */,
+				DB42A3741FA2D85300E5EFEC /* UIImage+Extension.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -279,6 +311,7 @@
 			children = (
 				DBD1B4041F9730AC002DE72A /* LWConst.swift */,
 				DBD1B4081F974106002DE72A /* LWNetworkTool.swift */,
+				DB42A38C1FA32EB800E5EFEC /* UserInfo.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -425,12 +458,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB42A3871FA314D300E5EFEC /* HotelSearchHeaderView.xib in Resources */,
 				DBD8824A1F9D7C99006DCFBE /* ScenicSpotItemView.xib in Resources */,
 				DBD882561F9DD44D006DCFBE /* LineListCell.xib in Resources */,
 				DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */,
 				DBC917CB1FA021B200108863 /* DateCell.xib in Resources */,
 				DB5EA1F81F9EE5450045EDE8 /* HotelSelectView.xib in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
+				DB42A3791FA3078A00E5EFEC /* SearchCell.xib in Resources */,
+				DB42A38B1FA32A3700E5EFEC /* HotelSearchHistoryCell.xib in Resources */,
 				DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */,
 				DB870FBD1F9F22E200CF03E0 /* CalendarViewController.xib in Resources */,
 			);
@@ -491,9 +527,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB42A38D1FA32EB800E5EFEC /* UserInfo.swift in Sources */,
 				DBD882481F9D7C83006DCFBE /* ScenicSpotItemView.swift in Sources */,
+				DB42A3781FA3078A00E5EFEC /* SearchCell.swift in Sources */,
 				DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */,
 				DBD1B4021F972DD6002DE72A /* LWBaseViewController.swift in Sources */,
+				DB42A38A1FA32A3700E5EFEC /* HotelSearchHistoryCell.swift in Sources */,
 				DBD882551F9DD44D006DCFBE /* LineListCell.swift in Sources */,
 				DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */,
 				DBD1B40E1F97541F002DE72A /* UIView+Extension.swift in Sources */,
@@ -506,10 +545,13 @@
 				DB870FBC1F9F22E200CF03E0 /* CalendarViewController.swift in Sources */,
 				DB5EA1F41F9ED27D0045EDE8 /* HotelViewController.swift in Sources */,
 				DBD1B3FB1F972A54002DE72A /* ThemeViewController.swift in Sources */,
+				DB42A3831FA30B3000E5EFEC /* SearchHotelTags.swift in Sources */,
 				DBD1B3F31F9729FF002DE72A /* NearbyViewController.swift in Sources */,
 				DBD8824E1F9DC59D006DCFBE /* TagModel.swift in Sources */,
 				DBD1B4051F9730AC002DE72A /* LWConst.swift in Sources */,
+				DB42A3861FA314D300E5EFEC /* HotelSearchHeaderView.swift in Sources */,
 				DBD882521F9DD1E2006DCFBE /* LineListItemModel.swift in Sources */,
+				DB42A3731FA2D0E100E5EFEC /* SearchHotelViewController.swift in Sources */,
 				DB000E451F99E56600A581F9 /* NewView.swift in Sources */,
 				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
 				DBD882501F9DCE1C006DCFBE /* HomePageTagViewController.swift in Sources */,
@@ -517,9 +559,11 @@
 				DB55A1771F9B3031000306E0 /* ScenicSpotView.swift in Sources */,
 				DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */,
 				DBC917CD1FA02EAC00108863 /* CalenderHeaderView.swift in Sources */,
+				DB42A3751FA2D85300E5EFEC /* UIImage+Extension.swift in Sources */,
 				840722A21F9B6C8700111B01 /* LWCycyleView.swift in Sources */,
 				DBD1B4001F972C5F002DE72A /* LWTabBarViewController.swift in Sources */,
 				DBD1B3CE1F96FC7B002DE72A /* AppDelegate.swift in Sources */,
+				DB42A3821FA30B3000E5EFEC /* SearchHotelTag.swift in Sources */,
 				DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

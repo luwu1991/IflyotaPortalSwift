@@ -7,12 +7,13 @@
 //
 
 import UIKit
-
+import SnapKit
 class HotelViewController: LWBaseViewController {
     
     var startDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
     var endDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
     let hotelSelectView = Bundle.main.loadNibNamed("HotelSelectView", owner: nil, options: nil)?.first as! HotelSelectView
+    let bottomBtnW = (SCREENW - 20 - 2)/2
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "酒店"
@@ -28,6 +29,7 @@ class HotelViewController: LWBaseViewController {
             self.initBanelView(datas: datas)
         }
         initHotelSelectView()
+        initBottomBtn()
     }
 
     
@@ -55,7 +57,47 @@ class HotelViewController: LWBaseViewController {
         view.addSubview(hotelSelectView)
     }
     
-    
+    func initBottomBtn() {
+        let btnFrame = CGRect(x: 0, y: 0, width: bottomBtnW, height: 50)
+        
+        let leftBtn = UIButton()
+        leftBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        leftBtn.setTitle("我的订单", for: UIControlState.normal)
+        view.addSubview(leftBtn)
+        leftBtn.snp.makeConstraints { (make) in
+            make.width.equalTo((SCREENW - 20 - 2)/2)
+            make.left.equalTo(10)
+            make.top.equalTo(hotelSelectView.snp.bottom).offset(10)
+            make.height.equalTo(50)
+        }
+        
+        let path = UIBezierPath(roundedRect: btnFrame, byRoundingCorners: [.topLeft,.bottomLeft], cornerRadii: CGSize(width: 4, height: 4))
+        let leftMask = CAShapeLayer()
+        leftMask.frame = btnFrame
+        leftMask.path = path.cgPath
+        leftBtn.layer.mask = leftMask
+        leftBtn.backgroundColor = UIColor.white
+        
+        let rightBtn = UIButton()
+        
+        rightBtn.setTitle("我的订单", for: UIControlState.normal)
+        rightBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        view.addSubview(rightBtn)
+        rightBtn.snp.makeConstraints { (make) in
+            make.width.equalTo((SCREENW - 20 - 2)/2)
+            make.right.equalTo(-10)
+            make.top.equalTo(hotelSelectView.snp.bottom).offset(10)
+            make.height.equalTo(50)
+        }
+        
+        
+        let rightPath = UIBezierPath(roundedRect: btnFrame, byRoundingCorners: [.topRight,.bottomRight], cornerRadii: CGSize(width: 4, height: 4))
+        let rightMask = CAShapeLayer()
+        rightMask.frame = btnFrame
+        rightMask.path = rightPath.cgPath
+        rightBtn.layer.mask = rightMask
+        rightBtn.backgroundColor = UIColor.white
+    }
     
     fileprivate func setDateText() {
         let formatter = DateFormatter()
@@ -69,10 +111,6 @@ class HotelViewController: LWBaseViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
@@ -95,7 +133,8 @@ extension HotelViewController:HotelSelectViewDelegate{
     }
     
     func clickSearchBtn(_ btn: UIButton) {
-        print(1)
+        let searchVC = SearchHotelViewController()
+        self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
     func clickSelectHotelBtn(_ btn: UIButton) {

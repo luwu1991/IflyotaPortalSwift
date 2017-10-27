@@ -207,5 +207,77 @@ class LWNetworkTool: NSObject {
                 }
         }
     }
+    /*
+     groupNames
+     groupChannel    安卓客户端
+     groupPages    酒店搜索
+     groupModules    搜索
+     groupTypes    酒店
+     imgType
+     */
+ func loadHotelTagGroup(groupNames:String,groupChannel:String,groupPages:String,groupModules:String,groupTypes:String,imgType:String,finished:@escaping (_ items:[SearchHotelTags]) -> ()){
+        let url = BASE_URL + "GetImgGroupTagList"
+        let params = ["groupNames":groupNames,"groupChannel":groupChannel,"groupPages":groupPages,"groupModules":groupModules,"groupTypes":groupTypes,"imgType":imgType]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let items = dict["c"].arrayObject{
+                        var bannelItems = [SearchHotelTags]()
+                        for item in items{
+                            let bannelItem = SearchHotelTags (fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(bannelItems)
+                    }
+                }
+        }
+    }
+    /*
+     {
+     "dicRecord": {
+     "UserIID": "",
+     "ObjectIID": "",
+     "ObjectType": "酒店",
+     "OperateCentent": "黄山",
+     "Reserve1": ""
+     },
+     "ajax": "jquery1.4.2"
+     }
+     */
+    func addHistoryRecord(ObjectType:String,OperateCentent:String,UserIID:String){
+        let url = BASE_URL + "AddHistoryRecord"
+        var dic = Dictionary<String,String>()
+        dic["UserIID"] = UserIID
+        dic["ObjectIID"] = ""
+        dic["ObjectType"] = ObjectType
+        dic["OperateCentent"] = OperateCentent
+        dic["Reserve1"] = ""
+        let params = ["dicRecord":dic,"ajax":"jquery1.4.2"] as [String:Any]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    guard dict["r"] == true else{
+                        
+                        return
+                    }
+                    UserInfo.shareUserInfo.userID = dict["c"].stringValue
+                }
+        }
+        
+     }
     
 }
