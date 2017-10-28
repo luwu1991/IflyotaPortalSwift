@@ -30,6 +30,7 @@
 		DB5EA1F81F9EE5450045EDE8 /* HotelSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB5EA1F71F9EE5450045EDE8 /* HotelSelectView.xib */; };
 		DB870FBC1F9F22E200CF03E0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */; };
 		DB870FBD1F9F22E200CF03E0 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */; };
+		DB9B8CE41FA4575A0069938F /* HistoryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B8CE31FA457590069938F /* HistoryRecord.swift */; };
 		DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */; };
 		DBC917C91FA0219C00108863 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC917C81FA0219C00108863 /* DateCell.swift */; };
 		DBC917CB1FA021B200108863 /* DateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC917CA1FA021B200108863 /* DateCell.xib */; };
@@ -84,6 +85,7 @@
 		DB5EA1F71F9EE5450045EDE8 /* HotelSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelSelectView.xib; sourceTree = "<group>"; };
 		DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
+		DB9B8CE31FA457590069938F /* HistoryRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecord.swift; sourceTree = "<group>"; };
 		DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		DBC917C81FA0219C00108863 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		DBC917CA1FA021B200108863 /* DateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateCell.xib; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		DB5EA1F11F9ED2470045EDE8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB9B8CE31FA457590069938F /* HistoryRecord.swift */,
 				DB42A3801FA30B3000E5EFEC /* SearchHotelTag.swift */,
 				DB42A3811FA30B3000E5EFEC /* SearchHotelTags.swift */,
 			);
@@ -542,6 +545,7 @@
 				DBD1B3FE1F972A65002DE72A /* MeViewController.swift in Sources */,
 				DBD8824C1F9DBD04006DCFBE /* LWSwiperView.swift in Sources */,
 				DBD1B40C1F97481D002DE72A /* HomePageBannel.swift in Sources */,
+				DB9B8CE41FA4575A0069938F /* HistoryRecord.swift in Sources */,
 				DB870FBC1F9F22E200CF03E0 /* CalendarViewController.swift in Sources */,
 				DB5EA1F41F9ED27D0045EDE8 /* HotelViewController.swift in Sources */,
 				DBD1B3FB1F972A54002DE72A /* ThemeViewController.swift in Sources */,

@@ -10,7 +10,9 @@ import UIKit
 
 class SearchHotelViewController: LWBaseViewController {
     var searchVC:UISearchController?
-    var dataSource:[SearchHotelTags] = [SearchHotelTags]()
+    var hotelTags:[SearchHotelTags] = [SearchHotelTags]()
+    var searchHistory = [HistoryRecord]()
+    var dataSource = Array(repeating: [Any](), count: 2)
     var tagCollection:UICollectionView?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +20,24 @@ class SearchHotelViewController: LWBaseViewController {
         initSearchView()
         initTagView()
         LWNetworkTool.shareNetworkTool.loadHotelTagGroup(groupNames: "", groupChannel: "安卓客户端", groupPages: "酒店搜索", groupModules: "搜索", groupTypes: "酒店", imgType: "") { (items) in
-            self.dataSource = items
+            self.dataSource[0] = items
             self.tagCollection?.reloadData()
+            self.tagCollection?.collectionViewLayout.invalidateLayout()
         }
+        if UserInfo.shareUserInfo.userID != nil {
+            LWNetworkTool.shareNetworkTool.loadHistoryRecords(userID: UserInfo.shareUserInfo.userID!, type: "酒店") { (items) in
+                self.dataSource[1] = items
+                self.tagCollection?.reloadData()
+                self.tagCollection?.collectionViewLayout.invalidateLayout()
+            }
+        }
+        
         // Do any additional setup after loading the view.
     }
     
     func initTagView() {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.estimatedItemSize = CGSize(width: 180, height: 30)
+        flowLayout.estimatedItemSize = CGSize(width: 80, height: 30)
         flowLayout.minimumInteritemSpacing = 15
         flowLayout.minimumLineSpacing = 15
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15)
@@ -36,6 +47,7 @@ class SearchHotelViewController: LWBaseViewController {
         tagCollection?.delegate = self
         tagCollection?.dataSource = self
         tagCollection?.register(UINib.init(nibName: "SearchCell", bundle: nil), forCellWithReuseIdentifier: "SearchCell")
+        tagCollection?.register(UINib.init(nibName: "HotelSearchHistoryCell", bundle: nil), forCellWithReuseIdentifier: "RecordCell")
         tagCollection?.register(UINib.init(nibName: "HotelSearchHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
         view.addSubview(tagCollection!)
     }
@@ -59,27 +71,53 @@ class SearchHotelViewController: LWBaseViewController {
 
 extension SearchHotelViewController:UICollectionViewDelegate,UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.dataSource.count
+        return dataSource[0].count + (dataSource[1].count == 0 ? 0 : 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.dataSource[section].tags.count
+       
+        if dataSource[0].count < (section + 1) {
+            return dataSource[1].count
+        }else{
+            let items = dataSource[0] as! [SearchHotelTags]
+            return items[section].tags.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! SearchCell
-        let tag = dataSource[indexPath.section].tags[indexPath.row]
-        cell.titlelabel.text = tag.tName
-        return cell
+        print(indexPath.section)
+        if dataSource[0].count < (indexPath.section + 1) {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCell", for: indexPath) as! HotelSearchHistoryCell
+            let record = dataSource[1][indexPath.row] as! HistoryRecord
+            cell.titleLabel.text = record.operateCentent
+            return cell
+        }
+        else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! SearchCell
+            let tags = dataSource[0] as! [SearchHotelTags]
+            let tag = tags[indexPath.section].tags[indexPath.row]
+            cell.titlelabel.text = tag.tName
+            return cell
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
-        let tags = dataSource[indexPath.section]
-        header.imageView.kf.setImage(with: URL(string: tags.imageUrl))
-        header.titleLabel.text = tags.groupName
-        return header
+        if dataSource[0].count < (indexPath.section + 1){
+             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
+            header.imageView.image = UIImage(named:"history-icon")
+            header.titleLabel.text = "搜索历史记录"
+            return header
+            
+        }else{
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
+            let tags = dataSource[0] as! [SearchHotelTags]
+            
+            header.imageView.kf.setImage(with: URL(string: tags[indexPath.section].imageUrl))
+            header.titleLabel.text = tags[indexPath.section].groupName
+            return header
+        }
+
         
     }
     

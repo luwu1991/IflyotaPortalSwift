@@ -265,7 +265,7 @@ class LWNetworkTool: NSObject {
         dic["OperateCentent"] = OperateCentent
         dic["Reserve1"] = ""
         let params = ["dicRecord":dic,"ajax":"jquery1.4.2"] as [String:Any]
-        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+        Alamofire.request(url,method:.post,parameters:params,encoding: JSONEncoding(options: []))
             .responseJSON{ (responese) in
                 
                 if let value = responese.result.value{
@@ -274,10 +274,42 @@ class LWNetworkTool: NSObject {
                         
                         return
                     }
-                    UserInfo.shareUserInfo.userID = dict["c"].stringValue
+                    let userID = dict["c"].rawString()
+                    UserInfo.shareUserInfo.userID = userID
                 }
         }
         
      }
+    
+    func loadHistoryRecords(userID:String,type:String,finished:@escaping (_ items:[HistoryRecord]) -> ()){
+        let url = BASE_URL + "GetHistoryRecordsByUser"
+        let params = ["iid":userID,"type":type]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let items = dict["c"].arrayObject{
+                        var bannelItems = [HistoryRecord]()
+                        for item in items{
+                            let bannelItem = HistoryRecord (fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(bannelItems)
+                    }
+                }
+        }
+    }
+    
     
 }
