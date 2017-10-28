@@ -10,21 +10,25 @@ import UIKit
 
 class HotelSearchHistoryCell: UICollectionViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    var titleLabel = UILabel()
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.width = SCREENW
-        // Initialization code
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.width = SCREENW
+        self.frame = CGRect (x: 0, y: 0, width: SCREENW - 30, height: 44)
+        addSubview(titleLabel)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.centerY.equalToSuperview()
+            make.width.equalTo(SCREENW - 40)
+            make.right.equalToSuperview()
+        }
     }
-    
-    override func layoutSubviews() {
-        self.width = SCREENW
-    }
+
 }

@@ -47,7 +47,7 @@ class SearchHotelViewController: LWBaseViewController {
         tagCollection?.delegate = self
         tagCollection?.dataSource = self
         tagCollection?.register(UINib.init(nibName: "SearchCell", bundle: nil), forCellWithReuseIdentifier: "SearchCell")
-        tagCollection?.register(UINib.init(nibName: "HotelSearchHistoryCell", bundle: nil), forCellWithReuseIdentifier: "RecordCell")
+        tagCollection?.register(HotelSearchHistoryCell.self, forCellWithReuseIdentifier: "RecordCell")
         tagCollection?.register(UINib.init(nibName: "HotelSearchHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
         view.addSubview(tagCollection!)
     }
