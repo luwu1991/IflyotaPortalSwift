@@ -134,6 +134,10 @@ extension HotelViewController:HotelSelectViewDelegate{
     
     func clickSearchBtn(_ btn: UIButton) {
         let searchVC = SearchHotelViewController()
+        searchVC.searchTitleCallBack = {(searchTitle) in
+            self.hotelSelectView.hotelLabel.text = searchTitle
+            self.hotelSelectView.hotelLabel.textColor = ThemeColor()
+        }
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
     

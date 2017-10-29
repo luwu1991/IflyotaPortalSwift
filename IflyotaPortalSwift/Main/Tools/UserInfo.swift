@@ -10,5 +10,9 @@ import UIKit
 
 class UserInfo: NSObject {
     static let shareUserInfo = UserInfo()
-    var userID:String?
+    var userID:String?{
+        didSet{
+            UserDefaults.standard.set(userID, forKey: "UserID")
+        }
+    }
 }

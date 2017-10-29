@@ -7,13 +7,15 @@
 //
 
 import UIKit
-
+typealias SendSearchTitleCallBack = (_ searchTitle:String) -> ()
 class SearchHotelViewController: LWBaseViewController {
     var searchVC:UISearchController?
     var hotelTags:[SearchHotelTags] = [SearchHotelTags]()
     var searchHistory = [HistoryRecord]()
     var dataSource = Array(repeating: [Any](), count: 2)
     var tagCollection:UICollectionView?
+    var searchTitle:String?
+    var searchTitleCallBack:SendSearchTitleCallBack?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
@@ -122,15 +124,31 @@ extension SearchHotelViewController:UICollectionViewDelegate,UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(collectionView)
+        if dataSource[0].count < (indexPath.section + 1) {
+            let cell = collectionView.cellForItem(at: indexPath) as! HotelSearchHistoryCell
+            if searchTitleCallBack != nil {
+                searchTitleCallBack!(cell.titleLabel.text!)
+            }
+            navigationController?.popViewController(animated: true)
+        }else{
+            let cell = collectionView.cellForItem(at: indexPath) as! SearchCell
+            if searchTitleCallBack != nil {
+                searchTitleCallBack!(cell.titlelabel.text!)
+            }
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
 
 extension SearchHotelViewController:UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         LWNetworkTool.shareNetworkTool.addHistoryRecord(ObjectType: "酒店", OperateCentent: searchBar.text ?? "", UserIID: UserInfo.shareUserInfo.userID ?? "")
+        if searchTitleCallBack != nil {
+            searchTitleCallBack!(searchBar.text!)
+        }
+        navigationController?.popViewController(animated: true)
     }
     
-    
+
 }
 
