@@ -129,7 +129,9 @@ extension HotelViewController:HotelSelectViewDelegate{
     }
     
     func clickPriceBtn(_ btn: UIButton) {
-        print(1)
+        let priceSelectVC = SelectPriceViewController()
+        priceSelectVC.modalPresentationStyle = .overCurrentContext
+        present(priceSelectVC, animated: true, completion: nil)
     }
     
     func clickSearchBtn(_ btn: UIButton) {

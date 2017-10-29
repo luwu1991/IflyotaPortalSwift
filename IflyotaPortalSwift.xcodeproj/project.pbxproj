@@ -27,6 +27,9 @@
 		DB5EA1F41F9ED27D0045EDE8 /* HotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EA1F31F9ED27D0045EDE8 /* HotelViewController.swift */; };
 		DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EA1F51F9EE53C0045EDE8 /* HotelSelectView.swift */; };
 		DB5EA1F81F9EE5450045EDE8 /* HotelSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB5EA1F71F9EE5450045EDE8 /* HotelSelectView.xib */; };
+		DB660A1A1FA578AA007A41D7 /* SelectPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB660A191FA578AA007A41D7 /* SelectPriceViewController.swift */; };
+		DB660A1D1FA5A22C007A41D7 /* SelectPriceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB660A1B1FA5A22C007A41D7 /* SelectPriceHeaderView.swift */; };
+		DB660A1E1FA5A22C007A41D7 /* SelectPriceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB660A1C1FA5A22C007A41D7 /* SelectPriceHeaderView.xib */; };
 		DB870FBC1F9F22E200CF03E0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */; };
 		DB870FBD1F9F22E200CF03E0 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */; };
 		DB9B8CE41FA4575A0069938F /* HistoryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B8CE31FA457590069938F /* HistoryRecord.swift */; };
@@ -81,6 +84,9 @@
 		DB5EA1F31F9ED27D0045EDE8 /* HotelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelViewController.swift; sourceTree = "<group>"; };
 		DB5EA1F51F9EE53C0045EDE8 /* HotelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSelectView.swift; sourceTree = "<group>"; };
 		DB5EA1F71F9EE5450045EDE8 /* HotelSelectView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelSelectView.xib; sourceTree = "<group>"; };
+		DB660A191FA578AA007A41D7 /* SelectPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceViewController.swift; sourceTree = "<group>"; };
+		DB660A1B1FA5A22C007A41D7 /* SelectPriceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceHeaderView.swift; sourceTree = "<group>"; };
+		DB660A1C1FA5A22C007A41D7 /* SelectPriceHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPriceHeaderView.xib; sourceTree = "<group>"; };
 		DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		DB9B8CE31FA457590069938F /* HistoryRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecord.swift; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 				DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */,
 				DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */,
 				DB42A3721FA2D0E100E5EFEC /* SearchHotelViewController.swift */,
+				DB660A191FA578AA007A41D7 /* SelectPriceViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -203,6 +210,8 @@
 				DB42A3841FA314D300E5EFEC /* HotelSearchHeaderView.swift */,
 				DB42A3851FA314D300E5EFEC /* HotelSearchHeaderView.xib */,
 				DB42A3881FA32A3700E5EFEC /* HotelSearchHistoryCell.swift */,
+				DB660A1B1FA5A22C007A41D7 /* SelectPriceHeaderView.swift */,
+				DB660A1C1FA5A22C007A41D7 /* SelectPriceHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -464,6 +473,7 @@
 				DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */,
 				DBC917CB1FA021B200108863 /* DateCell.xib in Resources */,
 				DB5EA1F81F9EE5450045EDE8 /* HotelSelectView.xib in Resources */,
+				DB660A1E1FA5A22C007A41D7 /* SelectPriceHeaderView.xib in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
 				DB42A3791FA3078A00E5EFEC /* SearchCell.xib in Resources */,
 				DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */,
@@ -531,6 +541,7 @@
 				DB42A3781FA3078A00E5EFEC /* SearchCell.swift in Sources */,
 				DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */,
 				DBD1B4021F972DD6002DE72A /* LWBaseViewController.swift in Sources */,
+				DB660A1D1FA5A22C007A41D7 /* SelectPriceHeaderView.swift in Sources */,
 				DB42A38A1FA32A3700E5EFEC /* HotelSearchHistoryCell.swift in Sources */,
 				DBD882551F9DD44D006DCFBE /* LineListCell.swift in Sources */,
 				DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */,
@@ -554,6 +565,7 @@
 				DB42A3731FA2D0E100E5EFEC /* SearchHotelViewController.swift in Sources */,
 				DB000E451F99E56600A581F9 /* NewView.swift in Sources */,
 				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
+				DB660A1A1FA578AA007A41D7 /* SelectPriceViewController.swift in Sources */,
 				DBD882501F9DCE1C006DCFBE /* HomePageTagViewController.swift in Sources */,
 				DBC917C91FA0219C00108863 /* DateCell.swift in Sources */,
 				DB55A1771F9B3031000306E0 /* ScenicSpotView.swift in Sources */,
