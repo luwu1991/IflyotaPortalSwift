@@ -40,6 +40,10 @@
 		DBC94CDF1FA6B6A600B4F862 /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CDC1FA6B6A500B4F862 /* TapticEngine.swift */; };
 		DBC94CE01FA6B6A600B4F862 /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CDD1FA6B6A600B4F862 /* RangeSeekSlider.swift */; };
 		DBC94CE11FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CDE1FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift */; };
+		DBC94CE31FA7001A00B4F862 /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CE21FA7001900B4F862 /* Hotel.swift */; };
+		DBC94CE51FA7032800B4F862 /* SearchHotelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CE41FA7032800B4F862 /* SearchHotelListViewController.swift */; };
+		DBC94CE71FA7043A00B4F862 /* HotelSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CE61FA7043A00B4F862 /* HotelSearchView.swift */; };
+		DBC94CE91FA7044F00B4F862 /* HotelScearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC94CE81FA7044F00B4F862 /* HotelScearchView.xib */; };
 		DBD1B3CE1F96FC7B002DE72A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */; };
 		DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */; };
 		DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBD1B3D61F96FC7C002DE72A /* LaunchScreen.storyboard */; };
@@ -100,6 +104,10 @@
 		DBC94CDC1FA6B6A500B4F862 /* TapticEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapticEngine.swift; sourceTree = "<group>"; };
 		DBC94CDD1FA6B6A600B4F862 /* RangeSeekSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSeekSlider.swift; sourceTree = "<group>"; };
 		DBC94CDE1FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSeekSliderDelegate.swift; sourceTree = "<group>"; };
+		DBC94CE21FA7001900B4F862 /* Hotel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hotel.swift; sourceTree = "<group>"; };
+		DBC94CE41FA7032800B4F862 /* SearchHotelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHotelListViewController.swift; sourceTree = "<group>"; };
+		DBC94CE61FA7043A00B4F862 /* HotelSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSearchView.swift; sourceTree = "<group>"; };
+		DBC94CE81FA7044F00B4F862 /* HotelScearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelScearchView.xib; sourceTree = "<group>"; };
 		DBD1B3CA1F96FC7B002DE72A /* IflyotaPortalSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IflyotaPortalSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -189,6 +197,7 @@
 				DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */,
 				DB42A3721FA2D0E100E5EFEC /* SearchHotelViewController.swift */,
 				DB660A191FA578AA007A41D7 /* SelectPriceViewController.swift */,
+				DBC94CE41FA7032800B4F862 /* SearchHotelListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -196,6 +205,7 @@
 		DB5EA1F11F9ED2470045EDE8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DBC94CE21FA7001900B4F862 /* Hotel.swift */,
 				DB9B8CE31FA457590069938F /* HistoryRecord.swift */,
 				DB42A3801FA30B3000E5EFEC /* SearchHotelTag.swift */,
 				DB42A3811FA30B3000E5EFEC /* SearchHotelTags.swift */,
@@ -218,6 +228,8 @@
 				DB42A3881FA32A3700E5EFEC /* HotelSearchHistoryCell.swift */,
 				DB660A1B1FA5A22C007A41D7 /* SelectPriceHeaderView.swift */,
 				DB660A1C1FA5A22C007A41D7 /* SelectPriceHeaderView.xib */,
+				DBC94CE61FA7043A00B4F862 /* HotelSearchView.swift */,
+				DBC94CE81FA7044F00B4F862 /* HotelScearchView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -493,6 +505,7 @@
 				DB660A1E1FA5A22C007A41D7 /* SelectPriceHeaderView.xib in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
 				DB42A3791FA3078A00E5EFEC /* SearchCell.xib in Resources */,
+				DBC94CE91FA7044F00B4F862 /* HotelScearchView.xib in Resources */,
 				DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */,
 				DB870FBD1F9F22E200CF03E0 /* CalendarViewController.xib in Resources */,
 			);
@@ -576,13 +589,16 @@
 				DBD1B3FB1F972A54002DE72A /* ThemeViewController.swift in Sources */,
 				DB42A3831FA30B3000E5EFEC /* SearchHotelTags.swift in Sources */,
 				DBD1B3F31F9729FF002DE72A /* NearbyViewController.swift in Sources */,
+				DBC94CE71FA7043A00B4F862 /* HotelSearchView.swift in Sources */,
 				DBD8824E1F9DC59D006DCFBE /* TagModel.swift in Sources */,
 				DBD1B4051F9730AC002DE72A /* LWConst.swift in Sources */,
 				DB42A3861FA314D300E5EFEC /* HotelSearchHeaderView.swift in Sources */,
 				DBD882521F9DD1E2006DCFBE /* LineListItemModel.swift in Sources */,
 				DB42A3731FA2D0E100E5EFEC /* SearchHotelViewController.swift in Sources */,
 				DB000E451F99E56600A581F9 /* NewView.swift in Sources */,
+				DBC94CE51FA7032800B4F862 /* SearchHotelListViewController.swift in Sources */,
 				DBC94CDF1FA6B6A600B4F862 /* TapticEngine.swift in Sources */,
+				DBC94CE31FA7001A00B4F862 /* Hotel.swift in Sources */,
 				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
 				DBC94CE11FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift in Sources */,
 				DB660A1A1FA578AA007A41D7 /* SelectPriceViewController.swift in Sources */,

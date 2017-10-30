@@ -31,7 +31,7 @@ class HotelSelectView: UIView {
     @IBOutlet weak var totalDaylabel: UILabel!
     
     @IBAction func clickSelectHotelBtn(_ sender: Any) {
-        delagate?.clickSearchBtn?(sender as! UIButton)
+        delagate?.clickSelectHotelBtn?(sender as! UIButton)
     }
     @IBOutlet weak var hotelLabel: UILabel!
     

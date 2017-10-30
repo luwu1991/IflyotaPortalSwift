@@ -12,6 +12,7 @@ class HotelViewController: LWBaseViewController {
     
     var startDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
     var endDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+    var keyword:String?
     let hotelSelectView = Bundle.main.loadNibNamed("HotelSelectView", owner: nil, options: nil)?.first as! HotelSelectView
     let bottomBtnW = (SCREENW - 20 - 2)/2
     var starLevel:String?
@@ -178,16 +179,21 @@ extension HotelViewController:HotelSelectViewDelegate{
     }
     
     func clickSearchBtn(_ btn: UIButton) {
+        let searchHotelListVC = SearchHotelListViewController()
+        searchHotelListVC.startDate = startDate
+        searchHotelListVC.endDate = endDate
+        searchHotelListVC.keyword = self.keyword
+        self.navigationController?.pushViewController(searchHotelListVC, animated: true)
+    }
+    
+    func clickSelectHotelBtn(_ btn: UIButton) {
         let searchVC = SearchHotelViewController()
         searchVC.searchTitleCallBack = {(searchTitle) in
+            self.keyword = searchTitle
             self.hotelSelectView.hotelLabel.text = searchTitle
             self.hotelSelectView.hotelLabel.textColor = ThemeColor()
         }
         self.navigationController?.pushViewController(searchVC, animated: true)
-    }
-    
-    func clickSelectHotelBtn(_ btn: UIButton) {
-        print(1)
     }
 }
 

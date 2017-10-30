@@ -271,7 +271,6 @@ class LWNetworkTool: NSObject {
                 if let value = responese.result.value{
                     let dict = JSON(value)
                     guard dict["r"] == true else{
-                        
                         return
                     }
                     let userID = dict["c"].rawString()
@@ -310,6 +309,51 @@ class LWNetworkTool: NSObject {
                 }
         }
     }
-    
+    /*
+     page    1
+     rows    5
+     sort    HRecommendedOrder
+     order    desc
+     beginDate    2017-10-31
+     endDate     2017-11-01
+     condition    黄山北站
+     tagNum    1
+     keyWord    黄山北站
+     imgType    列表背景(app)
+     level    名宿客栈
+     minPrice
+     maxPrice    1700
+     x    0
+     y    0
+     */
+    func searchHotelList(page:Int,rows:Int,beginDate:String,endDate:String,keyWord:String,level:String,minPrice:Int,maxPrice:Int,finished:@escaping (_ items:[Hotel]) -> ()){
+        let url = BASE_URL + "GetHotelListByTagAndImgTypeAndCoordinates"
+        let params = ["page":page,"rows":rows,"sort":"HRecommendedOrder","order":"desc","beginDate":beginDate,"endDate":endDate,"condition":keyWord,"tagNum":1,"keyWord":keyWord,"imgType":"列表背景(app)","level":level,"minPrice":minPrice,"maxPrice":maxPrice,"x":0,"y":0] as [String:Any]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["err"].stringValue
+                    guard message == "" else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let items = dict["rows"].arrayObject{
+                        var bannelItems = [Hotel]()
+                        for item in items{
+                            let bannelItem = Hotel(fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(bannelItems)
+                    }
+                }
+        }
+    }
     
 }
