@@ -11,7 +11,11 @@ import UIKit
 class SelectPriceHeaderView: UICollectionReusableView {
 
     @IBAction func clickCloseBtn(_ sender: Any) {
+        if clickCloseBtnCalllBack != nil {
+            clickCloseBtnCalllBack!()
+        }
     }
+    var clickCloseBtnCalllBack:CallBack?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

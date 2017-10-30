@@ -14,6 +14,9 @@ class HotelViewController: LWBaseViewController {
     var endDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
     let hotelSelectView = Bundle.main.loadNibNamed("HotelSelectView", owner: nil, options: nil)?.first as! HotelSelectView
     let bottomBtnW = (SCREENW - 20 - 2)/2
+    var starLevel:String?
+    var minPrice:String?
+    var maxPrice:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "酒店"
@@ -99,6 +102,37 @@ class HotelViewController: LWBaseViewController {
         rightBtn.backgroundColor = UIColor.white
     }
     
+    fileprivate func updatePriceLabel(){
+        if self.starLevel == nil && self.minPrice == nil && self.maxPrice == nil {
+            hotelSelectView.priceLabel.text = "价格/星级"
+            hotelSelectView.priceLabel.textColor = UIColor.black
+            return
+        }
+        hotelSelectView.priceLabel.textColor = ThemeColor()
+        if self.minPrice != nil {
+            if self.maxPrice != nil{
+                hotelSelectView.priceLabel.text = "￥\(self.minPrice!)-￥\(self.maxPrice!)"
+            }else{
+                hotelSelectView.priceLabel.text = "￥\(self.minPrice!)以上"
+            }
+            
+            hotelSelectView.priceLabel.text = hotelSelectView.priceLabel.text! + " " + (self.starLevel ?? "")
+            
+            return
+        }
+        
+        if self.maxPrice != nil {
+            hotelSelectView.priceLabel.text = "￥\(self.maxPrice!)以下"
+            hotelSelectView.priceLabel.text = hotelSelectView.priceLabel.text! + " " + (self.starLevel ?? "")
+        }
+        
+        if self.maxPrice == nil {
+            hotelSelectView.priceLabel.text = self.starLevel
+        }
+        
+        
+    }
+    
     fileprivate func setDateText() {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
@@ -130,6 +164,15 @@ extension HotelViewController:HotelSelectViewDelegate{
     
     func clickPriceBtn(_ btn: UIButton) {
         let priceSelectVC = SelectPriceViewController()
+        priceSelectVC.starLevel = self.starLevel
+        priceSelectVC.minPrice = self.minPrice
+        priceSelectVC.maxPrice = self.maxPrice
+        priceSelectVC.sendValueCallBack = { (startLevel,minValue,maxValue) in
+            self.starLevel = startLevel
+            self.minPrice = minValue
+            self.maxPrice = maxValue
+            self.updatePriceLabel()
+        }
         priceSelectVC.modalPresentationStyle = .overCurrentContext
         present(priceSelectVC, animated: true, completion: nil)
     }

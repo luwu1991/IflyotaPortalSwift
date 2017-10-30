@@ -37,6 +37,9 @@
 		DBC917C91FA0219C00108863 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC917C81FA0219C00108863 /* DateCell.swift */; };
 		DBC917CB1FA021B200108863 /* DateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC917CA1FA021B200108863 /* DateCell.xib */; };
 		DBC917CD1FA02EAC00108863 /* CalenderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC917CC1FA02EAC00108863 /* CalenderHeaderView.swift */; };
+		DBC94CDF1FA6B6A600B4F862 /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CDC1FA6B6A500B4F862 /* TapticEngine.swift */; };
+		DBC94CE01FA6B6A600B4F862 /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CDD1FA6B6A600B4F862 /* RangeSeekSlider.swift */; };
+		DBC94CE11FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC94CDE1FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift */; };
 		DBD1B3CE1F96FC7B002DE72A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */; };
 		DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */; };
 		DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBD1B3D61F96FC7C002DE72A /* LaunchScreen.storyboard */; };
@@ -94,6 +97,9 @@
 		DBC917C81FA0219C00108863 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		DBC917CA1FA021B200108863 /* DateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateCell.xib; sourceTree = "<group>"; };
 		DBC917CC1FA02EAC00108863 /* CalenderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderHeaderView.swift; sourceTree = "<group>"; };
+		DBC94CDC1FA6B6A500B4F862 /* TapticEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapticEngine.swift; sourceTree = "<group>"; };
+		DBC94CDD1FA6B6A600B4F862 /* RangeSeekSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSeekSlider.swift; sourceTree = "<group>"; };
+		DBC94CDE1FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSeekSliderDelegate.swift; sourceTree = "<group>"; };
 		DBD1B3CA1F96FC7B002DE72A /* IflyotaPortalSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IflyotaPortalSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBD1B3CD1F96FC7B002DE72A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBD1B3D41F96FC7C002DE72A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -216,6 +222,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DBC94CDB1FA6B68900B4F862 /* RangSlider */ = {
+			isa = PBXGroup;
+			children = (
+				DBC94CDD1FA6B6A600B4F862 /* RangeSeekSlider.swift */,
+				DBC94CDE1FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift */,
+				DBC94CDC1FA6B6A500B4F862 /* TapticEngine.swift */,
+			);
+			path = RangSlider;
+			sourceTree = "<group>";
+		};
 		DBD1B3C11F96FC7B002DE72A = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +313,7 @@
 		DBD1B3E81F97278C002DE72A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				DBC94CDB1FA6B68900B4F862 /* RangSlider */,
 				840722A01F9B6C2400111B01 /* BaseView */,
 				DBD1B3EB1F9727A7002DE72A /* BaseController */,
 				DBD1B3EA1F9727A1002DE72A /* Tools */,
@@ -542,6 +559,7 @@
 				DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */,
 				DBD1B4021F972DD6002DE72A /* LWBaseViewController.swift in Sources */,
 				DB660A1D1FA5A22C007A41D7 /* SelectPriceHeaderView.swift in Sources */,
+				DBC94CE01FA6B6A600B4F862 /* RangeSeekSlider.swift in Sources */,
 				DB42A38A1FA32A3700E5EFEC /* HotelSearchHistoryCell.swift in Sources */,
 				DBD882551F9DD44D006DCFBE /* LineListCell.swift in Sources */,
 				DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */,
@@ -564,7 +582,9 @@
 				DBD882521F9DD1E2006DCFBE /* LineListItemModel.swift in Sources */,
 				DB42A3731FA2D0E100E5EFEC /* SearchHotelViewController.swift in Sources */,
 				DB000E451F99E56600A581F9 /* NewView.swift in Sources */,
+				DBC94CDF1FA6B6A600B4F862 /* TapticEngine.swift in Sources */,
 				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
+				DBC94CE11FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift in Sources */,
 				DB660A1A1FA578AA007A41D7 /* SelectPriceViewController.swift in Sources */,
 				DBD882501F9DCE1C006DCFBE /* HomePageTagViewController.swift in Sources */,
 				DBC917C91FA0219C00108863 /* DateCell.swift in Sources */,
