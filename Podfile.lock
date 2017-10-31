@@ -3,6 +3,7 @@ PODS:
   - HandyJSON (4.0.0-beta.1)
   - JTAppleCalendar (7.0.6)
   - Kingfisher (4.1.1)
+  - KRPullLoader (1.1.0)
   - SnapKit (4.0.0)
   - SVProgressHUD (2.2.2)
   - SwiftyJSON (3.1.4)
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - HandyJSON (~> 4.0.0-beta.1)
   - JTAppleCalendar (~> 7.0)
   - Kingfisher (~> 4.1.1)
+  - KRPullLoader
   - SnapKit (~> 4.0.0)
   - SVProgressHUD (~> 2.2.2)
   - SwiftyJSON (~> 3.1.4)
@@ -21,10 +23,11 @@ SPEC CHECKSUMS:
   HandyJSON: 428bb18e2c34c2a77361accebf90cf64e4f74118
   JTAppleCalendar: 6a942475e33b9ad4dee0a0e14aa4c63adcf4f543
   Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
+  KRPullLoader: 8209e472b2f7f67b22e809f0b614ca1043a8239e
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 894d34b3a7b092186ee9f848f4f313d8545bffa5
+PODFILE CHECKSUM: 6f04bb0e2d1c9e62bd45972768c6a7c092897340
 
 COCOAPODS: 1.2.1

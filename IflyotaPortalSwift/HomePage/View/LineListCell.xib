@@ -24,12 +24,6 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="125" id="5y0-ou-Zzs"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="4"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgM-6z-mz3">
                         <rect key="frame" x="10" y="167" width="335" height="0.0"/>
@@ -48,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmu-PV-xzL">
-                        <rect key="frame" x="10" y="140" width="265" height="17"/>
+                        <rect key="frame" x="10" y="140" width="263" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="YFJ-ef-yBC"/>
                         </constraints>
@@ -65,7 +59,7 @@
                 <constraint firstItem="Vh1-U3-0ld" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="FI0-Ys-LQ0"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="jRZ-bO-8Wp" secondAttribute="trailing" constant="10" id="GoV-QR-cce"/>
                 <constraint firstItem="fmu-PV-xzL" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="10" id="PML-kT-P5p"/>
-                <constraint firstItem="jRZ-bO-8Wp" firstAttribute="leading" secondItem="fmu-PV-xzL" secondAttribute="trailing" id="TbS-8p-4VD"/>
+                <constraint firstItem="jRZ-bO-8Wp" firstAttribute="leading" secondItem="fmu-PV-xzL" secondAttribute="trailing" constant="2" id="TbS-8p-4VD"/>
                 <constraint firstItem="jRZ-bO-8Wp" firstAttribute="top" secondItem="Vh1-U3-0ld" secondAttribute="bottom" constant="15" id="V71-27-slx"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="Vh1-U3-0ld" secondAttribute="trailing" id="ZhN-2o-9Td"/>
                 <constraint firstItem="VgM-6z-mz3" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="10" id="aKh-Lr-VYL"/>

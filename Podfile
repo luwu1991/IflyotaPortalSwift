@@ -10,4 +10,5 @@ pod 'Alamofire','~> 4.5.1'
 pod 'SwiftyJSON','~> 3.1.4'
 pod 'HandyJSON','~>  4.0.0-beta.1'
 pod 'JTAppleCalendar', '~> 7.0'
+pod 'KRPullLoader'
 end

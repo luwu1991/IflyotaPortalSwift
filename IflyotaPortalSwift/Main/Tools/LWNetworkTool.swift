@@ -326,9 +326,15 @@ class LWNetworkTool: NSObject {
      x    0
      y    0
      */
-    func searchHotelList(page:Int,rows:Int,beginDate:String,endDate:String,keyWord:String,level:String,minPrice:Int,maxPrice:Int,finished:@escaping (_ items:[Hotel]) -> ()){
+    func searchHotelList(page:Int,rows:Int,beginDate:String,endDate:String,keyWord:String,level:String,minPrice:String,maxPrice:String,sort: String = "HRecommendedOrder",finished:@escaping (_ items:[Hotel]) -> ()){
         let url = BASE_URL + "GetHotelListByTagAndImgTypeAndCoordinates"
-        let params = ["page":page,"rows":rows,"sort":"HRecommendedOrder","order":"desc","beginDate":beginDate,"endDate":endDate,"condition":keyWord,"tagNum":1,"keyWord":keyWord,"imgType":"列表背景(app)","level":level,"minPrice":minPrice,"maxPrice":maxPrice,"x":0,"y":0] as [String:Any]
+        var order = "desc"
+        var newSort = sort
+        if sort == "MaxPrice" {
+            newSort = "MinPrice"
+            order = "asc"
+        }
+        let params = ["page":page,"rows":rows,"sort":newSort,"order":order,"beginDate":beginDate,"endDate":endDate,"condition":keyWord,"tagNum":1,"keyWord":keyWord,"imgType":"列表背景(app)","level":level,"minPrice":minPrice,"maxPrice":maxPrice,"x":0,"y":0] as [String:Any]
         Alamofire.request(url,method:HTTPMethod.post,parameters:params)
             .responseJSON{ (responese) in
                 guard responese.result.isSuccess else{

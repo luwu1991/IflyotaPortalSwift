@@ -183,6 +183,9 @@ extension HotelViewController:HotelSelectViewDelegate{
         searchHotelListVC.startDate = startDate
         searchHotelListVC.endDate = endDate
         searchHotelListVC.keyword = self.keyword
+        searchHotelListVC.minPrice = minPrice
+        searchHotelListVC.maxPrice = maxPrice
+        searchHotelListVC.starLevel = starLevel
         self.navigationController?.pushViewController(searchHotelListVC, animated: true)
     }
     
