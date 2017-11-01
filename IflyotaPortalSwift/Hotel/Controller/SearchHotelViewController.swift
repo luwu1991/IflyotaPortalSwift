@@ -68,6 +68,9 @@ class SearchHotelViewController: LWBaseViewController {
         searchVC?.searchBar.tintColor = UIColor.black
         searchVC?.searchBar.delegate = self
         self.navigationItem.titleView = searchVC?.searchBar
+        if #available(iOS 11.0, *) {
+            searchVC?.searchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        }
     }
 }
 

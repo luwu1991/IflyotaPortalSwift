@@ -11,6 +11,7 @@ import UIKit
 class HotelSearchOrderView: UIView,UIGestureRecognizerDelegate{
     
     let orderView = UIView()
+    var clickBtnCallBack:((_ sord:String) -> ())?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -101,8 +102,35 @@ class HotelSearchOrderView: UIView,UIGestureRecognizerDelegate{
             let btn = orderView.viewWithTag(index) as! UIButton
             btn.isSelected = false
         }
-        
         sender.isSelected = true
+        
+        switch sender.tag {
+        case 1:
+            if clickBtnCallBack != nil {
+                clickBtnCallBack!("HRecommendedOrder")
+                UIView.animate(withDuration: 0.3) {
+                    self.y = SCREENH
+                }
+            }
+        case 2:
+            if clickBtnCallBack != nil {
+                clickBtnCallBack!("MinPrice")
+                UIView.animate(withDuration: 0.3) {
+                    self.y = SCREENH
+                }
+            }
+        case 3:
+            if clickBtnCallBack != nil {
+                clickBtnCallBack!("MaxPrice")
+                UIView.animate(withDuration: 0.3) {
+                    self.y = SCREENH
+                }
+            }
+        default:
+            break
+        }
+        
+        
     }
 
 }

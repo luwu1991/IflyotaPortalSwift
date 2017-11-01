@@ -18,41 +18,53 @@ class SearchHotelListViewController: LWBaseViewController {
     var minPrice:String?
     var maxPrice:String?
     var starLevel:String?
+    var sort = "HRecommendedOrder"
+    var sendValueCallBack:((_ starLevel:String?,_ minPrice:String?,_ maxPrice:String?,_ startDate:Date?,_ endDate:Date?,_ keyword:String?) -> ())?
     var dateSource = [Hotel]()
     var orderView = HotelSearchOrderView()
     var collectionView:UICollectionView?
     var page = 1
-    let refreshView = KRPullLoadView()
-    let loadMoreView = KRPullLoadView()
+    var isLoading = false
+    var total = 0
+    private let refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
-        updateListDateWithpage { () -> Void in
-            print(2)
-        }
+        updateListDateWithpage()
         initListView()
         initSearchView()
         initTopBtnView()
         // Do any additional setup after loading the view.
     }
     
+    deinit {
+        if self.sendValueCallBack != nil{
+            sendValueCallBack!(starLevel,minPrice,maxPrice,startDate,endDate,keyword)
+        }
+    }
     
     //MARK:Networking
-    func updateListDateWithpage(completion: @escaping ()->Void){
+    func updateListDateWithpage(){
+        isLoading = true
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        print(1)
-        LWNetworkTool.shareNetworkTool.searchHotelList(page: page, rows: 5, beginDate: formatter.string(from: startDate!), endDate: formatter.string(from: endDate!), keyWord: keyword ?? "", level: starLevel ?? "", minPrice: minPrice ?? "", maxPrice: maxPrice ?? "") { (items) in
+        LWNetworkTool.shareNetworkTool.searchHotelList(page: page, rows: 5, beginDate: formatter.string(from: startDate!), endDate: formatter.string(from: endDate!), keyWord: keyword ?? "", level: starLevel ?? "", minPrice: minPrice ?? "", maxPrice: maxPrice ?? "",sort: sort) { (total,items) in
             if self.page == 1 {
                 self.dateSource = items
             }else{
                 self.dateSource = self.dateSource + items
             }
-            completion()
+            self.isLoading = false
+            self.total = total
+            self.refreshControl.endRefreshing()
             self.collectionView?.reloadData()
             
             
         }
+    }
+    
+    @objc func refreshData(){
+        self.page = 1
+        updateListDateWithpage()
     }
     
     func initListView(){
@@ -67,14 +79,14 @@ class SearchHotelListViewController: LWBaseViewController {
         collectionView?.dataSource = self
         collectionView?.contentInset = UIEdgeInsetsMake(50,0, 0,0)
         collectionView?.register(UINib.init(nibName: "LineListCell", bundle: nil), forCellWithReuseIdentifier: "LineListCell")
+        if #available(iOS 10.0, *) {
+            collectionView?.refreshControl = refreshControl
+        } else {
+            collectionView?.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         view.addSubview(collectionView!)
         
-        
-        refreshView.delegate = self
-        collectionView?.addPullLoadableView(refreshView, type: .refresh)
-        
-        loadMoreView.delegate = self
-        collectionView?.addPullLoadableView(loadMoreView, type: .loadMore)
     }
     
     func initSearchView() {
@@ -155,6 +167,11 @@ class SearchHotelListViewController: LWBaseViewController {
         }
         let window = UIApplication.shared.keyWindow!
         orderView.frame = CGRect (x: 0, y: SCREENH, width: SCREENW, height: SCREENH)
+        orderView.clickBtnCallBack = {(sort) in
+            self.sort = sort
+            self.page = 1
+            self.updateListDateWithpage()
+        }
         window.addSubview(orderView)
     }
     
@@ -177,9 +194,8 @@ class SearchHotelListViewController: LWBaseViewController {
             self.minPrice = minValue
             self.maxPrice = maxValue
             self.page = 1
-            self.updateListDateWithpage(completion: {
-                
-            })
+            
+            self.updateListDateWithpage()
         }
         priceSelectVC.modalPresentationStyle = .overCurrentContext
         present(priceSelectVC, animated: true, completion: nil)
@@ -192,11 +208,6 @@ class SearchHotelListViewController: LWBaseViewController {
         }
     }
     
-    
-    deinit {
-        collectionView?.removePullLoadableView(refreshView)
-        collectionView?.removePullLoadableView(loadMoreView)
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -225,45 +236,22 @@ extension SearchHotelListViewController:UICollectionViewDelegate,UICollectionVie
         return cell
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row + 2 > self.dateSource.count && !self.isLoading && self.total > self.dateSource.count {
+            self.page = self.page + 1
+            self.updateListDateWithpage()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let model = dateSource[indexPath.row]
+        let hotelDetailVC = HotelDetailViewController()
+        hotelDetailVC.startDate = startDate!
+        hotelDetailVC.endDate = endDate!
+        hotelDetailVC.iid = model.hotelIID
+        self.navigationController?.pushViewController(hotelDetailVC, animated: true)
     }
 }
 
-extension SearchHotelListViewController:KRPullLoadViewDelegate{
-    func pullLoadView(_ pullLoadView: KRPullLoadView, didChangeState state: KRPullLoaderState, viewType type: KRPullLoaderType){
-        if type == .loadMore{
-            switch state{
-            case let .loading(completionHandler):
-                DispatchQueue.main.async(execute: {
-                    self.page = self.page + 1
-                    self.updateListDateWithpage(completion: {
-                        completionHandler()
-                    })
-                })
-            default:break
-            }
-            return
-        }
-        
-        switch state {
-        case .none:
-            pullLoadView.messageLabel.text = ""
-        case let .pulling(offset, threshould):
-            if offset.y > threshould {
-                pullLoadView.messageLabel.text = "下拉更多刷新..."
-            } else {
-                pullLoadView.messageLabel.text = "松手刷新"
-            }
-        case let .loading(completionHandler):
-            pullLoadView.messageLabel.text = "刷新..."
-            DispatchQueue.main.async(execute: {
-                self.page =  1
-                self.updateListDateWithpage(completion: {
-                    completionHandler()
-                })
-            })
-        }
-        
-    }
-}
+

@@ -186,6 +186,14 @@ extension HotelViewController:HotelSelectViewDelegate{
         searchHotelListVC.minPrice = minPrice
         searchHotelListVC.maxPrice = maxPrice
         searchHotelListVC.starLevel = starLevel
+        searchHotelListVC.sendValueCallBack = {[weak self] (starLevel,minPrice,maxPrice,startDate,endDate,keyword) in
+            self?.starLevel = starLevel
+            self?.minPrice = minPrice
+            self?.maxPrice = maxPrice
+            self?.startDate = startDate!
+            self?.endDate = endDate!
+            self?.keyword = keyword
+        }
         self.navigationController?.pushViewController(searchHotelListVC, animated: true)
     }
     

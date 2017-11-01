@@ -54,4 +54,11 @@ class HotelSearchView: UIView,UIGestureRecognizerDelegate {
     @objc func tapOne(_ sender: UITapGestureRecognizer){
 //        print(sender)
     }
+    
+    override var intrinsicContentSize: CGSize {
+        var size = UILayoutFittingExpandedSize
+        size.height = 30
+        size.width = SCREENW - 100
+        return size
+    } 
 }

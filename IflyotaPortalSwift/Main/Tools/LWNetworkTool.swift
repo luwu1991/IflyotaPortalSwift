@@ -326,7 +326,7 @@ class LWNetworkTool: NSObject {
      x    0
      y    0
      */
-    func searchHotelList(page:Int,rows:Int,beginDate:String,endDate:String,keyWord:String,level:String,minPrice:String,maxPrice:String,sort: String = "HRecommendedOrder",finished:@escaping (_ items:[Hotel]) -> ()){
+    func searchHotelList(page:Int,rows:Int,beginDate:String,endDate:String,keyWord:String,level:String,minPrice:String,maxPrice:String,sort: String = "HRecommendedOrder",finished:@escaping (_ total:Int,_ items:[Hotel]) -> ()){
         let url = BASE_URL + "GetHotelListByTagAndImgTypeAndCoordinates"
         var order = "desc"
         var newSort = sort
@@ -356,7 +356,32 @@ class LWNetworkTool: NSObject {
                             let bannelItem = Hotel(fromJson: JSON(item))
                             bannelItems.append(bannelItem)
                         }
-                        finished(bannelItems)
+                        finished(dict["total"].intValue,bannelItems)
+                    }
+                }
+        }
+    }
+    
+    func loadHotelDetailWithIID(_ iid:String,startDate:String,endDate:String,finished:@escaping (_ hotelInfo:HotelInfo,_ items:[HotelRoom]) -> ()){
+        let url = BASE_URL + "GetHotelDetailInfoWithCashBack"
+        let params = ["iid":iid,"staTime":startDate,"endTime":endDate,"imgType":""]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    if let data = dict["c"].dictionaryObject {
+                        let hotelDetail = HotelDetail (fromJson: JSON(data))
+                        finished(hotelDetail.hotelInfo,hotelDetail.hotelRoomList)
                     }
                 }
         }

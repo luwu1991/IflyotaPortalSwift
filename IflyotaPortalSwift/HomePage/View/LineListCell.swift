@@ -19,11 +19,8 @@ class LineListCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topLeft,.topRight], cornerRadii: CGSize(width: 4, height: 4))
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = self.bounds
-        maskLayer.path = path.cgPath
-//        self.layer.mask = maskLayer
+        self.layer.cornerRadius = 4
+        self.layer.masksToBounds = true
     }
 
 }
