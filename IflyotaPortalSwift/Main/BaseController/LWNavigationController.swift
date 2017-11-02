@@ -40,7 +40,11 @@ class LWNavigationController: UINavigationController,UIGestureRecognizerDelegate
         //判断当前的栈内有几个视图.为0的话是根控制器,根控制器不需要设置返回按钮以及返回手势
         if self.childViewControllers.count > 0  {
             //设置返回按钮,这里使用的分类中自定义的创建方法.分类在3.4
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "" , image: UIImage(named: "btn_back"), highlightedImage: UIImage(named: "btn_back"), target: self, action: #selector(back))
+
+            let emptyBar = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+            emptyBar.width = -40
+            let leftBtn = UIBarButtonItem(title: "" , image: UIImage(named: "btn_back"), highlightedImage: UIImage(named: "btn_back"), target: self, action: #selector(back))
+            viewController.navigationItem.leftBarButtonItems = [emptyBar,leftBtn]
             viewController.navigationController?.navigationBar.shadowImage = UIImage()
             //获取返回手势的代理
             let target = interactivePopGestureRecognizer?.delegate
@@ -91,6 +95,9 @@ class LWNavigationController: UINavigationController,UIGestureRecognizerDelegate
         return nil
     }
     
+    
+
+    
     override var childViewControllerForStatusBarStyle: UIViewController? {
         return visibleViewController
     }
@@ -111,6 +118,24 @@ class LWNavigationController: UINavigationController,UIGestureRecognizerDelegate
     */
 }
 
+extension UINavigationController{
+    public func setNeedsNavigationBackground(alpha:CGFloat){
+        let barBackgroundView = self.navigationBar.subviews.first
+        let backgroundImageView = barBackgroundView?.subviews.first as? UIImageView
+        if self.navigationBar.isTranslucent {
+            if backgroundImageView != nil && backgroundImageView?.image != nil{
+                barBackgroundView?.alpha = alpha
+            }else{
+                let backgroundEffectView = barBackgroundView?.subviews[1]
+                if backgroundEffectView != nil{
+                    backgroundEffectView?.alpha = alpha
+                }
+            }
+        }else{
+            barBackgroundView?.alpha = alpha
+        }
+    }
+}
 
 extension UIBarButtonItem {
     convenience init(title : String = "" , image : UIImage? , highlightedImage : UIImage? , target: Any?, action: Selector) {
@@ -135,8 +160,8 @@ extension UIBarButtonItem {
         barButton.addTarget(target, action: action, for: .touchUpInside)
         
         //尺寸适应
-        barButton.sizeToFit()
-        
+        barButton.size = CGSize (width: 44, height: 44)
+        barButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20)
         //构造.
         self.init()
         

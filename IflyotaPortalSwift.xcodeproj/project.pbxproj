@@ -34,6 +34,8 @@
 		DB660A1A1FA578AA007A41D7 /* SelectPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB660A191FA578AA007A41D7 /* SelectPriceViewController.swift */; };
 		DB660A1D1FA5A22C007A41D7 /* SelectPriceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB660A1B1FA5A22C007A41D7 /* SelectPriceHeaderView.swift */; };
 		DB660A1E1FA5A22C007A41D7 /* SelectPriceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB660A1C1FA5A22C007A41D7 /* SelectPriceHeaderView.xib */; };
+		DB71D3BD1FAAFC3400D80FFD /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB71D3BB1FAAFC3400D80FFD /* RoomCell.swift */; };
+		DB71D3BE1FAAFC3400D80FFD /* RoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB71D3BC1FAAFC3400D80FFD /* RoomCell.xib */; };
 		DB870FBC1F9F22E200CF03E0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */; };
 		DB870FBD1F9F22E200CF03E0 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */; };
 		DB9B8CE41FA4575A0069938F /* HistoryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B8CE31FA457590069938F /* HistoryRecord.swift */; };
@@ -102,6 +104,8 @@
 		DB660A191FA578AA007A41D7 /* SelectPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceViewController.swift; sourceTree = "<group>"; };
 		DB660A1B1FA5A22C007A41D7 /* SelectPriceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceHeaderView.swift; sourceTree = "<group>"; };
 		DB660A1C1FA5A22C007A41D7 /* SelectPriceHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPriceHeaderView.xib; sourceTree = "<group>"; };
+		DB71D3BB1FAAFC3400D80FFD /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
+		DB71D3BC1FAAFC3400D80FFD /* RoomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomCell.xib; sourceTree = "<group>"; };
 		DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		DB9B8CE31FA457590069938F /* HistoryRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecord.swift; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 				DBC94CE61FA7043A00B4F862 /* HotelSearchView.swift */,
 				DBC94CE81FA7044F00B4F862 /* HotelScearchView.xib */,
 				DB3ED6191FA80A240013C537 /* HotelSearchOrderView.swift */,
+				DB71D3BB1FAAFC3400D80FFD /* RoomCell.swift */,
+				DB71D3BC1FAAFC3400D80FFD /* RoomCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -513,6 +519,7 @@
 				DBD882561F9DD44D006DCFBE /* LineListCell.xib in Resources */,
 				DBD1B3D81F96FC7C002DE72A /* LaunchScreen.storyboard in Resources */,
 				DBC917CB1FA021B200108863 /* DateCell.xib in Resources */,
+				DB71D3BE1FAAFC3400D80FFD /* RoomCell.xib in Resources */,
 				DB5EA1F81F9EE5450045EDE8 /* HotelSelectView.xib in Resources */,
 				DB660A1E1FA5A22C007A41D7 /* SelectPriceHeaderView.xib in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
@@ -592,6 +599,7 @@
 				DBD1B40E1F97541F002DE72A /* UIView+Extension.swift in Sources */,
 				DBD882461F9D7992006DCFBE /* ScenicSpotModel.swift in Sources */,
 				DBD1B3F01F9729E2002DE72A /* HomepageViewController.swift in Sources */,
+				DB71D3BD1FAAFC3400D80FFD /* RoomCell.swift in Sources */,
 				DBD1B4091F974106002DE72A /* LWNetworkTool.swift in Sources */,
 				DBD1B3FE1F972A65002DE72A /* MeViewController.swift in Sources */,
 				DBD8824C1F9DBD04006DCFBE /* LWSwiperView.swift in Sources */,
