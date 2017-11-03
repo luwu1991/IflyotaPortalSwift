@@ -8,6 +8,12 @@
 
 import UIKit
 typealias SendSearchTitleCallBack = (_ searchTitle:String) -> ()
+
+enum SearchType {
+    case Hotel
+    case Route
+}
+
 class SearchHotelViewController: LWBaseViewController {
     var searchVC:UISearchController?
     var hotelTags:[SearchHotelTags] = [SearchHotelTags]()
@@ -16,26 +22,59 @@ class SearchHotelViewController: LWBaseViewController {
     var tagCollection:UICollectionView?
     var searchTitle:String?
     var searchTitleCallBack:SendSearchTitleCallBack?
+    var type = SearchType.Hotel
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+     init(type:SearchType){
+        self.type = type
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
         initSearchView()
         initTagView()
-        LWNetworkTool.shareNetworkTool.loadHotelTagGroup(groupNames: "", groupChannel: "安卓客户端", groupPages: "酒店搜索", groupModules: "搜索", groupTypes: "酒店", imgType: "") { (items) in
-            self.dataSource[0] = items
-            self.tagCollection?.reloadData()
-            self.tagCollection?.collectionViewLayout.invalidateLayout()
-        }
-        if UserInfo.shareUserInfo.userID != nil {
-            LWNetworkTool.shareNetworkTool.loadHistoryRecords(userID: UserInfo.shareUserInfo.userID!, type: "酒店") { (items) in
-                self.dataSource[1] = items
+       
+        loadNetworking()
+        // Do any additional setup after loading the view.
+    }
+    //MARK:NetWorking
+    func loadNetworking(){
+        if self.type == .Hotel {
+            LWNetworkTool.shareNetworkTool.loadHotelTagGroup(groupNames: "", groupChannel: "安卓客户端", groupPages: "酒店搜索", groupModules: "搜索", groupTypes: "酒店", imgType: "") { (items) in
+                self.dataSource[0] = items
                 self.tagCollection?.reloadData()
                 self.tagCollection?.collectionViewLayout.invalidateLayout()
             }
+            if UserInfo.shareUserInfo.userID != nil {
+                LWNetworkTool.shareNetworkTool.loadHistoryRecords(userID: UserInfo.shareUserInfo.userID!, type: "酒店") { (items) in
+                    self.dataSource[1] = items
+                    self.tagCollection?.reloadData()
+                    self.tagCollection?.collectionViewLayout.invalidateLayout()
+                }
+            }
         }
         
-        // Do any additional setup after loading the view.
+        if self.type == .Route {
+            LWNetworkTool.shareNetworkTool.loadKeyWordByType(type: "线路", finished: { (items) in
+                self.dataSource[0] = items
+                self.tagCollection?.reloadData()
+                self.tagCollection?.collectionViewLayout.invalidateLayout()
+            })
+            
+            if UserInfo.shareUserInfo.userID != nil {
+                LWNetworkTool.shareNetworkTool.loadHistoryRecords(userID: UserInfo.shareUserInfo.userID!, type: "线路") { (items) in
+                    self.dataSource[1] = items
+                    self.tagCollection?.reloadData()
+                    self.tagCollection?.collectionViewLayout.invalidateLayout()
+                }
+            }
+        }
     }
+    
     
     func initTagView() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -59,7 +98,14 @@ class SearchHotelViewController: LWBaseViewController {
         searchVC = UISearchController(searchResultsController: nil)
         searchVC?.hidesNavigationBarDuringPresentation = false
         searchVC?.dimsBackgroundDuringPresentation = false
-        searchVC?.searchBar.placeholder = "酒店名/地址/商标"
+        if type == .Hotel {
+            searchVC?.searchBar.placeholder = "酒店名/地址/商标"
+        }
+        
+        if type == .Route {
+            searchVC?.searchBar.placeholder = "搜索线路"
+        }
+        
         var backImg = UIImage.imageWithColor(color: garyColor, size: CGSize(width: 28.0, height: 28.0))
         backImg = UIImage.roundedImage(image: backImg, cornerRadius: 8)
         searchVC?.searchBar.setSearchFieldBackgroundImage(backImg, for: UIControlState.normal)
@@ -76,54 +122,100 @@ class SearchHotelViewController: LWBaseViewController {
 
 extension SearchHotelViewController:UICollectionViewDelegate,UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return dataSource[0].count + (dataSource[1].count == 0 ? 0 : 1)
+        switch type {
+        case .Hotel:
+            return dataSource[0].count + (dataSource[1].count == 0 ? 0 : 1)
+        case .Route:
+            return (dataSource[0].count == 0 ? 0 : 1) + (dataSource[1].count == 0 ? 0 : 1)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        
-        if dataSource[0].count < (section + 1) {
-            return dataSource[1].count
-        }else{
-            let items = dataSource[0] as! [SearchHotelTags]
-            return items[section].tags.count
+        switch type {
+        case .Hotel:
+            if dataSource[0].count < (section + 1) {
+                return dataSource[1].count
+            }else{
+                let items = dataSource[0] as! [SearchHotelTags]
+                return items[section].tags.count
+            }
+        case .Route:
+            return dataSource[section].count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print(indexPath.section)
-        if dataSource[0].count < (indexPath.section + 1) {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCell", for: indexPath) as! HotelSearchHistoryCell
-            let record = dataSource[1][indexPath.row] as! HistoryRecord
-            cell.titleLabel.text = record.operateCentent
-            return cell
+        
+        switch type {
+        case .Hotel:
+            if dataSource[0].count < (indexPath.section + 1) {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCell", for: indexPath) as! HotelSearchHistoryCell
+                let record = dataSource[1][indexPath.row] as! HistoryRecord
+                cell.titleLabel.text = record.operateCentent
+                return cell
+            }
+            else{
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! SearchCell
+                    let tags = dataSource[0] as! [SearchHotelTags]
+                    let tag = tags[indexPath.section].tags[indexPath.row]
+                    cell.titlelabel.text = tag.tName
+                return cell
+            }
+        case .Route:
+            if indexPath.section == 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! SearchCell
+                    let tags = dataSource[0] as! [RouteKeyWord]
+                    let keyword = tags[indexPath.row]
+                    cell.titlelabel.text = keyword.keyword
+                
+                return cell
+            }else{
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCell", for: indexPath) as! HotelSearchHistoryCell
+                let record = dataSource[1][indexPath.row] as! HistoryRecord
+                cell.titleLabel.text = record.operateCentent
+                return cell
+            }
         }
-        else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! SearchCell
-            let tags = dataSource[0] as! [SearchHotelTags]
-            let tag = tags[indexPath.section].tags[indexPath.row]
-            cell.titlelabel.text = tag.tName
-            return cell
-        }
+        
+        
         
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if dataSource[0].count < (indexPath.section + 1){
-             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
-            header.imageView.image = UIImage(named:"history-icon")
-            header.titleLabel.text = "搜索历史记录"
-            return header
-            
-        }else{
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
-            let tags = dataSource[0] as! [SearchHotelTags]
-            
-            header.imageView.kf.setImage(with: URL(string: tags[indexPath.section].imageUrl))
-            header.titleLabel.text = tags[indexPath.section].groupName
-            return header
-        }
-
         
+        switch type {
+        case .Hotel:
+            if dataSource[0].count < (indexPath.section + 1){
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
+                header.imageView.image = UIImage(named:"history-icon")
+                header.titleLabel.text = "搜索历史记录"
+                return header
+                
+            }else{
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
+
+                let tags = dataSource[0] as! [SearchHotelTags]
+                header.imageView.kf.setImage(with: URL(string: tags[indexPath.section].imageUrl))
+                header.titleLabel.text = tags[indexPath.section].groupName
+
+                return header
+            }
+        case .Route:
+            if indexPath.section == 0 {
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
+                header.imageView.image = UIImage(named:"hot-icon")
+                header.titleLabel.text = "热门关键词"
+                return header
+            }else{
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
+                header.imageView.image = UIImage(named:"history-icon")
+                header.titleLabel.text = "搜索历史记录"
+                return header
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -145,7 +237,14 @@ extension SearchHotelViewController:UICollectionViewDelegate,UICollectionViewDat
 
 extension SearchHotelViewController:UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        LWNetworkTool.shareNetworkTool.addHistoryRecord(ObjectType: "酒店", OperateCentent: searchBar.text ?? "", UserIID: UserInfo.shareUserInfo.userID ?? "")
+        var type = "酒店"
+        switch self.type {
+        case .Hotel:
+            type = "酒店"
+        case .Route:
+            type = "线路"
+        }
+        LWNetworkTool.shareNetworkTool.addHistoryRecord(ObjectType: type, OperateCentent: searchBar.text ?? "", UserIID: UserInfo.shareUserInfo.userID ?? "")
         if searchTitleCallBack != nil {
             searchTitleCallBack!(searchBar.text!)
         }

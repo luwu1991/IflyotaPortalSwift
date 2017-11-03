@@ -198,7 +198,7 @@ extension HotelViewController:HotelSelectViewDelegate{
     }
     
     func clickSelectHotelBtn(_ btn: UIButton) {
-        let searchVC = SearchHotelViewController()
+        let searchVC = SearchHotelViewController.init(type: .Hotel)
         searchVC.searchTitleCallBack = {(searchTitle) in
             self.keyword = searchTitle
             self.hotelSelectView.hotelLabel.text = searchTitle

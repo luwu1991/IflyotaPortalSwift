@@ -112,7 +112,7 @@ class SearchHotelListViewController: LWBaseViewController {
         }
         
         searchView.clickKeyword = { [weak self] in
-            let searchVC = SearchHotelViewController()
+            let searchVC = SearchHotelViewController.init(type: .Hotel)
             searchVC.searchTitleCallBack = {(searchTitle) in
                 self?.keyword = searchTitle
                 self?.searchView.keyword.text = searchTitle

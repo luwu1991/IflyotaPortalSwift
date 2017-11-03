@@ -386,5 +386,85 @@ class LWNetworkTool: NSObject {
                 }
         }
     }
+    /*
+     page    1
+     rows    5
+     sort    LIRecommendNumber
+     order    desc
+     selectTagNum    0
+     condition
+     theme
+     keyWord
+     tripDay
+     minPrice    0
+     maxPrice    999999
+     imgType
+     */
+    func loadRouteList(page:Int,rows:Int,keyWord:String,minPrice:String,maxPrice:String,theme:String,sort:String = "LIRecommendNumber",finished:@escaping (_ total:Int,_ items:[Route]) -> ()){
+        let url = BASE_URL + "GetLineJoinTagPageList"
+        var order = "desc"
+        var newSort = sort
+        if sort == "MaxPrice" {
+            newSort = "MinPrice"
+            order = "asc"
+        }
+        let params = ["page":page,"rows":rows,"sort":newSort,"order":order,"selectTagNum":0,"condition":theme,"theme":theme,"keyWord":keyWord,"tripDay":"","minPrice":minPrice ,"maxPrice":maxPrice ,"imgType":""] as [String : Any]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["err"].stringValue
+                    guard message == "" else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let items = dict["rows"].arrayObject{
+                        var bannelItems = [Route]()
+                        for item in items{
+                            let bannelItem = Route(fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(dict["total"].intValue,bannelItems)
+                    }
+                }
+        }
+    }
+    
+    func loadKeyWordByType(type:String,finished:@escaping (_ items:[RouteKeyWord]) -> ()){
+        let url = BASE_URL + "GetKeyWordByType"
+        let params = ["type":type,"sort":"Sort"]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let items = dict["c"].arrayObject{
+                        var bannelItems = [RouteKeyWord]()
+                        for item in items{
+                            let bannelItem = RouteKeyWord (fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(bannelItems)
+                    }
+                }
+        }
+    }
+    
     
 }

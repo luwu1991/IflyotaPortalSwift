@@ -269,6 +269,10 @@ class HomepageViewController: LWBaseViewController{
         switch sender.tag {
         case 0:
             VC = HotelViewController()
+        case 1:
+            VC = UIViewController()
+        case 2:
+            VC = RouteViewController()
         default:
             VC = UIViewController()
             break

@@ -40,6 +40,11 @@
 		DB870FBD1F9F22E200CF03E0 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */; };
 		DB9B8CE41FA4575A0069938F /* HistoryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B8CE31FA457590069938F /* HistoryRecord.swift */; };
 		DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */; };
+		DBC19B2A1FABF7C0003FF8E2 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC19B291FABF7C0003FF8E2 /* RouteViewController.swift */; };
+		DBC19B2C1FABFA4C003FF8E2 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC19B2B1FABFA4C003FF8E2 /* Route.swift */; };
+		DBC19B2E1FAC0583003FF8E2 /* RouteFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC19B2D1FAC0583003FF8E2 /* RouteFilterView.swift */; };
+		DBC19B321FAC498C003FF8E2 /* RouteKeyWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC19B311FAC498C003FF8E2 /* RouteKeyWord.swift */; };
+		DBC19B341FAC5F15003FF8E2 /* RouteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC19B331FAC5F15003FF8E2 /* RouteDetailViewController.swift */; };
 		DBC917C91FA0219C00108863 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC917C81FA0219C00108863 /* DateCell.swift */; };
 		DBC917CB1FA021B200108863 /* DateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC917CA1FA021B200108863 /* DateCell.xib */; };
 		DBC917CD1FA02EAC00108863 /* CalenderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC917CC1FA02EAC00108863 /* CalenderHeaderView.swift */; };
@@ -110,6 +115,11 @@
 		DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		DB9B8CE31FA457590069938F /* HistoryRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecord.swift; sourceTree = "<group>"; };
 		DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		DBC19B291FABF7C0003FF8E2 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
+		DBC19B2B1FABFA4C003FF8E2 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		DBC19B2D1FAC0583003FF8E2 /* RouteFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteFilterView.swift; sourceTree = "<group>"; };
+		DBC19B311FAC498C003FF8E2 /* RouteKeyWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteKeyWord.swift; sourceTree = "<group>"; };
+		DBC19B331FAC5F15003FF8E2 /* RouteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailViewController.swift; sourceTree = "<group>"; };
 		DBC917C81FA0219C00108863 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		DBC917CA1FA021B200108863 /* DateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateCell.xib; sourceTree = "<group>"; };
 		DBC917CC1FA02EAC00108863 /* CalenderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderHeaderView.swift; sourceTree = "<group>"; };
@@ -252,6 +262,42 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DBC19B251FABF778003FF8E2 /* Route */ = {
+			isa = PBXGroup;
+			children = (
+				DBC19B281FABF793003FF8E2 /* Controller */,
+				DBC19B271FABF78D003FF8E2 /* Model */,
+				DBC19B261FABF786003FF8E2 /* View */,
+			);
+			path = Route;
+			sourceTree = "<group>";
+		};
+		DBC19B261FABF786003FF8E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBC19B2D1FAC0583003FF8E2 /* RouteFilterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DBC19B271FABF78D003FF8E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DBC19B311FAC498C003FF8E2 /* RouteKeyWord.swift */,
+				DBC19B2B1FABFA4C003FF8E2 /* Route.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DBC19B281FABF793003FF8E2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBC19B291FABF7C0003FF8E2 /* RouteViewController.swift */,
+				DBC19B331FAC5F15003FF8E2 /* RouteDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		DBC94CDB1FA6B68900B4F862 /* RangSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +329,7 @@
 		DBD1B3CC1F96FC7B002DE72A /* IflyotaPortalSwift */ = {
 			isa = PBXGroup;
 			children = (
+				DBC19B251FABF778003FF8E2 /* Route */,
 				DB5EA1EF1F9ED2250045EDE8 /* Hotel */,
 				DBD1B3E81F97278C002DE72A /* Main */,
 				DBD1B3E71F97271C002DE72A /* Other */,
@@ -590,9 +637,11 @@
 				DB42A3781FA3078A00E5EFEC /* SearchCell.swift in Sources */,
 				DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */,
 				DBD1B4021F972DD6002DE72A /* LWBaseViewController.swift in Sources */,
+				DBC19B2A1FABF7C0003FF8E2 /* RouteViewController.swift in Sources */,
 				DB660A1D1FA5A22C007A41D7 /* SelectPriceHeaderView.swift in Sources */,
 				DBC94CE01FA6B6A600B4F862 /* RangeSeekSlider.swift in Sources */,
 				DB42A38A1FA32A3700E5EFEC /* HotelSearchHistoryCell.swift in Sources */,
+				DBC19B321FAC498C003FF8E2 /* RouteKeyWord.swift in Sources */,
 				DBD882551F9DD44D006DCFBE /* LineListCell.swift in Sources */,
 				DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */,
 				DB4320E91FA9B97700DC3379 /* HotelRoom.swift in Sources */,
@@ -601,6 +650,7 @@
 				DBD1B3F01F9729E2002DE72A /* HomepageViewController.swift in Sources */,
 				DB71D3BD1FAAFC3400D80FFD /* RoomCell.swift in Sources */,
 				DBD1B4091F974106002DE72A /* LWNetworkTool.swift in Sources */,
+				DBC19B2E1FAC0583003FF8E2 /* RouteFilterView.swift in Sources */,
 				DBD1B3FE1F972A65002DE72A /* MeViewController.swift in Sources */,
 				DBD8824C1F9DBD04006DCFBE /* LWSwiperView.swift in Sources */,
 				DBD1B40C1F97481D002DE72A /* HomePageBannel.swift in Sources */,
@@ -629,6 +679,7 @@
 				DB55A1771F9B3031000306E0 /* ScenicSpotView.swift in Sources */,
 				DB000E421F99DF6C00A581F9 /* HomePageNew.swift in Sources */,
 				DBC917CD1FA02EAC00108863 /* CalenderHeaderView.swift in Sources */,
+				DBC19B2C1FABFA4C003FF8E2 /* Route.swift in Sources */,
 				DB42A3751FA2D85300E5EFEC /* UIImage+Extension.swift in Sources */,
 				840722A21F9B6C8700111B01 /* LWCycyleView.swift in Sources */,
 				DBD1B4001F972C5F002DE72A /* LWTabBarViewController.swift in Sources */,
@@ -636,6 +687,7 @@
 				DB42A3821FA30B3000E5EFEC /* SearchHotelTag.swift in Sources */,
 				DB3ED61A1FA80A240013C537 /* HotelSearchOrderView.swift in Sources */,
 				DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */,
+				DBC19B341FAC5F15003FF8E2 /* RouteDetailViewController.swift in Sources */,
 				DB4320E71FA9AA9100DC3379 /* HotelInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
