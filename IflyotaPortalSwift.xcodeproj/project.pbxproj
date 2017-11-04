@@ -38,6 +38,9 @@
 		DB71D3BE1FAAFC3400D80FFD /* RoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB71D3BC1FAAFC3400D80FFD /* RoomCell.xib */; };
 		DB870FBC1F9F22E200CF03E0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */; };
 		DB870FBD1F9F22E200CF03E0 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */; };
+		DB8B28A91FAD966100BA7B36 /* RouteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8B28A81FAD966100BA7B36 /* RouteDetail.swift */; };
+		DB8B28AC1FADA6EB00BA7B36 /* RoutrDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8B28AA1FADA6EB00BA7B36 /* RoutrDetailCell.swift */; };
+		DB8B28AD1FADA6EB00BA7B36 /* RoutrDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB8B28AB1FADA6EB00BA7B36 /* RoutrDetailCell.xib */; };
 		DB9B8CE41FA4575A0069938F /* HistoryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B8CE31FA457590069938F /* HistoryRecord.swift */; };
 		DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */; };
 		DBC19B2A1FABF7C0003FF8E2 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC19B291FABF7C0003FF8E2 /* RouteViewController.swift */; };
@@ -113,6 +116,9 @@
 		DB71D3BC1FAAFC3400D80FFD /* RoomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomCell.xib; sourceTree = "<group>"; };
 		DB870FBA1F9F22E200CF03E0 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		DB870FBB1F9F22E200CF03E0 /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
+		DB8B28A81FAD966100BA7B36 /* RouteDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetail.swift; sourceTree = "<group>"; };
+		DB8B28AA1FADA6EB00BA7B36 /* RoutrDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutrDetailCell.swift; sourceTree = "<group>"; };
+		DB8B28AB1FADA6EB00BA7B36 /* RoutrDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutrDetailCell.xib; sourceTree = "<group>"; };
 		DB9B8CE31FA457590069938F /* HistoryRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecord.swift; sourceTree = "<group>"; };
 		DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		DBC19B291FABF7C0003FF8E2 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				DBC19B2D1FAC0583003FF8E2 /* RouteFilterView.swift */,
+				DB8B28AA1FADA6EB00BA7B36 /* RoutrDetailCell.swift */,
+				DB8B28AB1FADA6EB00BA7B36 /* RoutrDetailCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +291,7 @@
 		DBC19B271FABF78D003FF8E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB8B28A81FAD966100BA7B36 /* RouteDetail.swift */,
 				DBC19B311FAC498C003FF8E2 /* RouteKeyWord.swift */,
 				DBC19B2B1FABFA4C003FF8E2 /* Route.swift */,
 			);
@@ -570,6 +579,7 @@
 				DB5EA1F81F9EE5450045EDE8 /* HotelSelectView.xib in Resources */,
 				DB660A1E1FA5A22C007A41D7 /* SelectPriceHeaderView.xib in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
+				DB8B28AD1FADA6EB00BA7B36 /* RoutrDetailCell.xib in Resources */,
 				DB42A3791FA3078A00E5EFEC /* SearchCell.xib in Resources */,
 				DBC94CE91FA7044F00B4F862 /* HotelScearchView.xib in Resources */,
 				DBD1B3D51F96FC7C002DE72A /* Assets.xcassets in Resources */,
@@ -646,10 +656,12 @@
 				DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */,
 				DB4320E91FA9B97700DC3379 /* HotelRoom.swift in Sources */,
 				DBD1B40E1F97541F002DE72A /* UIView+Extension.swift in Sources */,
+				DB8B28A91FAD966100BA7B36 /* RouteDetail.swift in Sources */,
 				DBD882461F9D7992006DCFBE /* ScenicSpotModel.swift in Sources */,
 				DBD1B3F01F9729E2002DE72A /* HomepageViewController.swift in Sources */,
 				DB71D3BD1FAAFC3400D80FFD /* RoomCell.swift in Sources */,
 				DBD1B4091F974106002DE72A /* LWNetworkTool.swift in Sources */,
+				DB8B28AC1FADA6EB00BA7B36 /* RoutrDetailCell.swift in Sources */,
 				DBC19B2E1FAC0583003FF8E2 /* RouteFilterView.swift in Sources */,
 				DBD1B3FE1F972A65002DE72A /* MeViewController.swift in Sources */,
 				DBD8824C1F9DBD04006DCFBE /* LWSwiperView.swift in Sources */,

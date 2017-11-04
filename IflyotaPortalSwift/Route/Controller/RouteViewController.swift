@@ -203,5 +203,13 @@ extension RouteViewController:UICollectionViewDelegate,UICollectionViewDataSourc
             self.updateListDateWithpage()
         }
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = dateSource[indexPath.row]
+        let routerDetailVC = RouteDetailViewController()
+        routerDetailVC.model = model
+        self.navigationController?.pushViewController(routerDetailVC, animated: true)
+    }
 
 }
