@@ -74,9 +74,9 @@ class RouteDetailImg : NSObject{
 
 class GuideDetail : NSObject{
     
-    var cateringPostions : [String]!
+    var cateringPostions : [ScenicSpotPostion]!
     var dayNumber : String!
-    var hotelPostions : [String]!
+    var hotelPostions : [ScenicSpotPostion]!
     var scenicSpotPostions : [ScenicSpotPostion]!
     
     
@@ -87,16 +87,18 @@ class GuideDetail : NSObject{
         if json.isEmpty{
             return
         }
-        cateringPostions = [String]()
+        cateringPostions = [ScenicSpotPostion]()
         let cateringPostionsArray = json["CateringPostions"].arrayValue
         for cateringPostionsJson in cateringPostionsArray{
-            cateringPostions.append(cateringPostionsJson.stringValue)
+            let value = ScenicSpotPostion(fromJson: cateringPostionsJson)
+            cateringPostions.append(value)
         }
         dayNumber = json["DayNumber"].stringValue
-        hotelPostions = [String]()
+        hotelPostions = [ScenicSpotPostion]()
         let hotelPostionsArray = json["HotelPostions"].arrayValue
         for hotelPostionsJson in hotelPostionsArray{
-            hotelPostions.append(hotelPostionsJson.stringValue)
+             let value = ScenicSpotPostion(fromJson: hotelPostionsJson)
+            hotelPostions.append(value)
         }
         scenicSpotPostions = [ScenicSpotPostion]()
         let scenicSpotPostionsArray = json["ScenicSpotPostions"].arrayValue

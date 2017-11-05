@@ -19,9 +19,10 @@ class RouteDetailViewController: LWBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.automaticallyAdjustsScrollViewInsets = true
         mainScrollView.backgroundColor = view.backgroundColor
-        mainScrollView.frame = CGRect.init(x: 0, y: 0, width: SCREENW, height: SCREENH)
+        mainScrollView.frame = CGRect.init(x: 0, y: -64, width: SCREENW, height: SCREENH + 64)
+        mainScrollView.contentOffset = CGPoint.init(x: 0, y: 0)
         mainScrollView.contentSize = CGSize.init(width: SCREENW, height: SCREENH)
         view.addSubview(mainScrollView)
         
@@ -168,6 +169,7 @@ class RouteDetailViewController: LWBaseViewController {
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
+        
         tableView.register(UINib.init(nibName: "RoutrDetailCell", bundle: nil), forCellReuseIdentifier: "cell")
         guideView.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
@@ -180,7 +182,17 @@ class RouteDetailViewController: LWBaseViewController {
     
     func updateView(){
         let topImageView = mainScrollView.viewWithTag(1) as! UIImageView
-        topImageView.kf.setImage(with: URL.init(string:routeDetailModel!.imgs[1].imgResourceUrl))
+        topImageView.kf.setImage(with: URL.init(string:routeDetailModel!.imgs[0].imgResourceUrl))
+        var tableViewHeight = 0
+        for index in 0...routeDetailModel!.guideDetails.count-1{
+             let guideDetail = routeDetailModel!.guideDetails[index]
+                tableViewHeight = tableViewHeight + (guideDetail.scenicSpotPostions.count + guideDetail.hotelPostions.count + guideDetail.cateringPostions.count) * 28
+        }
+
+        guideView.snp.updateConstraints { (make) in
+            make.height.equalTo(95+tableViewHeight)
+        }
+        mainScrollView.contentSize = CGSize.init(width: SCREENW, height: SCREENH + 95.0 + CGFloat(tableViewHeight) )
         tableView.reloadData()
     }
     
@@ -202,12 +214,57 @@ extension RouteDetailViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let guideDetail = routeDetailModel!.guideDetails[section]
-        return guideDetail.scenicSpotPostions.count
+        return guideDetail.scenicSpotPostions.count + guideDetail.hotelPostions.count + guideDetail.cateringPostions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! RoutrDetailCell
-        return cell
+        cell.selectionStyle = .none
+        let guideDetail = routeDetailModel!.guideDetails[indexPath.section]
+        var firstSectionRow = false
+        var model:ScenicSpotPostion?
+        if indexPath.row == 0 {
+            firstSectionRow = true
+        }else{
+            firstSectionRow = false
+        }
+        
+        if indexPath.row < guideDetail.scenicSpotPostions.count {
+           model = guideDetail.scenicSpotPostions[indexPath.row]
+            if indexPath.row == 0 {
+                cell.setDate(model: model!,dayNum:guideDetail.dayNumber ,firstSectionRow: firstSectionRow, firstTypeRow: true)
+            }
+            else{
+                cell.setDate(model: model!,dayNum:guideDetail.dayNumber , firstSectionRow: firstSectionRow, firstTypeRow: false)
+            }
+            return cell
+        }
+        
+        else if guideDetail.scenicSpotPostions.count != 0 && indexPath.row < (guideDetail.scenicSpotPostions.count + guideDetail.cateringPostions.count) {
+            model = guideDetail.cateringPostions[indexPath.row - guideDetail.scenicSpotPostions.count]
+            if indexPath.row == guideDetail.scenicSpotPostions.count {
+                cell.setDate(model: model!,dayNum:guideDetail.dayNumber , firstSectionRow: firstSectionRow, firstTypeRow: true)
+            }else{
+                cell.setDate(model: model!, dayNum:guideDetail.dayNumber ,firstSectionRow: firstSectionRow, firstTypeRow: false)
+            }
+            return cell
+        }
+        
+        else if indexPath.row >= guideDetail.scenicSpotPostions.count + guideDetail.cateringPostions.count {
+            model = guideDetail.hotelPostions[indexPath.row - (guideDetail.scenicSpotPostions.count + guideDetail.cateringPostions.count)]
+            if indexPath.row == guideDetail.scenicSpotPostions.count + guideDetail.cateringPostions.count {
+                cell.setDate(model: model!, dayNum:guideDetail.dayNumber ,firstSectionRow: firstSectionRow, firstTypeRow: true)
+            }else {
+                cell.setDate(model: model!,dayNum:guideDetail.dayNumber , firstSectionRow: firstSectionRow, firstTypeRow: false)
+            }
+            return cell
+        }
+        else {
+            return cell
+        }
+        
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
