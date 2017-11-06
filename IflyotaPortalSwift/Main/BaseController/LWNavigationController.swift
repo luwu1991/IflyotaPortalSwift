@@ -13,15 +13,15 @@ class LWNavigationController: UINavigationController,UIGestureRecognizerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.barTintColor = UIColor.white
-        
-        
-        
+
         // Do any additional setup after loading the view.
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
         
         if shadowImageView == nil {
             shadowImageView = findShadowImage(under:self.navigationBar)
@@ -122,6 +122,8 @@ extension UINavigationController{
     public func setNeedsNavigationBackground(alpha:CGFloat){
         let barBackgroundView = self.navigationBar.subviews.first
         let backgroundImageView = barBackgroundView?.subviews.first as? UIImageView
+
+       
         if self.navigationBar.isTranslucent {
             if backgroundImageView != nil && backgroundImageView?.image != nil{
                 barBackgroundView?.alpha = alpha
@@ -132,6 +134,7 @@ extension UINavigationController{
                 }
             }
         }else{
+            
             barBackgroundView?.alpha = alpha
         }
     }

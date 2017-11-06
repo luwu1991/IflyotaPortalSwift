@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserInfo.shareUserInfo.userID == nil {
             UserInfo.shareUserInfo.userID = UserDefaults.standard.object(forKey: "UserID") as? String
         }
+       
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = LWTabBarViewController()

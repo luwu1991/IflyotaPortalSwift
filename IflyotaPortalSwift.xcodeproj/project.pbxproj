@@ -27,6 +27,7 @@
 		DB4320E21FA9A82500DC3379 /* HotelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4320E01FA9A82500DC3379 /* HotelDetailViewController.swift */; };
 		DB4320E71FA9AA9100DC3379 /* HotelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4320E51FA9AA9000DC3379 /* HotelInfo.swift */; };
 		DB4320E91FA9B97700DC3379 /* HotelRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4320E81FA9B97700DC3379 /* HotelRoom.swift */; };
+		DB4C36E91FAFF233006A5BF7 /* UIlabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4C36E81FAFF233006A5BF7 /* UIlabel+Extension.swift */; };
 		DB55A1771F9B3031000306E0 /* ScenicSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB55A1761F9B3031000306E0 /* ScenicSpotView.swift */; };
 		DB5EA1F41F9ED27D0045EDE8 /* HotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EA1F31F9ED27D0045EDE8 /* HotelViewController.swift */; };
 		DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5EA1F51F9EE53C0045EDE8 /* HotelSelectView.swift */; };
@@ -105,6 +106,7 @@
 		DB4320E01FA9A82500DC3379 /* HotelDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelDetailViewController.swift; sourceTree = "<group>"; };
 		DB4320E51FA9AA9000DC3379 /* HotelInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelInfo.swift; sourceTree = "<group>"; };
 		DB4320E81FA9B97700DC3379 /* HotelRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelRoom.swift; sourceTree = "<group>"; };
+		DB4C36E81FAFF233006A5BF7 /* UIlabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIlabel+Extension.swift"; sourceTree = "<group>"; };
 		DB55A1761F9B3031000306E0 /* ScenicSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenicSpotView.swift; sourceTree = "<group>"; };
 		DB5EA1F31F9ED27D0045EDE8 /* HotelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelViewController.swift; sourceTree = "<group>"; };
 		DB5EA1F51F9EE53C0045EDE8 /* HotelSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelSelectView.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				DBD1B40D1F97541F002DE72A /* UIView+Extension.swift */,
 				DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */,
 				DB42A3741FA2D85300E5EFEC /* UIImage+Extension.swift */,
+				DB4C36E81FAFF233006A5BF7 /* UIlabel+Extension.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				DBC19B321FAC498C003FF8E2 /* RouteKeyWord.swift in Sources */,
 				DBD882551F9DD44D006DCFBE /* LineListCell.swift in Sources */,
 				DB5EA1F61F9EE53C0045EDE8 /* HotelSelectView.swift in Sources */,
+				DB4C36E91FAFF233006A5BF7 /* UIlabel+Extension.swift in Sources */,
 				DB4320E91FA9B97700DC3379 /* HotelRoom.swift in Sources */,
 				DBD1B40E1F97541F002DE72A /* UIView+Extension.swift in Sources */,
 				DB8B28A91FAD966100BA7B36 /* RouteDetail.swift in Sources */,

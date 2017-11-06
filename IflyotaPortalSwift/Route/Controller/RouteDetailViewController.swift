@@ -15,31 +15,58 @@ class RouteDetailViewController: LWBaseViewController {
     let mainScrollView = UIScrollView()
     let menuView = UIView()
     let guideView = UIView()
+    let priceInstr = UIView()
+    let reservationNotice = UIView()
+    let titleLabel = UILabel()
+    var guideViewY:CGFloat = 0
+    var priceInstrY:CGFloat = 0
+    var reservationNoticeY:CGFloat = 0
     let tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: SCREENW, height: 200), style: .plain)
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        titleLabel.text = model?.lIName
+        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .black)
+        titleLabel.sizeToFit()
+        titleLabel.alpha = 0.0
+        self.navigationItem.titleView = titleLabel
         self.automaticallyAdjustsScrollViewInsets = true
         mainScrollView.backgroundColor = view.backgroundColor
         mainScrollView.frame = CGRect.init(x: 0, y: -64, width: SCREENW, height: SCREENH + 64)
         mainScrollView.contentOffset = CGPoint.init(x: 0, y: 0)
         mainScrollView.contentSize = CGSize.init(width: SCREENW, height: SCREENH)
+        mainScrollView.delegate = self
         view.addSubview(mainScrollView)
         
         initTopView()
         initMenuView()
         initGuideView()
+        initPriceInstrView()
+        initReservationNoticeView()
         netWorking()
-        
+
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.isHidden = true
+        self.navigationItem.titleView?.isHidden = true
+  
+    }
+    override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.setNeedsNavigationBackground(alpha:0.0)
-        
+         self.navigationItem.titleView?.isHidden = false
+        self.navigationItem.titleView?.alpha = 0.0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNeedsNavigationBackground(alpha:1.0)
+        self.navigationItem.titleView?.alpha = 1
+    }
+
+    override func viewDidLayoutSubviews() {
+        mainScrollView.contentSize = CGSize.init(width: SCREENW, height: reservationNotice.y+reservationNotice.height)
+        guideViewY = guideView.y
+        priceInstrY = priceInstr.y
+        reservationNoticeY = reservationNotice.y
     }
     
     //MARK:NetWorking
@@ -52,7 +79,6 @@ class RouteDetailViewController: LWBaseViewController {
     
     func initTopView(){
         let topImageView = UIImageView()
-        topImageView.kf.setImage(with: URL.init(string: model!.imgUrl!))
         topImageView.tag = 1
         mainScrollView.addSubview(topImageView)
         topImageView.snp.makeConstraints { (make) in
@@ -123,7 +149,7 @@ class RouteDetailViewController: LWBaseViewController {
    
     func initMenuView(){
         menuView.backgroundColor = UIColor.white
-        menuView.alpha = 1
+        menuView.alpha = 0
         view.addSubview(menuView)
         view.bringSubview(toFront: menuView)
         menuView.snp.makeConstraints { (make) in
@@ -131,6 +157,22 @@ class RouteDetailViewController: LWBaseViewController {
             make.right.equalToSuperview()
             make.top.equalTo(64)
             make.height.equalTo(45)
+        }
+        let btnSpace = (SCREENW - 90 - 3*60)/2
+        let titles = ["日行程","费用说明","预定须知"]
+        for index in 1...3 {
+            let btn = UIButton()
+            btn.tag = index
+            btn.setTitle(titles[index - 1], for: UIControlState.normal)
+            btn.setTitleColor(UIColor.black, for: UIControlState.normal)
+            btn.setTitleColor(ThemeColor(), for: UIControlState.selected)
+            menuView.addSubview(btn)
+            btn.snp.makeConstraints({ (make) in
+                make.left.equalTo(45 + CGFloat(index - 1) * (60+btnSpace))
+                make.height.equalToSuperview()
+                make.width.equalTo(60)
+                make.top.equalToSuperview()
+            })
         }
     }
     
@@ -180,6 +222,95 @@ class RouteDetailViewController: LWBaseViewController {
         }
     }
     
+    func initPriceInstrView(){
+        priceInstr.backgroundColor = UIColor.white
+        mainScrollView.addSubview(priceInstr)
+        priceInstr.snp.makeConstraints { (make) in
+            make.left.equalToSuperview()
+            make.width.equalTo(SCREENW)
+            make.top.equalTo(guideView.snp.bottom).offset(10)
+//            make.height.equalTo(500)
+        }
+        
+        let titleImage = UIImageView()
+        titleImage.image = UIImage.init(named: "route-info-fy")
+        priceInstr.addSubview(titleImage)
+        titleImage.snp.makeConstraints { (make) in
+            make.left.equalTo(15)
+            make.top.equalTo(10)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
+        }
+        
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont.systemFont(ofSize: 16)
+        titleLabel.text = "费用说明"
+        titleLabel.sizeToFit()
+        priceInstr.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(titleImage.snp.right).offset(10)
+            make.top.equalTo(10)
+        }
+        
+        let contentLabel = UILabel()
+        contentLabel.tag = 1
+        contentLabel.numberOfLines = 0
+        contentLabel.lineBreakMode = .byWordWrapping
+        contentLabel.font = UIFont.systemFont(ofSize: 14)
+        contentLabel.sizeToFit()
+        priceInstr.addSubview(contentLabel)
+        contentLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(15)
+            make.right.equalTo(-15)
+            make.bottom.equalTo(0)
+            make.top.equalTo(60)
+        }
+    }
+    
+    
+    func initReservationNoticeView(){
+        reservationNotice.backgroundColor = UIColor.white
+        mainScrollView.addSubview(reservationNotice)
+        reservationNotice.snp.makeConstraints { (make) in
+            make.left.equalTo(0)
+            make.width.equalTo(SCREENW)
+            make.top.equalTo(priceInstr.snp.bottom).offset(10)
+        }
+        
+        let titleImage = UIImageView()
+        titleImage.image = UIImage.init(named: "route-info-ydxz")
+        reservationNotice.addSubview(titleImage)
+        titleImage.snp.makeConstraints { (make) in
+            make.left.equalTo(15)
+            make.top.equalTo(10)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
+        }
+        
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont.systemFont(ofSize: 16)
+        titleLabel.text = "预定须知"
+        titleLabel.sizeToFit()
+        reservationNotice.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(titleImage.snp.right).offset(10)
+            make.top.equalTo(10)
+        }
+        let contentLabel = UILabel()
+        contentLabel.tag = 1
+        contentLabel.numberOfLines = 0
+        contentLabel.lineBreakMode = .byWordWrapping
+        contentLabel.font = UIFont.systemFont(ofSize: 14)
+        contentLabel.sizeToFit()
+        reservationNotice.addSubview(contentLabel)
+        contentLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(15)
+            make.right.equalTo(-15)
+            make.bottom.equalTo(0)
+            make.top.equalTo(60)
+        }
+    }
+    
     func updateView(){
         let topImageView = mainScrollView.viewWithTag(1) as! UIImageView
         topImageView.kf.setImage(with: URL.init(string:routeDetailModel!.imgs[0].imgResourceUrl))
@@ -194,6 +325,28 @@ class RouteDetailViewController: LWBaseViewController {
         }
         mainScrollView.contentSize = CGSize.init(width: SCREENW, height: SCREENH + 95.0 + CGFloat(tableViewHeight) )
         tableView.reloadData()
+        
+        
+        let contentLabel = priceInstr.viewWithTag(1) as! UILabel
+        contentLabel.attributedText = stringFromHtml(string: routeDetailModel!.lIIllustration)
+        
+        let notesLabel = reservationNotice.viewWithTag(1) as! UILabel
+        notesLabel.attributedText = stringFromHtml(string: routeDetailModel!.lINotes)
+        mainScrollView.layoutIfNeeded()
+        priceInstr.layoutIfNeeded()
+        reservationNotice.layoutIfNeeded()
+        self.view.layoutIfNeeded()
+    }
+    
+    
+    func stringFromHtml(string: String) -> NSAttributedString? {
+        guard let data = string.data(using: .utf8) else { return NSAttributedString() }
+        do{
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html,
+                                                                .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        }catch{
+            return NSAttributedString()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -270,5 +423,16 @@ extension RouteDetailViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 28
     }
-    
+}
+
+extension RouteDetailViewController:UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let maxAlphaOffset:CGFloat = SCREENW*540/755 - 64*2 - 45;
+        let offset:CGFloat = scrollView.contentOffset.y;
+        let alpha = offset / maxAlphaOffset;
+        menuView.alpha = alpha
+        self.navigationController?.setNeedsNavigationBackground(alpha:alpha)
+        titleLabel.alpha = alpha
+    }
+
 }
