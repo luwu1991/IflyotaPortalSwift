@@ -13,7 +13,7 @@ class LWNavigationController: UINavigationController,UIGestureRecognizerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.barTintColor = UIColor.white
-
+        self.navigationBar.isTranslucent = false
         // Do any additional setup after loading the view.
     }
     

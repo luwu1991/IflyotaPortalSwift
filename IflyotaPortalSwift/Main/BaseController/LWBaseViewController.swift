@@ -13,8 +13,8 @@ class LWBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.automaticallyAdjustsScrollViewInsets = false
-        
+        automaticallyAdjustsScrollViewInsets = false
+        extendedLayoutIncludesOpaqueBars = true
         view.backgroundColor = LWColor(r: 243, g: 243, b: 243, a: 1.0)
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
         SVProgressHUD.setMinimumDismissTimeInterval(1.0)

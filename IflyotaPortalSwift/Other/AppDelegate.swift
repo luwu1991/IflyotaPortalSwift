@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserInfo.shareUserInfo.userID = UserDefaults.standard.object(forKey: "UserID") as? String
         }
        
+       
+            if #available(iOS 11.0, *) {
+                UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+            } else {
+                // Fallback on earlier versions
+            }; //iOS11 解决SafeArea的问题，同时能解决pop时上级页面scrollView抖动的问题
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = LWTabBarViewController()

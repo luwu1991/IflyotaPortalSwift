@@ -29,35 +29,34 @@ class RouteDetailViewController: LWBaseViewController {
         titleLabel.sizeToFit()
         titleLabel.alpha = 0.0
         self.navigationItem.titleView = titleLabel
-        self.automaticallyAdjustsScrollViewInsets = true
-        mainScrollView.backgroundColor = view.backgroundColor
-        mainScrollView.frame = CGRect.init(x: 0, y: -64, width: SCREENW, height: SCREENH + 64)
-        mainScrollView.contentOffset = CGPoint.init(x: 0, y: 0)
-        mainScrollView.contentSize = CGSize.init(width: SCREENW, height: SCREENH)
-        mainScrollView.delegate = self
-        view.addSubview(mainScrollView)
         
+        initMainscrollView()
         initTopView()
         initMenuView()
         initGuideView()
         initPriceInstrView()
         initReservationNoticeView()
         netWorking()
-
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationItem.titleView?.isHidden = true
   
     }
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setNeedsNavigationBackground(alpha:0.0)
          self.navigationItem.titleView?.isHidden = false
         self.navigationItem.titleView?.alpha = 0.0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         self.navigationController?.setNeedsNavigationBackground(alpha:1.0)
         self.navigationItem.titleView?.alpha = 1
     }
@@ -74,6 +73,26 @@ class RouteDetailViewController: LWBaseViewController {
         LWNetworkTool.shareNetworkTool.loadRouteDetailWith(iid: model!.lIIID) { (item) in
             self.routeDetailModel = item
             self.updateView()
+        }
+    }
+    
+    func initMainscrollView(){
+        mainScrollView.backgroundColor = view.backgroundColor
+        mainScrollView.frame = CGRect.init(x: 0, y: -64, width: SCREENW, height: SCREENH + 64)
+        if #available(iOS 11.0, *) {
+            mainScrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
+        mainScrollView.contentOffset = CGPoint.init(x: 0, y: 0)
+        mainScrollView.contentSize = CGSize.init(width: SCREENW, height: SCREENH)
+        mainScrollView.delegate = self
+        view.addSubview(mainScrollView)
+        mainScrollView.snp.makeConstraints { (make) in
+            make.top.equalTo(0)
+            make.left.equalToSuperview()
+            make.width.equalTo(SCREENW)
+            make.height.equalTo(SCREENH)
         }
     }
     
@@ -158,21 +177,38 @@ class RouteDetailViewController: LWBaseViewController {
             make.top.equalTo(64)
             make.height.equalTo(45)
         }
-        let btnSpace = (SCREENW - 90 - 3*60)/2
+        let btnSpace = (SCREENW - 90 - 3*80)/2
         let titles = ["日行程","费用说明","预定须知"]
         for index in 1...3 {
             let btn = UIButton()
             btn.tag = index
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             btn.setTitle(titles[index - 1], for: UIControlState.normal)
             btn.setTitleColor(UIColor.black, for: UIControlState.normal)
             btn.setTitleColor(ThemeColor(), for: UIControlState.selected)
+            btn.addTarget(self, action: #selector(clickMenuBtn(_:)), for: UIControlEvents.touchUpInside)
             menuView.addSubview(btn)
             btn.snp.makeConstraints({ (make) in
-                make.left.equalTo(45 + CGFloat(index - 1) * (60+btnSpace))
+                make.left.equalTo(45 + CGFloat(index - 1) * (80+btnSpace))
                 make.height.equalToSuperview()
-                make.width.equalTo(60)
+                make.width.equalTo(80)
                 make.top.equalToSuperview()
             })
+            if index == 1 {
+                btn.isSelected = true
+            }
+        }
+        
+        let tagView = UIView()
+        tagView.backgroundColor = ThemeColor()
+        tagView.tag = 4
+        menuView.addSubview(tagView)
+        tagView.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview()
+            make.width.equalTo(10)
+            make.height.equalTo(4)
+            make.left.equalTo(45 + 40 - 5)
+
         }
     }
     
@@ -349,6 +385,47 @@ class RouteDetailViewController: LWBaseViewController {
         }
     }
     
+    @objc func clickMenuBtn(_ sender:UIButton){
+        let tag = sender.tag
+        
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            if tag == 1 {
+                self.mainScrollView.setContentOffset(CGPoint.init(x: 0, y: self.guideViewY - SCREENH/2), animated: false)
+            }
+            else if (tag == 2){
+                 self.mainScrollView.setContentOffset(CGPoint.init(x: 0, y: self.priceInstrY - SCREENH/2), animated: false)
+            }else{
+                self.mainScrollView.setContentOffset(CGPoint.init(x: 0, y: self.reservationNoticeY - SCREENH/2), animated: false)
+            }
+        })
+        
+    }
+    
+    func selectBtnWith(tag:Int){
+        
+        let tagView = menuView.viewWithTag(4)
+        let btnSpace = (SCREENW - 90 - 3*80)/2 * CGFloat(tag - 1)
+        let leftSpace = 1.0 + CGFloat(tag * 80) + btnSpace
+        tagView!.snp.updateConstraints{ (make) in
+            make.left.equalTo(leftSpace)
+        }
+        UIView.animate(withDuration: 0.3, animations: {
+//            self.view.layoutIfNeeded()
+//            self.mainScrollView.layoutIfNeeded()
+            self.menuView.layoutIfNeeded()
+            tagView!.layoutIfNeeded()
+        }) { (success) in
+            for index in 1...3{
+                let btn = self.menuView.viewWithTag(index) as! UIButton
+                btn.isSelected = false
+            }
+            
+            let btn = self.menuView.viewWithTag(tag) as! UIButton
+            btn.isSelected = true
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -427,12 +504,26 @@ extension RouteDetailViewController:UITableViewDelegate,UITableViewDataSource{
 
 extension RouteDetailViewController:UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let maxAlphaOffset:CGFloat = SCREENW*540/755 - 64*2 - 45;
+        let maxAlphaOffset:CGFloat = SCREENW*540/755 - 64 - 45;
         let offset:CGFloat = scrollView.contentOffset.y;
         let alpha = offset / maxAlphaOffset;
         menuView.alpha = alpha
         self.navigationController?.setNeedsNavigationBackground(alpha:alpha)
         titleLabel.alpha = alpha
+        
+        let position = scrollView.contentOffset.y + SCREENH/2
+        
+        if  position >= guideViewY && position < priceInstrY {
+                selectBtnWith(tag: 1)
+        }
+        
+        if position >= priceInstrY && position < reservationNoticeY{
+            selectBtnWith(tag: 2)
+        }
+        
+        if position >= reservationNoticeY{
+            selectBtnWith(tag: 3)
+        }
     }
 
 }
