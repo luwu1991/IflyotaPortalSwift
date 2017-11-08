@@ -263,7 +263,10 @@ extension ScenicSpotViewController:UICollectionViewDelegate,UICollectionViewData
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+       let model = dateSource[indexPath.row]
+        let VC = ScenicSpotDetailViewController()
+        VC.iid = model.cAIID
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

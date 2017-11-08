@@ -565,6 +565,32 @@ class LWNetworkTool: NSObject {
                 }
         }
     }
+    
+    func loadScenicSpotDetailWith(_ iid:String,finished:@escaping (_ item:ScenicSpotDetail) -> ()){
+        let url = BASE_URL + "GetScenicSpotDetailInfoBySSIID"
+        let params = ["ssiid":iid]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let item = dict["c"].dictionary{
+                        let scenicSpotDetail =  ScenicSpotDetail.init(fromJson: JSON(item))
+                        finished(scenicSpotDetail)
+                    }
+                }
+        }
+    }
 }
 
 
