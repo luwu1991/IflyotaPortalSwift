@@ -411,8 +411,6 @@ class RouteDetailViewController: LWBaseViewController {
             make.left.equalTo(leftSpace)
         }
         UIView.animate(withDuration: 0.3, animations: {
-//            self.view.layoutIfNeeded()
-//            self.mainScrollView.layoutIfNeeded()
             self.menuView.layoutIfNeeded()
             tagView!.layoutIfNeeded()
         }) { (success) in

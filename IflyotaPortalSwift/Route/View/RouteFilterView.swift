@@ -8,18 +8,30 @@
 
 import UIKit
 
+enum FilterType {
+    case Route
+    case ScenicSpot
+}
+
 class RouteFilterView: UIView,UIGestureRecognizerDelegate {
     let bottomView = UIView()
-    let dataSource = ["全部","乡村游","禅修","休闲养生","亲子游","摄影","户外休闲","婚礼"]
+    var dataSource = ["全部","乡村游","禅修","休闲养生","亲子游","摄影","户外休闲","婚礼"]
     var selectCell  = 0
     var theme:String?
     var callBack:((_ theme:String) -> ())?
+    var type:FilterType = .Route
+    var collectionView:UICollectionView?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override init(frame: CGRect) {
+    override convenience init(frame: CGRect) {
+        self.init(frame: frame, type: .Route)
+    }
+    
+    init(frame: CGRect,type:FilterType) {
         super.init(frame: frame)
+        self.type = type
         backgroundColor = LWColor(r: 50, g: 50, b: 50, a: 0.5)
         isOpaque = false
         
@@ -29,9 +41,22 @@ class RouteFilterView: UIView,UIGestureRecognizerDelegate {
         tapOne.delegate = self
         self.addGestureRecognizer(tapOne)
         
-        
         initBottonView()
         initCollectionView()
+        netWorking()
+    }
+    
+    func netWorking(){
+        if type == .ScenicSpot {
+            LWNetworkTool.shareNetworkTool.loadSelectTagName(groupName: "主题", groupType: "公共", finished: { (items) in
+                self.dataSource.removeAll()
+                self.dataSource.append("全部")
+                for item in items{
+                    self.dataSource.append(item.tName)
+                }
+                self.collectionView?.reloadData()
+            })
+        }
     }
     
     func initBottonView(){
@@ -53,14 +78,14 @@ class RouteFilterView: UIView,UIGestureRecognizerDelegate {
         flowLayout.minimumLineSpacing = 15
         flowLayout.sectionInset = UIEdgeInsetsMake(20, 15, 0, 15)
         flowLayout.headerReferenceSize = CGSize(width: SCREENW, height: 30)
-        let collectionView = UICollectionView.init(frame: CGRect (x: 0, y: 15, width: SCREENW, height: 120), collectionViewLayout: flowLayout)
-        collectionView.backgroundColor = UIColor.white
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(UINib.init(nibName: "SearchCell", bundle: nil), forCellWithReuseIdentifier: "SearchCell")
-        collectionView.register(UINib.init(nibName: "SelectPriceHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
-        bottomView.addSubview(collectionView)
-        collectionView.snp.makeConstraints { (make) in
+        collectionView = UICollectionView.init(frame: CGRect (x: 0, y: 15, width: SCREENW, height: 120), collectionViewLayout: flowLayout)
+        collectionView?.backgroundColor = UIColor.white
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionView?.register(UINib.init(nibName: "SearchCell", bundle: nil), forCellWithReuseIdentifier: "SearchCell")
+        collectionView?.register(UINib.init(nibName: "SelectPriceHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header")
+        bottomView.addSubview(collectionView!)
+        collectionView!.snp.makeConstraints { (make) in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.top.equalTo(0)

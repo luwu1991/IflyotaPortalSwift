@@ -12,6 +12,7 @@ typealias SendSearchTitleCallBack = (_ searchTitle:String) -> ()
 enum SearchType {
     case Hotel
     case Route
+    case ScenicSpot
 }
 
 class SearchHotelViewController: LWBaseViewController {
@@ -73,6 +74,22 @@ class SearchHotelViewController: LWBaseViewController {
                 }
             }
         }
+        
+        if self.type == .ScenicSpot {
+            LWNetworkTool.shareNetworkTool.loadKeyWordByType(type: "景点", finished: { (items) in
+                self.dataSource[0] = items
+                self.tagCollection?.reloadData()
+                self.tagCollection?.collectionViewLayout.invalidateLayout()
+            })
+            
+            if UserInfo.shareUserInfo.userID != nil {
+                LWNetworkTool.shareNetworkTool.loadHistoryRecords(userID: UserInfo.shareUserInfo.userID!, type: "景点") { (items) in
+                    self.dataSource[1] = items
+                    self.tagCollection?.reloadData()
+                    self.tagCollection?.collectionViewLayout.invalidateLayout()
+                }
+            }
+        }
     }
     
     
@@ -106,6 +123,9 @@ class SearchHotelViewController: LWBaseViewController {
             searchVC?.searchBar.placeholder = "搜索线路"
         }
         
+        if type == .ScenicSpot {
+            searchVC?.searchBar.placeholder = "搜索景点"
+        }
         var backImg = UIImage.imageWithColor(color: garyColor, size: CGSize(width: 28.0, height: 28.0))
         backImg = UIImage.roundedImage(image: backImg, cornerRadius: 8)
         searchVC?.searchBar.setSearchFieldBackgroundImage(backImg, for: UIControlState.normal)
@@ -125,7 +145,7 @@ extension SearchHotelViewController:UICollectionViewDelegate,UICollectionViewDat
         switch type {
         case .Hotel:
             return dataSource[0].count + (dataSource[1].count == 0 ? 0 : 1)
-        case .Route:
+        case .Route,.ScenicSpot:
             return (dataSource[0].count == 0 ? 0 : 1) + (dataSource[1].count == 0 ? 0 : 1)
         }
         
@@ -141,7 +161,7 @@ extension SearchHotelViewController:UICollectionViewDelegate,UICollectionViewDat
                 let items = dataSource[0] as! [SearchHotelTags]
                 return items[section].tags.count
             }
-        case .Route:
+        case .Route,.ScenicSpot:
             return dataSource[section].count
         }
     }
@@ -164,7 +184,7 @@ extension SearchHotelViewController:UICollectionViewDelegate,UICollectionViewDat
                     cell.titlelabel.text = tag.tName
                 return cell
             }
-        case .Route:
+        case .Route,.ScenicSpot:
             if indexPath.section == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCell", for: indexPath) as! SearchCell
                     let tags = dataSource[0] as! [RouteKeyWord]
@@ -203,7 +223,7 @@ extension SearchHotelViewController:UICollectionViewDelegate,UICollectionViewDat
 
                 return header
             }
-        case .Route:
+        case .Route,.ScenicSpot:
             if indexPath.section == 0 {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HotelSearchHeaderView
                 header.imageView.image = UIImage(named:"hot-icon")
@@ -243,6 +263,8 @@ extension SearchHotelViewController:UISearchBarDelegate{
             type = "酒店"
         case .Route:
             type = "线路"
+        case .ScenicSpot:
+            type = "景点"
         }
         LWNetworkTool.shareNetworkTool.addHistoryRecord(ObjectType: type, OperateCentent: searchBar.text ?? "", UserIID: UserInfo.shareUserInfo.userID ?? "")
         if searchTitleCallBack != nil {

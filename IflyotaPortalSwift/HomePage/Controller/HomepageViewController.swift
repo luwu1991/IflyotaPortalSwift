@@ -270,7 +270,7 @@ class HomepageViewController: LWBaseViewController{
         case 0:
             VC = HotelViewController()
         case 1:
-            VC = UIViewController()
+            VC = ScenicSpotViewController()
         case 2:
             VC = RouteViewController()
         default:

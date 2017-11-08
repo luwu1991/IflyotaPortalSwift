@@ -492,6 +492,79 @@ class LWNetworkTool: NSObject {
         }
     }
     
+    
+    func loadScenicSpotList(sort:String,page:Int,rows:Int,finished:@escaping (_ total:Int,_ items:[ScenicSpotModel]) -> ()){
+        let url = BASE_URL + "GetScenicSpotsPageListByCoordinates"
+        var order = "desc"
+        var newSort = sort
+        if sort == "MaxPrice" {
+            newSort = "MinPrice"
+            order = "desc"
+        }else if (sort == "MinPrice"){
+            newSort = "MinPrice"
+             order = "asc"
+        }
+        let params = ["sort":newSort,"page":page,"rows":rows,"order":order,"imgType":"列表背景(app)","x":0,"y":0] as [String:Any]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["err"].stringValue
+                    guard message == "" else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let items = dict["rows"].arrayObject{
+                        var bannelItems = [ScenicSpotModel]()
+                        for item in items{
+                            let bannelItem = ScenicSpotModel(fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(dict["total"].intValue,bannelItems)
+                    }
+                }
+        }
+    }
+    
+    /*
+     GetSelectTagName
+     */
+    
+    func loadSelectTagName(groupName:String,groupType:String,finished:@escaping (_ items:[TagModel]) -> ()){
+        let url = BASE_URL + "GetSelectTagName"
+        let params = ["groupName":groupName,"groupType":groupType,"channel":"安卓客户端"]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    
+                    if let items = dict["c"].arrayObject{
+                        var bannelItems = [TagModel]()
+                        for item in items{
+                            let bannelItem = TagModel (fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(bannelItems)
+                    }
+                }
+        }
+    }
 }
 
 
