@@ -265,7 +265,7 @@ extension ScenicSpotViewController:UICollectionViewDelegate,UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        let model = dateSource[indexPath.row]
         let VC = ScenicSpotDetailViewController()
-        VC.iid = model.cAIID
+        VC.iid = model.scenicIID
         self.navigationController?.pushViewController(VC, animated: true)
     }
     

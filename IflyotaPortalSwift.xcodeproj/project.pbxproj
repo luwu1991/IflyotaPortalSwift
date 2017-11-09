@@ -85,6 +85,8 @@
 		DBD882521F9DD1E2006DCFBE /* LineListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD882511F9DD1E1006DCFBE /* LineListItemModel.swift */; };
 		DBD882551F9DD44D006DCFBE /* LineListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD882531F9DD44D006DCFBE /* LineListCell.swift */; };
 		DBD882561F9DD44D006DCFBE /* LineListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD882541F9DD44D006DCFBE /* LineListCell.xib */; };
+		DBD9519E1FB3F9C90052FDE7 /* ScenicSpotDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD9519C1FB3F9C90052FDE7 /* ScenicSpotDetailCell.swift */; };
+		DBD9519F1FB3F9C90052FDE7 /* ScenicSpotDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD9519D1FB3F9C90052FDE7 /* ScenicSpotDetailCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +171,8 @@
 		DBD882511F9DD1E1006DCFBE /* LineListItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineListItemModel.swift; sourceTree = "<group>"; };
 		DBD882531F9DD44D006DCFBE /* LineListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineListCell.swift; sourceTree = "<group>"; };
 		DBD882541F9DD44D006DCFBE /* LineListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineListCell.xib; sourceTree = "<group>"; };
+		DBD9519C1FB3F9C90052FDE7 /* ScenicSpotDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenicSpotDetailCell.swift; sourceTree = "<group>"; };
+		DBD9519D1FB3F9C90052FDE7 /* ScenicSpotDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScenicSpotDetailCell.xib; sourceTree = "<group>"; };
 		E806DDCD3E6A1A090006607D /* Pods-IflyotaPortalSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IflyotaPortalSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-IflyotaPortalSwift/Pods-IflyotaPortalSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -338,6 +342,8 @@
 		DBCC4C561FB1ACAF00B53642 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DBD9519C1FB3F9C90052FDE7 /* ScenicSpotDetailCell.swift */,
+				DBD9519D1FB3F9C90052FDE7 /* ScenicSpotDetailCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -621,6 +627,7 @@
 				DBC917CB1FA021B200108863 /* DateCell.xib in Resources */,
 				DB71D3BE1FAAFC3400D80FFD /* RoomCell.xib in Resources */,
 				DB5EA1F81F9EE5450045EDE8 /* HotelSelectView.xib in Resources */,
+				DBD9519F1FB3F9C90052FDE7 /* ScenicSpotDetailCell.xib in Resources */,
 				DB660A1E1FA5A22C007A41D7 /* SelectPriceHeaderView.xib in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
 				DB8B28AD1FADA6EB00BA7B36 /* RoutrDetailCell.xib in Resources */,
@@ -689,6 +696,7 @@
 				DB42A38D1FA32EB800E5EFEC /* UserInfo.swift in Sources */,
 				DBD882481F9D7C83006DCFBE /* ScenicSpotItemView.swift in Sources */,
 				DB42A3781FA3078A00E5EFEC /* SearchCell.swift in Sources */,
+				DBD9519E1FB3F9C90052FDE7 /* ScenicSpotDetailCell.swift in Sources */,
 				DB000E401F99DD2A00A581F9 /* LWNavigationController.swift in Sources */,
 				DBD1B4021F972DD6002DE72A /* LWBaseViewController.swift in Sources */,
 				DBCC4C5A1FB1ADE100B53642 /* ScenicSpotViewController.swift in Sources */,
