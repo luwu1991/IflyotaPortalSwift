@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,8 +23,8 @@
                         <constraint firstAttribute="height" constant="85" id="NC4-O1-wV6"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宏村古建筑" textAlignment="natural" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTS-Mu-Ou4">
-                    <rect key="frame" x="0.0" y="94" width="71.5" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宏村古建筑" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTS-Mu-Ou4">
+                    <rect key="frame" x="0.0" y="94" width="80" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -47,6 +48,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QKP-CH-JYo" secondAttribute="trailing" id="8N1-iq-s8W"/>
                 <constraint firstItem="pEq-kB-UHP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="BgO-oX-VYt"/>
                 <constraint firstItem="QKP-CH-JYo" firstAttribute="top" secondItem="mNy-dZ-KLk" secondAttribute="bottom" constant="9" id="dSI-WW-jeW"/>
+                <constraint firstItem="mTS-Mu-Ou4" firstAttribute="width" secondItem="mNy-dZ-KLk" secondAttribute="width" multiplier="1:2" id="fjA-W7-ugK"/>
                 <constraint firstItem="pEq-kB-UHP" firstAttribute="top" secondItem="mTS-Mu-Ou4" secondAttribute="bottom" constant="2" id="g05-fy-eSQ"/>
                 <constraint firstItem="mNy-dZ-KLk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="k3q-ak-TWR"/>
                 <constraint firstItem="mNy-dZ-KLk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qIZ-8q-5My"/>

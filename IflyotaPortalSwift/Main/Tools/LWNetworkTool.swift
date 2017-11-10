@@ -591,6 +591,68 @@ class LWNetworkTool: NSObject {
                 }
         }
     }
+    
+    
+    func loadSpecialtyLocalProduct(page:Int,rows:Int,sort:String,order:String,finished:@escaping (_ items:[LocalProduct]) -> ()){
+        let url = BASE_URL + "GetSpecialtyListForIndex"
+        let params = ["page":page,"rows":rows,"sort":sort,"order":order,"imgType":"首页背景(app)"] as [String : Any]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    if let items = dict["c"].arrayObject{
+                        var bannelItems = [LocalProduct]()
+                        for item in items{
+                            let bannelItem = LocalProduct (fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(bannelItems)
+                    }
+                }
+        }
+    }
+    
+    
+    func loadLocalproductClassic(finished:@escaping (_ items:[LocalProductClassic]) -> ()){
+        let url = BASE_URL + "GetClassificationAndResourceList"
+        let params = ["parentIID":"","imgType":"展示图(app)"]
+        Alamofire.request(url,method:HTTPMethod.post,parameters:params)
+            .responseJSON{ (responese) in
+                guard responese.result.isSuccess else{
+                    SVProgressHUD.showError(withStatus: "加载失败...")
+                    return
+                }
+                if let value = responese.result.value{
+                    let dict = JSON(value)
+                    let message = dict["m"].stringValue
+                    guard dict["r"] == true else{
+                        SVProgressHUD.showError(withStatus: message)
+                        return
+                    }
+                    
+                    if let items = dict["c"].arrayObject{
+                        var bannelItems = [LocalProductClassic]()
+                        for item in items{
+                            let bannelItem = LocalProductClassic (fromJson: JSON(item))
+                            bannelItems.append(bannelItem)
+                        }
+                        finished(bannelItems)
+                    }
+                }
+        }
+    }
+    
+    
 }
 
 

@@ -273,6 +273,8 @@ class HomepageViewController: LWBaseViewController{
             VC = ScenicSpotViewController()
         case 2:
             VC = RouteViewController()
+        case 4:
+            VC = LocalProductViewController()
         default:
             VC = UIViewController()
             break
