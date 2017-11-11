@@ -51,6 +51,8 @@
 		DB8B28A91FAD966100BA7B36 /* RouteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8B28A81FAD966100BA7B36 /* RouteDetail.swift */; };
 		DB8B28AC1FADA6EB00BA7B36 /* RoutrDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8B28AA1FADA6EB00BA7B36 /* RoutrDetailCell.swift */; };
 		DB8B28AD1FADA6EB00BA7B36 /* RoutrDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB8B28AB1FADA6EB00BA7B36 /* RoutrDetailCell.xib */; };
+		DB92B0B71FB68CE8004F268A /* LocalProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB92B0B51FB68CE8004F268A /* LocalProductCell.swift */; };
+		DB92B0B81FB68CE8004F268A /* LocalProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB92B0B61FB68CE8004F268A /* LocalProductCell.xib */; };
 		DB9B8CE41FA4575A0069938F /* HistoryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B8CE31FA457590069938F /* HistoryRecord.swift */; };
 		DBA1A0451F9885EE001F8FB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */; };
 		DBC19B2A1FABF7C0003FF8E2 /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC19B291FABF7C0003FF8E2 /* RouteViewController.swift */; };
@@ -142,6 +144,8 @@
 		DB8B28A81FAD966100BA7B36 /* RouteDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetail.swift; sourceTree = "<group>"; };
 		DB8B28AA1FADA6EB00BA7B36 /* RoutrDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutrDetailCell.swift; sourceTree = "<group>"; };
 		DB8B28AB1FADA6EB00BA7B36 /* RoutrDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutrDetailCell.xib; sourceTree = "<group>"; };
+		DB92B0B51FB68CE8004F268A /* LocalProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProductCell.swift; sourceTree = "<group>"; };
+		DB92B0B61FB68CE8004F268A /* LocalProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalProductCell.xib; sourceTree = "<group>"; };
 		DB9B8CE31FA457590069938F /* HistoryRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryRecord.swift; sourceTree = "<group>"; };
 		DBA1A0441F9885EE001F8FB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		DBC19B291FABF7C0003FF8E2 /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
@@ -589,6 +593,8 @@
 				DB3944F91FB53CAA001E9D44 /* LocalProductHotView.swift */,
 				DB3944FB1FB545E4001E9D44 /* LocalProductClassicCell.swift */,
 				DB3944FC1FB545E4001E9D44 /* LocalProductClassicCell.xib */,
+				DB92B0B51FB68CE8004F268A /* LocalProductCell.swift */,
+				DB92B0B61FB68CE8004F268A /* LocalProductCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -684,6 +690,7 @@
 				DB660A1E1FA5A22C007A41D7 /* SelectPriceHeaderView.xib in Resources */,
 				DB000E471F99E57A00A581F9 /* NewView.xib in Resources */,
 				DB3944FE1FB545E4001E9D44 /* LocalProductClassicCell.xib in Resources */,
+				DB92B0B81FB68CE8004F268A /* LocalProductCell.xib in Resources */,
 				DB8B28AD1FADA6EB00BA7B36 /* RoutrDetailCell.xib in Resources */,
 				DB42A3791FA3078A00E5EFEC /* SearchCell.xib in Resources */,
 				DBC94CE91FA7044F00B4F862 /* HotelScearchView.xib in Resources */,
@@ -797,6 +804,7 @@
 				DBC94CE51FA7032800B4F862 /* SearchHotelListViewController.swift in Sources */,
 				DBC94CDF1FA6B6A600B4F862 /* TapticEngine.swift in Sources */,
 				DBC94CE31FA7001A00B4F862 /* Hotel.swift in Sources */,
+				DB92B0B71FB68CE8004F268A /* LocalProductCell.swift in Sources */,
 				DBD1B3F61F972A1C002DE72A /* SpeechViewController.swift in Sources */,
 				DBC94CE11FA6B6A600B4F862 /* RangeSeekSliderDelegate.swift in Sources */,
 				DB660A1A1FA578AA007A41D7 /* SelectPriceViewController.swift in Sources */,

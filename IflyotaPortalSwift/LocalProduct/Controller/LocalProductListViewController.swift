@@ -11,16 +11,26 @@ import UIKit
 class LocalProductListViewController: LWBaseViewController {
     let mainScrollView = UIScrollView()
     var classicModel:LocalProductClassic?
+    var collectionView:UICollectionView?
+    var dataSource = [LocalProduct]()
+    let menuView = UIView()
+    private let refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = classicModel!.name
-        initMainscrollView()
         initTopView()
+        initMenuView()
+        initListView()
+        
+        netWorking()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let topImageView = view.viewWithTag(1) as! UIImageView
+        view.bringSubview(toFront: topImageView)
+        view.bringSubview(toFront: menuView)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationItem.titleView?.isHidden = true
         
@@ -31,13 +41,19 @@ class LocalProductListViewController: LWBaseViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setNeedsNavigationBackground(alpha:0.0)
         self.navigationItem.titleView?.isHidden = false
-       
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        self.navigationController?.setNeedsNavigationBackground(alpha:1.0)
        
+    }
+    
+    func netWorking(){
+        LWNetworkTool.shareNetworkTool.loadLocalProductList(page: 1, rows: 10, sort: "SRecommendedOrder", order: "desc", IID: classicModel!.iID!, keyWord: "", minPrice: "", maxPrice: "") { (items) in
+            self.dataSource = items
+            self.collectionView?.reloadData()
+        }
     }
     
     func initMainscrollView(){
@@ -49,7 +65,7 @@ class LocalProductListViewController: LWBaseViewController {
             // Fallback on earlier versions
         }
         mainScrollView.contentOffset = CGPoint.init(x: 0, y: 0)
-        mainScrollView.contentSize = CGSize.init(width: SCREENW, height: SCREENH + SCREENW*540/755 - 64)
+        mainScrollView.contentSize = CGSize.init(width: SCREENW, height: SCREENH + SCREENW*360/750 + 300)
         mainScrollView.delegate = self
    
         view.addSubview(mainScrollView)
@@ -61,6 +77,34 @@ class LocalProductListViewController: LWBaseViewController {
         }
     }
     
+    func initListView(){
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: (SCREENW - 23)/2, height: 24/35*(SCREENW - 23))
+        flowLayout.minimumInteritemSpacing = 5
+        flowLayout.sectionInset = UIEdgeInsetsMake(5, 9, 5, 9)
+        collectionView = UICollectionView (frame: CGRect (x: 0, y: 64, width: SCREENW, height:SCREENH), collectionViewLayout: flowLayout)
+        collectionView?.backgroundColor = garyColor
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionView?.contentInset = UIEdgeInsetsMake(SCREENW*360/750 - 64 + 49,0, 0,0)
+        collectionView?.register(UINib.init(nibName: "LocalProductCell", bundle: nil), forCellWithReuseIdentifier: "LocalProductCell")
+      
+        
+        if #available(iOS 10.0, *) {
+            collectionView?.refreshControl = refreshControl
+        } else {
+            collectionView?.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        view.addSubview(collectionView!)
+        collectionView?.snp.makeConstraints({ (make) in
+            make.top.equalTo(64)
+            make.left.equalToSuperview()
+            make.width.equalTo(SCREENW)
+            make.height.equalTo(SCREENH-64)
+        })
+    }
+    
     func initTopView(){
         let topImageView = UIImageView()
         topImageView.tag = 1
@@ -70,8 +114,24 @@ class LocalProductListViewController: LWBaseViewController {
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.width.equalTo(SCREENW)
-            make.height.equalTo(SCREENW*540/755)
+            make.height.equalTo(SCREENW*360/750)
         }
+    }
+    
+    func initMenuView(){
+        menuView.backgroundColor = UIColor.white
+        view.addSubview(menuView)
+        let topImageView = view.viewWithTag(1) as! UIImageView
+        menuView.snp.makeConstraints { (make) in
+            make.left.equalTo(9)
+            make.right.equalTo(-9)
+            make.height.equalTo(44)
+            make.top.equalTo(topImageView.snp.bottom).offset(5)
+        }
+    }
+    
+    @objc func refreshData(){
+        menuView.backgroundColor = UIColor.white
     }
     
     override func didReceiveMemoryWarning() {
@@ -92,24 +152,50 @@ class LocalProductListViewController: LWBaseViewController {
 
 }
 
+extension LocalProductListViewController:UICollectionViewDelegate,UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+            return dataSource.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LocalProductCell", for: indexPath) as! LocalProductCell
+        let model = dataSource[indexPath.row]
+        cell.imageView.kf.setImage(with: URL.init(string: model.imgUrl))
+        cell.titleLabel.text = model.subHead
+        cell.priceLabel.text = "￥\(model.minPrice!)"
+        return cell
+    }
+}
+
+
 extension LocalProductListViewController:UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let maxAlphaOffset:CGFloat = SCREENW*540/755 - 64 - 45;
+
         let offset:CGFloat = scrollView.contentOffset.y;
-        let height = SCREENW*540/755 - 64
         let topImageView = view.viewWithTag(1) as! UIImageView
-        if  offset > 0 && SCREENW*540/755 - offset >= 64 {
-            print(Date())
-            print(SCREENW*540/755 - offset)
+        if  offset > -SCREENW*360/750 + 64 - 49 && offset <= -49  {
+            print(64 - offset - 49)
             topImageView.snp.updateConstraints({ (make) in
              
-                make.height.equalTo(SCREENW*540/755 - offset)
+                make.height.equalTo(64 - offset - 49)
             })
             topImageView.layoutIfNeeded()
-        }else{
-            
+        }else if  offset > -49{
+            topImageView.snp.updateConstraints({ (make) in
+                
+                make.height.equalTo(64)
+            })
+            topImageView.layoutIfNeeded()
         }
-//        self.navigationController?.setNeedsNavigationBackground(alpha:alpha)
         
+        if offset < -SCREENW*360/750 + 64 - 49 {
+            topImageView.snp.updateConstraints({ (make) in
+                
+                make.height.equalTo(SCREENW*360/750)
+            })
+            topImageView.layoutIfNeeded()
+        }
+       
     }
 }
