@@ -24,6 +24,7 @@ class HotelDetailViewController: LWBaseViewController {
     let formatter = DateFormatter()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = hotelInfo?.hName
         formatter.dateFormat = "yyy-MM-dd"
         LWNetworkTool.shareNetworkTool.loadHotelDetailWithIID(iid!, startDate: formatter.string(from: startDate), endDate: formatter.string(from: endDate)) { (hotelInfo,items) in
             self.hotelInfo = hotelInfo
@@ -49,13 +50,27 @@ class HotelDetailViewController: LWBaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationItem.titleView?.isHidden = true
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setNeedsNavigationBackground(alpha:0.0)
-      
+        self.navigationItem.titleView?.isHidden = false
+        self.navigationItem.titleView?.alpha = 0.0
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         self.navigationController?.setNeedsNavigationBackground(alpha:1.0)
+        self.navigationItem.titleView?.alpha = 1
     }
+    
+
     func initTopImageView(){
         topImageView.contentMode = .scaleAspectFill
         scrolView.addSubview(topImageView)

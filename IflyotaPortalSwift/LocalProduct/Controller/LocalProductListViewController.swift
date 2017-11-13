@@ -14,6 +14,9 @@ class LocalProductListViewController: LWBaseViewController {
     var collectionView:UICollectionView?
     var dataSource = [LocalProduct]()
     let menuView = UIView()
+    var selectNum = 0
+    var sort = "SRecommendedOrder"
+    var order = "desc"
     private let refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +53,10 @@ class LocalProductListViewController: LWBaseViewController {
     }
     
     func netWorking(){
-        LWNetworkTool.shareNetworkTool.loadLocalProductList(page: 1, rows: 10, sort: "SRecommendedOrder", order: "desc", IID: classicModel!.iID!, keyWord: "", minPrice: "", maxPrice: "") { (items) in
+        LWNetworkTool.shareNetworkTool.loadLocalProductList(page: 1, rows: 10, sort: sort, order: order, IID: classicModel!.iID!, keyWord: "", minPrice: "", maxPrice: "") { (items) in
             self.dataSource = items
             self.collectionView?.reloadData()
+            self.collectionView?.setContentOffset(CGPoint.init(x: 0, y: -(SCREENW*360/750 - 64 + 49)), animated: true)
         }
     }
     
@@ -75,6 +79,9 @@ class LocalProductListViewController: LWBaseViewController {
             make.width.equalTo(SCREENW)
             make.height.equalTo(SCREENH)
         }
+        
+
+        
     }
     
     func initListView(){
@@ -128,10 +135,77 @@ class LocalProductListViewController: LWBaseViewController {
             make.height.equalTo(44)
             make.top.equalTo(topImageView.snp.bottom).offset(5)
         }
+        
+        let leftBtn = UIButton()
+        leftBtn.backgroundColor = UIColor.white
+        leftBtn.tag = 1
+        leftBtn.setTitle("默认", for: .normal)
+        leftBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        leftBtn.isSelected = true
+        leftBtn.setTitleColor(UIColor.black, for: .normal)
+        leftBtn.setTitleColor(ThemeColor(), for: .selected)
+        leftBtn.addTarget(self, action: #selector(clickMenuLeftBtn(_ :)), for: .touchUpInside)
+        menuView.addSubview(leftBtn)
+        leftBtn.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.height.equalToSuperview()
+            make.width.equalTo((SCREENW-18)/2)
+        }
+        
+        let rightBtn = UIButton()
+        rightBtn.backgroundColor = UIColor.white
+        rightBtn.tag = 2
+        rightBtn.setTitle("价格", for: .normal)
+        rightBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        rightBtn.setImage(UIImage.init(named: "btn_down"), for: .normal)
+        rightBtn.addTarget(self, action: #selector(clickMenuRightBtn(_ :)), for: .touchUpInside)
+        rightBtn.setTitleColor(UIColor.black, for: .normal)
+        rightBtn.setTitleColor(ThemeColor(), for: .selected)
+        
+        rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0)
+        rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 46, 0, 0)
+        menuView.addSubview(rightBtn)
+        rightBtn.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalToSuperview()
+            make.width.equalTo((SCREENW-18)/2)
+        }
     }
     
     @objc func refreshData(){
         menuView.backgroundColor = UIColor.white
+    }
+    
+    @objc func clickMenuLeftBtn(_ sender:UIButton){
+        sender.isSelected  = true
+        let rightBtn = menuView.viewWithTag(2) as! UIButton
+        rightBtn.isSelected = false
+        selectNum = 0
+        
+        sort = "SRecommendedOrder"
+        order = "desc"
+        netWorking()
+    }
+    
+    @objc func clickMenuRightBtn(_ sender:UIButton){
+        selectNum = selectNum + 1
+        if selectNum % 2 == 0 {
+            sender.setImage(UIImage.init(named: "btn_down_select"), for: .selected)
+            sort = "MinPrice"
+            order = "desc"
+        }
+        else{
+            sender.setImage(UIImage.init(named: "btn_up_select"), for: .selected)
+            sort = "MinPrice"
+            order = "asc"
+        }
+        netWorking()
+        sender.isSelected = true
+        
+        let leftBtn = menuView.viewWithTag(1) as! UIButton
+        leftBtn.isSelected = false
     }
     
     override func didReceiveMemoryWarning() {

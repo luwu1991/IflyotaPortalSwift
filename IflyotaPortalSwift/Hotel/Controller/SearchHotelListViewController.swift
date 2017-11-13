@@ -224,7 +224,7 @@ extension SearchHotelListViewController:UICollectionViewDelegate,UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LineListCell", for: indexPath) as! LineListCell
         let model = dateSource[indexPath.row]
         cell.imageView.kf.setImage(with: URL (string: model.imgUrl))
-        cell.titleLabel.text = model.hotelName + "[\(model.hType)]"
+        cell.titleLabel.text = model.hotelName + "[\(model.hType!)]"
         cell.subTitleLabel.font = UIFont.systemFont(ofSize: 14)
         let priceText = "￥"+model.priceRange+" 起"
         let range =  NSRange.init(location: 0, length: model.priceRange.count+1)
