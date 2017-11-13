@@ -188,6 +188,12 @@ class HomepageViewController: LWBaseViewController{
 
     func initScenicSpotView() {
         scenicSpotView = ScenicSpotView.init(frame: CGRect (x: 0, y: bannelViewHeight+clessicViewHeight+newsViewHeight+otherAppViewHeight+1+8, width: SCREENW, height: scenicSpotViewHeight),data:self.scenicSpots)
+        scenicSpotView!.clickItem = {[weak self] model in
+            let VC = ScenicSpotDetailViewController()
+            VC.iid = model.scenicIID
+            VC.hidesBottomBarWhenPushed = true
+            self?.navigationController?.pushViewController(VC, animated: true)
+        }
         mainScrollView.addSubview(scenicSpotView!)
     }
     
@@ -195,7 +201,7 @@ class HomepageViewController: LWBaseViewController{
         let tagsView = LWSwiperView.init(frame: CGRect(x: 0, y: bannelViewHeight+clessicViewHeight+newsViewHeight+otherAppViewHeight+scenicSpotViewHeight+1+8+10, width: SCREENW, height: 1000+40), tags: tags)
         tagsView.scrollView.height = 1000 + 44
         mainScrollView.addSubview(tagsView)
-        mainScrollView.contentSize = CGSize (width: SCREENW, height: tagsView.y+tagsView.height + 44 )
+        mainScrollView.contentSize = CGSize (width: SCREENW, height: tagsView.y+tagsView.height + 44 + 49 )
         
         for index in 0...tags.count - 1{
             let tag = tags[index].tName

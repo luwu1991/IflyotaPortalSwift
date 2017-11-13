@@ -11,7 +11,7 @@ import UIKit
 class HomePageTagViewController: LWBaseViewController {
 
     var tag:String?
-    var items = [LineListItemModel]()
+    var items = [Route]()
     var collectionView:UICollectionView?
     weak var mainScrollView:UIScrollView?
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class HomePageTagViewController: LWBaseViewController {
         flowLayout.minimumInteritemSpacing = 5
         flowLayout.sectionInset = UIEdgeInsetsMake(5, 10, 5, 10)
         flowLayout.scrollDirection = UICollectionViewScrollDirection.vertical
-        collectionView = UICollectionView (frame: CGRect (x: 0, y: 0, width: SCREENW, height:SCREENH - 40 - 20 - 44), collectionViewLayout: flowLayout)
+        collectionView = UICollectionView (frame: CGRect (x: 0, y: 0, width: SCREENW, height:SCREENH - 49 - 20 - 44), collectionViewLayout: flowLayout)
         collectionView?.backgroundColor = garyColor
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -63,7 +63,11 @@ extension HomePageTagViewController:UICollectionViewDelegate,UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let model = items[indexPath.row]
+        let routerDetailVC = RouteDetailViewController()
+        routerDetailVC.model = model
+        routerDetailVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(routerDetailVC, animated: true)
     }
     
 }

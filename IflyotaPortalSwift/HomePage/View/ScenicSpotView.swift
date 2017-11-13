@@ -13,6 +13,7 @@ class ScenicSpotView: UIView {
     public var scrollView:UIScrollView
     public var collectionView:UICollectionView?
     var datas:[ScenicSpotModel]
+    var clickItem:( (_ item:ScenicSpotModel) -> ())?
     required init(coder aDecoder:NSCoder) {
         fatalError("init(coder) has not been implemented")
     }
@@ -87,7 +88,10 @@ extension ScenicSpotView:UICollectionViewDelegate,UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let model = datas[indexPath.row]
+        if clickItem != nil {
+            clickItem!(model)
+        }
     }
     
 }

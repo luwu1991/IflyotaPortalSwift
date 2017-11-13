@@ -144,7 +144,7 @@ class LWNetworkTool: NSObject {
      selectTagNum    1
      condition    户外游
      */
-    func loadHomePageLineList(condition:String,finished:@escaping (_ items:[LineListItemModel]) -> ())  {
+    func loadHomePageLineList(condition:String,finished:@escaping (_ items:[Route]) -> ())  {
        let url = BASE_URL + "GetLineListForIndex"
         let params = ["page":1,"rows":5,"sort":"LIRecommendNumber","order":"desc","selectTagNum":1,"condition":condition] as [String:Any]
         Alamofire.request(url,method:HTTPMethod.post,parameters:params)
@@ -163,9 +163,9 @@ class LWNetworkTool: NSObject {
                     
                     
                     if let items = dict["rows"].arrayObject{
-                        var bannelItems = [LineListItemModel]()
+                        var bannelItems = [Route]()
                         for item in items{
-                            let bannelItem = LineListItemModel(fromJson: JSON(item))
+                            let bannelItem = Route(fromJson: JSON(item))
                             bannelItems.append(bannelItem)
                         }
                         finished(bannelItems)
