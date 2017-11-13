@@ -57,15 +57,16 @@ class ScenicSpotDetailViewController: LWBaseViewController {
         super.viewDidAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationController?.setNeedsNavigationBackground(alpha:0.0)
+//        self.navigationController?.setNeedsNavigationBackground(alpha:0.0)
+        self.scrollViewDidScroll(mainScrollView)
         self.navigationItem.titleView?.isHidden = false
-        self.navigationItem.titleView?.alpha = 0.0
+//        self.navigationItem.titleView?.alpha = 0.0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setNeedsNavigationBackground(alpha:1.0)
-        self.navigationItem.titleView?.alpha = 1
+//        self.navigationController?.setNeedsNavigationBackground(alpha:1.0)
+//        self.navigationItem.titleView?.alpha = 1
     }
     
     
@@ -297,6 +298,7 @@ class ScenicSpotDetailViewController: LWBaseViewController {
         collectionView.reloadData()
         
         notesContentLabel.attributedText = stringFromHtml(string: model!.notes!)
+        mainScrollView.layoutIfNeeded()
         notesContentLabel.layoutIfNeeded()
         
     }

@@ -44,7 +44,8 @@ class LWNavigationController: UINavigationController,UIGestureRecognizerDelegate
             let emptyBar = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
             emptyBar.width = -40
             let leftBtn = UIBarButtonItem(title: "" , image: UIImage(named: "btn_back"), highlightedImage: UIImage(named: "btn_back"), target: self, action: #selector(back))
-            viewController.navigationItem.leftBarButtonItems = [emptyBar,leftBtn]
+            
+            viewController.navigationItem.leftBarButtonItem = leftBtn
             viewController.navigationController?.navigationBar.shadowImage = UIImage()
             //获取返回手势的代理
             let target = interactivePopGestureRecognizer?.delegate
@@ -148,7 +149,6 @@ extension UIBarButtonItem {
         barButton.setTitleColor(UIColor.init(red: 0.24, green: 0.24, blue: 0.24, alpha: 1), for: .normal)
         barButton.setTitleColor(UIColor.init(red: 1, green: 0.46, blue: 0, alpha: 1), for: .highlighted)
         barButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        
         //设置图片
         if let image = image {
             barButton.setImage(image, for: .normal)
@@ -164,7 +164,8 @@ extension UIBarButtonItem {
         
         //尺寸适应
         barButton.size = CGSize (width: 44, height: 44)
-        barButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20)
+        
+        barButton.imageEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 15)
         //构造.
         self.init()
         
